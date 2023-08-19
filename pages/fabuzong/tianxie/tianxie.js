@@ -1,4 +1,4 @@
-// pages/user/fabuzong/tianxie/tianxie.js
+const FormData = require('../../../utils/formdata.js')
 Page({
   data: {
     showOverlay: false,
@@ -95,7 +95,8 @@ Page({
         nums: e.detail.value.nums,
       })
     }
-    this.getLabel()
+    if(!this.getLabel())
+      return 
     var datas = this.data
     if(datas.title && datas.content && datas.phone && datas.nums && datas.labels && datas.emergency){
       this.showOverlay()
@@ -134,6 +135,9 @@ Page({
 
   //发请求
   uploadDatas(){
+    // wx.showLoading({
+    //   title:'发布中',
+    // })
     var that = this
     var title = that.data.title
     var imgList
@@ -150,45 +154,49 @@ Page({
     var reqTime = that.data.reqTime
     var endTime = that.data.endTime
     console.log(imgList,title,content,phone,nums,labels,emergency,bonus,reqTime,endTime)
-    // var state = 1
-    // for(let i=0;i<imgList.length;i++){
-    //   this.uploadImage(imgList[i])
-    // }
-    wx.request({
-      url: 'http://8.130.118.211:5795/user/request',
-      data:{
-        'id': null,
-        'userId': wx.getStorageSync('id'),
-        'title': title,
-        'content': content,
-        'reqNum': nums,
-        'helpNum': null,
-        'contact': phone,
-        'bonus': bonus,
-        'reqTime': null,
-        'endTime': null,
-        'emergency': emergency,
-        'image': imgList,
-        'labels': labels,
-      },
-      header: {
-        'content-type': 'application/json',
-        "authentication" : wx.getStorageSync('token')
-      },
-      method : 'POST',
-      success: (res) => {
-        console.log(res)
-        if(res.data.code==1){
-          wx.showToast({title: '发布成功！',icon: 'success', duration: 1500, mask:true})
-          wx.switchTab({
-            url: '/pages/shouye/index/index',
-          })
-        }
-      },
-      fail: (err) => {
-        console.log(err)
+    var state = 1
+    for(let i=0;i<imgList.length;i++){
+      console.log(imgList[i])
+      state = this.uploadImage(imgList[i])
+      if(state != 1){
+        return 
       }
-    })
+    }
+    // wx.request({
+    //   url: 'http://8.130.118.211:5795/user/request',
+    //   data:{
+    //     'id': null,
+    //     'userId': wx.getStorageSync('id'),
+    //     'title': title,
+    //     'content': content,
+    //     'reqNum': nums,
+    //     'helpNum': null,
+    //     'contact': phone,
+    //     'bonus': bonus,
+    //     'reqTime': null,
+    //     'endTime': null,
+    //     'emergency': emergency,
+    //     'image': imgList,
+    //     'labels': labels,
+    //   },
+    //   header: {
+    //     'content-type': 'application/json',
+    //     "authentication" : wx.getStorageSync('token')
+    //   },
+    //   method : 'POST',
+    //   success: (res) => {
+    //     console.log(res)
+    //     if(res.data.code==1){
+    //       wx.showToast({title: '发布成功！',icon: 'success', duration: 1500, mask:true})
+    //       wx.switchTab({
+    //         url: '/pages/shouye/index/index',
+    //       })
+    //     }
+    //   },
+    //   fail: (err) => {
+    //     console.log(err)
+    //   }
+    // })
   },
 
   //获取已经选择了的标签
@@ -196,7 +204,8 @@ Page({
     var that = this
     var choosedLabels = []
     var labelList = this.data.indexlabels
-    for(let i=1;i<9;i++){
+    // console.log(labelList)
+    for(let i=0;i<8;i++){
       if(labelList[i].isChoosed){
         choosedLabels.push(labelList[i].id)
       }
@@ -205,12 +214,14 @@ Page({
       wx.showToast({title: '标签不能为空！',icon: 'none', duration: 1500, mask: true,})
     }else if(choosedLabels.length>1){
       wx.showToast({title: '标签最多选一个！',icon: 'none', duration: 1500, mask: true,})
+      return 0
     }else{
       that.setData({
         labels: choosedLabels,
       })
+      // console.log(this.data.labels)
+      return 1
     }
-    // console.log(this.data.labels)
   },
 
   //获取是否紧急
@@ -235,7 +246,7 @@ Page({
 
   // 标签改动
   changeLabel:function (e) {
-    var index = e.currentTarget.dataset.index
+    var index = e.currentTarget.dataset.index-1
     var labels = this.data.indexlabels
     labels[index].isChoosed = !labels[index].isChoosed
     this.setData({
@@ -244,7 +255,7 @@ Page({
     // console.log(this.data.indexlabels)
   },
 
-  //选择上传照片
+  //选择照片
   chooseImage:function (){
     var that = this
     var imageList = this.data.fileList
@@ -294,7 +305,7 @@ Page({
                     fileType: 'jpg',
                     quality: quality,
                     success: function success(path) {
-                      imageList.push(res.tempFilePaths[0])
+                      imageList.push(res.tempFiles[0].path)
                       that.setData({
                         fileList: imageList
                       });
@@ -309,7 +320,7 @@ Page({
               }
             });
           } else {
-            imageList.push(res.tempFilePaths[0])
+            imageList.push(res.tempFiles[0].path)
             that.setData({
               fileList: imageList
             });
@@ -352,30 +363,32 @@ Page({
   },
 
   // 上传到服务器
-  uploadImage(imagePath) {
-    // this.formdata(imagePath)
-    // wx.showLoading({
-    //   title:'发布中',
-    // })
+  uploadImage(url) {
+    console.log(1)
+    let _name = url.split("\/");
+    let name = _name[_name.length-1];
+    name = name.length > 10 ? name.substring(name.length - 9, name.length) : name;
+    let formData = new FormData();
+    formData.appendFile("file",url,name);
+    let data = formData.getData();
+    console.log(data.buffer)
     wx.request({
-          url:'http://8.130.118.211:5795/common/file',
-          method:'POST',
-          header: {
-            'content-type':'multipart/form-data; boundary=XXX'
-          },
-          data:'\r\n--XXX' +
-            '\r\nContent-Disposition: form-data; name="file”"' +
-            '\r\n' +
-            '\r\nhttps://img1.imgtp.com/2023/08/18/uFssqCH4.jpg' +
-            '\r\n--XXX--',
-          success(res){
-            console.log(res)
-          },
-          fail(res){
-            console.log(2)
-            console.log(res)
-          }
-        })
+      url: 'http://8.130.118.211:5795/common/file',
+      header: {
+        'content-type': data.contentType
+      },
+      data: data.buffer,
+      success: function(res){
+        console.log('上传成功')
+        return 1
+      },
+      method: 'POST',
+      fail(res){
+        console.log(res)
+        wx.showToast({title: '图片上传失败！',icon: 'error', duration:1500, mask:true})
+        return 0
+      }
+    });
   }
 
 })

@@ -1,7 +1,7 @@
 <canvas canvas-id="attendCanvasId" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;position: absolute;left:-8000px;top:-8000px;" ></canvas>
 <view class="rect1"></view>
 <view class="rect2">  </view>
-<view bindtap="uploadImage" class="rect3"> 
+<view class="rect3"> 
   <form bindsubmit="getdatas1">
     <view class="container">
       <view class="top">
@@ -36,7 +36,7 @@
     </view>
 
 
-    <view class="yiwen">是否加急？</view>
+    <view  class="yiwen">是否加急？</view>
     <view class="huida">
       <button form-type="submit" bindtap="changeEmergency" data-index="1" class="butt">是</button>
       <button form-type="submit" bindtap="changeEmergency" data-index="0" class="butt">否</button>
