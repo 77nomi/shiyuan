@@ -39,7 +39,7 @@
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* 阴影效果 */
 }
 
-scroll-view{
+.content-scroll{
   margin: 0 auto;
   /* margin-top: 30rpx; */
   /* width: 650rpx; */

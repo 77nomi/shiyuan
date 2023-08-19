@@ -39,7 +39,7 @@
       "outputPath": ""
     },
     "condition": false,
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",

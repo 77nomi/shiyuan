@@ -50,7 +50,7 @@
         </view>
       </view>
     </view>
-    <view class="exit">退出登录</view>
+    <view bindtap="logout" class="exit">退出登录</view>
     </view>
   </view>
 </view>

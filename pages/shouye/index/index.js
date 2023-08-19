@@ -1,13 +1,23 @@
-// pages/shiyuanguangchang/shiyuanguangchang.js
+var app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
 
   data: {
     helplist:[
       {
+        label: '问卷',
+        title: '求助帮忙填问卷',
+        name: 'czx',
+        x: '1',
+        n: '5',
+        time: "2023年8月18日9:01"
+      },{
+        label: '问卷',
+        title: '求助帮忙填问卷',
+        name: 'czx',
+        x: '1',
+        n: '5',
+        time: "2023年8月18日9:01"
+      },{
         label: '问卷',
         title: '求助帮忙填问卷',
         name: 'czx',
@@ -33,12 +43,12 @@ Page({
     indextabs:[
       {
         id:0,
-        value:"最新",
+        value:"紧急",
         isActive:true
       },
       {
         id:1,
-        value:"紧急",
+        value:"问卷",
         isActive:false
       },
       {
@@ -53,17 +63,27 @@ Page({
       },
       {
         id:4,
-        value:"问卷",
-        isActive:false
-      },
-      {
-        id:5,
         value:"跑腿",
         isActive:false
       },
       {
+        id:5,
+        value:"失物招领",
+        isActive:false
+      },
+      {
         id:6,
-        value:"其他",
+        value:"租借",
+        isActive:false
+      },
+      {
+        id:7,
+        value:"出/收物",
+        isActive:false
+      },
+      {
+        id:8,
+        value:"其它",
         isActive:false
       }
     ]
@@ -78,40 +98,34 @@ Page({
     this.setData({
       indextabs
     })
+    this.getforms(e.detail.index,1)
+  },
+
+  getforms:function (label,page) {
+    var token = wx.getStorageSync('token')
+    var code = app.globalData.code
+    wx.request({
+      url: "http://8.130.118.211:5795/user/request/list",
+      data: {
+        'key': null,
+        'label': label,
+        'page': page,
+        'pageSize': 5,
       },
+      // header:{
+      //   'authentication': token,
+      // },
+      method: 'GET',
+      success: (res) => {
+        console.log(res)
+      },
+      fail: (err) => {
+        console.log(err)
+      }
+    })
+  },
  
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
-  },
-
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
 
   },
 
@@ -129,10 +143,4 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

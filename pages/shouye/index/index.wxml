@@ -8,48 +8,13 @@
     </view>
 
     <indextabs tabs="{{indextabs}}" bindtabsItemChange="handleTabsItemChange">
-<block wx:if="{{indextabs[0].isActive}}">
-<scroll-view  scroll-y>
-<template is="help-synopsis" data=""/>
-</scroll-view>
-</block>
-<block wx:if="{{indextabs[1].isActive}}">
-  <scroll-view  scroll-y>
-    <template is="help-synopsis" data=""/> 
-</scroll-view>
-</block>
-<block wx:if="{{indextabs[2].isActive}}">
-  <scroll-view  scroll-y>
-    <template is="help-synopsis" data=""/>
-</scroll-view>
-</block>
-<block wx:if="{{indextabs[3].isActive}}">
-<scroll-view  scroll-y>
-<template is="help-synopsis" data=""/>
-</scroll-view>
-</block>
-<block wx:if="{{indextabs[4].isActive}}">
-  <scroll-view  scroll-y>
-    <template is="help-synopsis" data=""/> 
-</scroll-view>
-</block>
-<block wx:if="{{indextabs[5].isActive}}">
-  <scroll-view  scroll-y>
-    <template is="help-synopsis" data=""/>
-</scroll-view>
-</block>
-<block wx:if="{{indextabs[6].isActive}}">
-  <scroll-view  scroll-y>
-    <template is="help-synopsis" data=""/>
-</scroll-view>
-</block>
+    </indextabs>
+    
+    <scroll-view class="content-scroll" scroll-y>
+      <block wx:for="{{helplist}}" wx:for-item="form">
+        <template is="help-synopsis" data="{{...form}}"/> 
+      </block>
+    </scroll-view>
 
-</indextabs>
-  
-
-
-
-
-  
   </view>
 </view>

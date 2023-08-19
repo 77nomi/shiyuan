@@ -50,4 +50,23 @@ Page({
       })
     }
   },
+
+  logout(){
+    wx.request({
+      url: 'http://8.130.118.211:5795/user/user/logout',
+      headers: {
+        token : wx.getStorageSync('token')
+      },
+      method : 'POST',
+      success: (res) => {
+        console.log(res)
+        wx.removeStorageSync('token')
+        this.onLoad()
+      },
+      fail: (err) => {
+        console.log(err)
+      }
+    })
+  },
+
 })
