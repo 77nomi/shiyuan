@@ -1,0 +1,160 @@
+.all {
+  width: 100%;
+  height: 100vh;
+  background-color: #C5DFE8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  padding: 0;
+  width: calc(100% - 60rpx);  
+  height: calc(100% - 60rpx);  
+  border-radius: 30rpx; 
+  background-color: #E5F1F5;
+  overflow: auto;
+}
+
+.container1 {
+  position: relative;
+  width: 620rpx;
+  height: calc(100% - 140rpx);
+  margin: 0 auto;
+  margin-top: 100rpx;
+  border-radius: 30rpx;
+
+  background-color: white;
+}
+
+.zhuazi {
+  height: 100rpx;
+  position: absolute;
+  top: -100rpx;
+  left: 50rpx;
+}
+
+/* 联系我们 */
+.contact {
+  width: 620rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.contact-text{
+  width: 180rpx;
+  background-color: #50A8BA;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  margin-right: 30rpx;
+  border-radius: 30rpx;
+}
+
+/* 第二栏 */
+.row2
+{
+  width: 620rpx;
+  height: 220rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.circle{
+  width: 180rpx;
+  height: 180rpx;
+  margin:20rpx 20rpx;
+  border-radius: 90rpx;
+  background-color: rgb(190, 190, 190);
+}
+.avatar{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 90rpx;
+  border: solid rgb(109, 109, 109) 2rpx;
+}
+.nicheng,
+.id{
+  width: 380rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 40rpx;
+}
+.nicheng{
+  margin-top: 30rpx;
+}
+.id{
+  margin-bottom: 20rpx;
+  font-size: 25rpx;
+}
+/* 第三栏 */
+.row3
+{
+  height: 180rpx;
+  display: flex;
+  border-bottom: 10rpx solid #E5E5E5;
+}
+.part1,
+.part2,
+.part3{
+  width: 204rpx;
+  height: 180rpx;
+}
+.part1,
+.part2{
+  border-right: 4rpx solid #D9D9D9;
+}
+.num{
+  font-weight: 700;
+  height: 130rpx;
+  text-align: center;
+  line-height: 130rpx;
+  font-size: 50rpx;
+}
+.zi{
+  height: 50rpx;
+  text-align: center;
+  line-height: 20rpx;
+}
+/* 第四栏 */
+.row4{
+  width: 620rpx;
+  height: 200rpx;
+  /* background-color: rgb(33, 61, 150); */
+}
+.box1{
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.qiu,
+.bang{
+  display: flex;
+}
+.tubiao1,
+.tubiao2
+{
+  width: 50rpx;
+}
+
+.wenzi{
+  width: 420rpx;
+  background-color: #fff;
+  line-height: 100rpx;
+  font-size: 35rpx;
+}
+.exit{
+  width: 300rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 250rpx;
+  border-radius: 30rpx;
+  font-size: 40rpx;
+  background-color: #DDDDDD;
+}

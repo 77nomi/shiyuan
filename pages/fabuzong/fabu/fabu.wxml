@@ -1,0 +1,18 @@
+<view class="all">
+<view class="container">
+ <view class="container1"></view>
+ <view class="container2">
+ <view class="shiyuan">---时援---</view>
+ <view class="qiuzhuling" bindtap="tianxie">
+ <view class="tu">
+  <image src="/images/qiuzhuling.png" mode="widthFix" class="ling"/>
+  <image src="/images/shuihuli.png" mode="widthFix" class="shuihuli"/>
+ </view>
+
+ <view class="wenzi">来时援招募帮手</view>
+ </view> 
+ 
+ </view>
+
+</view>
+</view>

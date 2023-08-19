@@ -1,0 +1,28 @@
+<view class="rect1"></view>
+<view class="rect2"> 
+<view class="information" >官方信息通知</view>
+<view class="duihua">
+<view class="row1">路人：这只懒狐狸究竟是什么来路</view>
+<view class="row2">开发人员：吉祥物</view>
+<image src="/images/shuihuli.png" mode="widthFix" class="shuihuli"/>
+</view>
+<view class="gonggao" bindtap="togongaoxiangxi">
+  <view class="left"><image src="/images/lingdang.png" mode="heightFix" class="image3"/></view>
+  <view class="middle">
+  <view class="title">公告标题</view>
+  <view class="time">发布时间</view>
+  </view>
+  <view class="right" ><image src="/images/you.png" mode="heightFix" class="image3"/></view>
+    <!-- 内容区域 -->
+  </view>
+
+<view class="wenjuan"  bindtap="towenjuanxiangxi" >
+  <view class="left"><image src="/images/wenhao.png" mode="heightFix" class="image3"/></view>
+  <view class="middle">
+  <view class="title">问卷标题</view>
+  <view class="time">发布时间</view>
+  </view>
+  <view class="right"><image src="/images/you.png" mode="heightFix" class="image3"/></view>
+    <!-- 内容区域 -->
+  </view>
+</view>

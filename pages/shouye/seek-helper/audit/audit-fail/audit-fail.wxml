@@ -1,0 +1,23 @@
+<view class="rect1"></view>
+<view class="rect2">
+<view class="row1">
+<view class="left"><image src="/images/touxiang.png" mode="widthFix"/></view>
+<view class="right">
+<!-- id -->
+<view class="nicheng">昵称</view>
+<view class="id">用户ID</view>
+</view>
+</view>
+<!-- 下边框框 -->
+<view class="container">
+  <view class="top">
+    <input class="input" placeholder="不通过的原因" />
+  </view>
+  <view class="line"></view>
+  <view class="bottom">
+    <textarea class="textarea" placeholder="| 添加描述"  maxlength="-1"></textarea>
+    <view class="fasong">发送</view>
+  </view>
+  
+</view>
+</view>

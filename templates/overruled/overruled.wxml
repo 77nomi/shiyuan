@@ -1,0 +1,10 @@
+
+<template name="overruled">
+<view class="message">
+<view class="left">
+<view class="row1">{{name}}驳回了你的帮助</view>
+<view class="row2">{{time}}</view>
+</view>
+<view class="right"><image src="/images/you.png" mode="widthFix"/></view>
+</view>
+</template>

@@ -1,0 +1,58 @@
+@import "/templates/help-synopsis/help-synopsis.wxss";
+
+
+.all {
+  width: 100%;
+  height: 100vh;
+  background-color: #C5DFE8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  position: relative;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  border-radius: 20px;
+  background-color: #E5F1F5;
+  overflow: auto;
+}
+/* 标题 */
+.row1{
+  height: 130rpx;
+  border-radius: 20px 20px 0 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom:3rpx solid black ;
+}
+.yuan{
+  width: 200rpx;
+  height: 80rpx;
+  line-height:80rpx;
+  text-align: center;
+  border-radius: 20px;
+
+  /* background-color: rgb(250, 19, 19); */
+  margin-bottom: 2px; /* 盒子的下边距 */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+}
+
+scroll-view{
+  margin: 0 auto;
+  /* margin-top: 30rpx; */
+  /* width: 650rpx; */
+  padding-top: 20rpx;
+  height: 950rpx;
+  background-color: #E5F1F5;
+}
+/* 隐藏滚动条 */
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+  }
+
+
+

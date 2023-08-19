@@ -1,0 +1,7 @@
+
+<view class="logo">
+<image src="/images/logo.png" mode="widthFix"/>
+</view>
+<view class="wen">
+  <view class="fast" bindtap="login">一键快捷登录</view>
+</view>

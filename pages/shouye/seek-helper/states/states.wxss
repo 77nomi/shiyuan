@@ -1,0 +1,73 @@
+/* pages/user/shouye/qiuzhuneirongqiuzong/qiuzhuneirongqiuzong/zhuangtaixiangxi/zhuangtaixiangxi.wxss */
+.rect1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #C5DFE8;
+}
+.rect2 {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: calc(100vh - 30px);
+  border-radius: 10px;
+  background-color: #E5F1F5;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+}
+navigator{
+  width: 200rpx;
+  margin: 20rpx auto;
+  text-decoration:underline;
+  /* background-color: rgb(155, 35, 35); */
+  font-size: 30rpx;
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+.zhuangtai{
+  display: flex;
+  width: 650rpx;
+  height: 150rpx;
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: 10rpx;
+  border-radius: 20px;
+}
+.touxiang{
+  width: 100rpx;
+  height: 150rpx;
+  /* background-color: rgb(199, 196, 41); */
+  display: flex;
+justify-content: center;
+align-items: center;
+padding-left: 20rpx;
+}
+.nicheng{
+  width: 350rpx;
+  height: 150rpx;
+  /* background-color: rgb(29, 202, 52); */
+  line-height: 150rpx;
+  padding-left: 20rpx;
+  font-size: 40rpx;
+}
+.zhaungtai2{
+  width: 150rpx;
+  height: 150rpx;
+  padding-right: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: rgb(187, 17, 17); */
+}
+.butt{
+  width: 120rpx;
+  height: 50rpx;
+  background-color: rgb(226, 126, 43);
+  border-radius: 10px;
+  text-align: center;
+  line-height: 50rpx;
+}

@@ -1,0 +1,44 @@
+
+@import "/templates/helped/helped.wxss";
+@import "/templates/finished/finished.wxss";
+.rect1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #C5DFE8;
+}
+.rect2 {
+  position: fixed;
+  top: 30rpx;  
+  left: 30rpx;  
+  width: calc(100% - 60rpx);  
+  height: calc(100vh - 60rpx);  
+  border-radius: 30rpx;  
+  background-color: #E5F1F5;
+}
+.information
+{ height: 100rpx;
+  background-color: #fff;
+  border-radius: 30rpx;  
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 40rpx;
+}
+
+
+scroll-view{
+  margin: 0 auto;
+  /* margin-top: 30rpx; */
+  /* width: 650rpx; */
+  padding-top: 20rpx;
+  height: 1250rpx;
+  background-color: #E5F1F5;
+}
+/* 隐藏滚动条 */
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+  }

@@ -1,0 +1,49 @@
+<view class="all">
+  <view class="container">
+    <view class="bottle">  
+      <view class="ding"></view>
+      <view class="chashou">
+        <view class="neirong" bindtap="toguanfangtongzhi">官方通知请查收</view>
+      </view>
+      <view class="pingjing"></view>
+      <view class="pingshen">
+        <!-- 求助部分 -->
+        <view class="qiuzhu">
+          <view class="wenzi">求助</view>
+          <view class="two">
+            <navigator url="/pages/xinxizong/qiuzhuxinxi/qiuzhuxinxi">
+              <view class="zuo" >
+                <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
+                <view class="tishi">求助信息</view>
+              </view>
+            </navigator>
+            <navigator url="/pages/xinxizong/qiuzhujilu/qiuzhujilu">
+              <view class="you" >
+                <view class="tu"><image src="/images/xinxi2.png" mode="widthFix"/></view>
+                <view class="tishi">求助记录</view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+        <!-- 帮助部分 -->
+        <view class="bangzhu">
+          <view class="wenzi">帮助</view>
+          <view class="two">
+            <navigator url="/pages/xinxizong/bangzhuxinxi/bangzhuxinxi">
+              <view class="zuo" >
+                <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
+                <view class="tishi">帮助信息</view>
+              </view>
+            </navigator>
+            <navigator url="/pages/xinxizong/bangzhujilu/bangzhujilu">
+              <view class="you" >
+                <view class="tu"><image src="/images/xinxi2.png" mode="widthFix"/></view>
+                <view class="tishi" >帮助记录</view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

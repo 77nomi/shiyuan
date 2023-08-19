@@ -1,0 +1,10 @@
+
+<template name="confirmed">
+<view class="message">
+<view class="left">
+<view class="row1">{{name}}已确认帮助你的求助</view>
+<view class="row2">{{time}}</view>
+</view>
+<view class="right"><image src="/images/you.png" mode="widthFix"/></view>
+</view>
+</template>

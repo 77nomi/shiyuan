@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/shouye/index/index",
+    "pages/shouye/help-page-detail/help-page-detail",
+    "pages/shouye/helper/report/report",
+    "pages/shouye/seek-helper/states/states",
+    "pages/shouye/seek-helper/audit/audit",
+    "pages/shouye/seek-helper/audit/audit-fail/audit-fail",
+    "pages/fabuzong/fabu/fabu",
+    "pages/fabuzong/tianxie/tianxie",
+    "pages/xinxizong/wenjuanxiangxi/wenjuanxiangxi",
+    "pages/xinxizong/guanfangtongzhi/guanfangtongzhi",
+    "pages/xinxizong/xinxi/xinxi",
+    "pages/xinxizong/butongguoyuanyin/butongguoyuanyin",
+    "pages/xinxizong/gonggaoxiangxi/gonggaoxiangxi",
+    "pages/xinxizong/qiuzhuxinxi/qiuzhuxinxi",
+    "pages/xinxizong/qiuzhujilu/qiuzhujilu",
+    "pages/xinxizong/bangzhuxinxi/bangzhuxinxi",
+    "pages/xinxizong/bangzhujilu/bangzhujilu",
+    "pages/xinxizong/wanchenghou/wanchenghou",
+    "pages/geren/geren",
+    "pages/login/login"
+  ],
+  "tabBar": {
+    "selectedColor": "#FF9B69",
+    "list": [
+      {
+        "pagePath": "pages/shouye/index/index",
+        "text": "首页",
+        "iconPath": "/images/tarbar/index.jpg",
+        "selectedIconPath": "/images/tarbar/index.jpg"
+      },
+      {
+        "pagePath": "pages/fabuzong/fabu/fabu",
+        "text": "发布",
+        "iconPath": "/images/tarbar/publish.jpg",
+        "selectedIconPath": "/images/tarbar/publish.jpg"
+      },
+      {
+        "pagePath": "pages/xinxizong/xinxi/xinxi",
+        "text": "信息",
+        "iconPath": "/images/tarbar/message.jpg",
+        "selectedIconPath": "/images/tarbar/message.jpg"
+      },
+      {
+        "pagePath": "pages/geren/geren",
+        "text": "个人",
+        "iconPath": "/images/tarbar/self.jpg",
+        "selectedIconPath": "/images/tarbar/self.jpg"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "时援",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

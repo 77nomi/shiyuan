@@ -1,0 +1,46 @@
+
+
+<view class="rect1"></view>
+<view class="rect2">  </view>
+<view class="rect3"> 
+<scroll-view scroll-y >
+ 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内fgfg 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容 求助内容
+</scroll-view>
+<view class="bott">
+<view class="row1">
+<view class="left">
+<view class="top">
+<view>求助标题</view><view class="id">id:</view>
+</view>
+<view class="bot">时间</view>
+</view>
+<view class="right"><view class="shumu">x/n</view></view>
+</view>
+<view class="line"></view>
+<!-- 第二行 -->
+<view class="row2">
+<view class="p1">求助者</view>
+<view class="p2">
+<view class="left2"><image src="/images/touxiang.png" mode="widthFix"/></view>
+<view class="name">昵称</view>
+<view class="fen">信誉分：</view>
+</view>
+<view class="p3">个人联系方式：</view>
+</view>
+
+
+<view class="line"></view>
+<view class="row3">
+<view class="left3">报酬：</view>
+<view class="right3"><image src="/images/yishi.png" mode="heightFix" class="yishi"/></view>
+
+</view>
+<view class="line"></view>
+<view class="p4">补充图片:</view>
+<view class="buchong">
+</view>
+<!-- <image src="" mode="" class="buchong"/> -->
+
+<view class="more"><navigator url="">更多</navigator></view>
+</view>
+ </view>

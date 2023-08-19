@@ -1,0 +1,31 @@
+
+<view class="rect1"></view>
+<view class="rect2">  </view>
+<view class="rect3"> 
+<view class="wenzi">你有一份调查问卷待查收，填写后即可获得益时奖励！</view>
+<view class="wangzhi">https://</view>
+<view class="bott">
+<view class="row1">
+<view class="left">
+<view class="top">调研问卷</view>
+<view class="bot">时间</view>
+</view>
+<view class="right"><view class="shumu">x/n</view></view>
+</view>
+<view class="line"></view>
+<view class="row2">
+<view class="left2"><image src="/images/touxiang.png" mode="widthFix"/></view>
+<view class="right">
+<!-- id -->
+<view class=".guanliyuan">管理员</view>
+</view>
+</view>
+<view class="line"></view>
+<view class="row3">
+<view class="left3">报酬：</view>
+<image src="" mode=""/>
+</view>
+<view class="line"></view>
+<view class="tianxie">立即填写</view>
+</view>
+ </view>

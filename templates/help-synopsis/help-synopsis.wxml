@@ -1,0 +1,13 @@
+<template name="help-synopsis">
+  <view class="whole"  catchtap="getDetailTap">
+    <view class="simples">
+      <view class="biaoqian">【{{label}}】</view>
+      <view class="title">{{title}}</view>
+    </view>
+    <view class="details">
+      <view class="name">{{name}}</view>
+      <view class="states">{{x}}/{{n}}</view>
+      <view class="time">{{time}}</view>
+    </view>
+  </view>
+</template>

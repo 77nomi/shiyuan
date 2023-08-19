@@ -1,0 +1,60 @@
+
+<view class="rect1"></view>
+<view class="rect2">  </view>
+<view class="rect3"> 
+  <view class="container">
+  <view class="top">
+    <view class="shuxian">|</view>
+    <input class="input" placeholder="输入标题" />
+  </view>
+  <view class="bottom">
+    <textarea class="textarea" placeholder="内容" maxlength="-1"></textarea>
+    <view class="camera">
+    <image src="/images/zhaoxiangji_1.png" mode="aspectFit"/>
+    </view>
+  </view>
+</view>
+<view class="shuru">
+<view class="m1"><view class="shuxian1">|</view>   <input class="input2" placeholder="输入联系方式" /></view>
+<view class="m1"><view class="shuxian1">|</view>   <input class="input2" placeholder="输入帮助人数" /></view>
+</view>
+<view class="biaoqian">
+  <view class="box-group">
+    <view class="box">dcscc</view>
+    <view class="box"></view>
+    <view class="box"></view>
+    <view class="box"></view>
+  </view>
+  
+  <view class="box-group">
+    <view class="box"></view>
+    <view class="box"></view>
+    <view class="box"></view>
+    <view class="box"></view>
+  </view>
+</view>
+<view class="yiwen">是否加急？</view>
+<view class="huida">
+<view class="butt" bindtap="showOverlay">是</view>
+<view class="butt" bindtap="showOverlay">否</view>
+</view>
+ </view>
+ <!-- <view class="overlay" wx:if="{{showOverlay}}" bindtap="hideOverlay"> -->
+  <view class="overlay" wx:if="{{showOverlay}}" >
+    <view class="tan">
+<view class="tan1">
+<view class="baochou">报酬：</view> 
+<input type="text" class="baochoushumu"/>
+<view class="tubiao"><image src="/images/yishi.png" mode="heightFix"/></view>
+</view>
+<view class="tan2">发布后将扣除x益时</view>
+<view class="tan3">
+  <view class="shijian">开始时间</view>
+<view class="shijian">结束时间</view>
+</view>
+<view class="fabu" bindtap="fabuchengggong" bindtap="hideOverlay">发布</view>
+    </view>
+  </view>
+  <view class="overlay" wx:if="{{showsuccess}}" bindtap="hidesuccess">
+  <view class="chenggong">发布成功</view>
+  </view>

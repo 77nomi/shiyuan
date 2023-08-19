@@ -1,0 +1,12 @@
+
+<view class="rect1"></view>
+<view class="rect2">
+<view class="yuan"><navigator url="">查看原帖</navigator></view>
+<view class="zhuangtai">
+<view class="touxiang"><image src="/images/touxiang.png" mode="widthFix"/></view>
+<view class="nicheng">昵称</view>
+<view class="zhaungtai2">
+<view class="butt">待完成</view>
+</view>
+</view>
+</view>

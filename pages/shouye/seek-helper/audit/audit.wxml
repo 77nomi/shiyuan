@@ -1,0 +1,18 @@
+
+<view class="rect1"></view>
+<view class="rect2"></view>
+<!-- 框框 -->
+<view class="rect3">
+  <view class="row1">
+<view class="left"><image src="/images/touxiang.png" mode="widthFix"/></view>
+<view class="name">昵称</view>
+<view class="finished">已完成</view>
+</view>
+<scroll-view scroll-y show-scrollbar="false" >
+ 内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容 
+</scroll-view>
+<view class="row3">
+<view class="button">不通过</view>
+    <view class="button">通过</view>
+  </view>
+</view>

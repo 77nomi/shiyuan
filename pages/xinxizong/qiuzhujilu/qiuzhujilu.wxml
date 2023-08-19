@@ -1,0 +1,15 @@
+
+<import src="/templates/help-synopsis/help-synopsis"/>
+<!-- 求助记录 -->
+<view class="rect1"></view>
+<view class="rect2"> 
+<view class="information">我的求助记录</view>
+<scroll-view  scroll-y>
+   <template is="help-synopsis" data=""/>
+   
+   <template is="help-synopsis" data=""/>
+   <template is="help-synopsis" data=""/> <template is="help-synopsis" data=""/> <template is="help-synopsis" data=""/> <template is="help-synopsis" data=""/> <template is="help-synopsis" data=""/> <template is="help-synopsis" data=""/> <template is="help-synopsis" data=""/>
+</scroll-view>
+
+</view>
+

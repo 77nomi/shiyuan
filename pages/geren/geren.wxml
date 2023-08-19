@@ -1,0 +1,56 @@
+<view class="all">
+  <view class="container">
+    <view class="container1">
+      <image src="/images/zhuazi1.png" mode="heightFix" class="zhuazi"/>
+      <view class="contact">
+        <view class="contact-text">联系我们</view>
+      </view>
+      <view class="row2">
+        <view class="left">
+          <view class="circle">
+            <image class="avatar" src="{{selfdatas.avatar}}"></image>
+          </view>
+        </view>
+        <view class="xinxi">
+          <view class="nicheng">昵称: {{selfdatas.name}}</view>
+          <view class="id">id: {{selfdatas.id}}</view>
+        </view>
+      </view>
+      <view class="row3">
+        <view class="part1">
+          <view class="num">{{selfdatas.yishi}}</view>
+          <view class="zi">益时</view>
+        </view>
+        <view class="part2">
+          <view class="num">{{selfdatas.credibility}}</view>
+          <view class="zi">信誉分</view>
+        </view>
+        <view class="part3">
+          <view class="num">{{selfdatas.helptimes}}</view>
+          <view class="zi">帮助次数</view>
+        </view>
+      </view>
+    <view class="row4">
+      <view bindtap="cheakmyseek" class="qiu">
+        <view class="box1">
+          <image src="/images/xinxitubiao.png" mode="widthFix" class="tubiao1"/>
+        </view>
+        <view class="wenzi">我的求助</view>
+        <view class="box1">
+          <image src="/images/you.png" mode="widthFix" class="tubiao2"/>
+        </view>
+      </view>
+      <view bindtap="cheakmyhelp" class="bang">
+        <view class="box1">
+          <image src="/images/xinxitubiao.png" mode="widthFix" class="tubiao1"/>
+        </view>
+        <view class="wenzi">我的帮助</view>
+        <view class="box1">
+          <image src="/images/you.png" mode="widthFix" class="tubiao2"/>
+        </view>
+      </view>
+    </view>
+    <view class="exit">退出登录</view>
+    </view>
+  </view>
+</view>

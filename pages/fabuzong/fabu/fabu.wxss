@@ -1,0 +1,96 @@
+.all {
+  width: 100%;
+  height: 100vh;
+  background-color: #C5DFE8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  position: relative;
+  width: calc(100% - 60rpx);
+  height: calc(100% - 60rpx);
+  border-radius: 30rpx;
+  padding: 0;
+  background-color: #E5F1F5;
+  overflow: auto;
+}
+.container1{
+  width: 600rpx;
+  height: 10rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+  background-color: #C75252;
+  border:5rpx solid  #ADD6DE;
+}
+.container2{
+  width: 600rpx;
+  height:1100rpx;
+  margin: 0 auto;
+  border-radius: 0 0 20px 20px;
+  background-color: #ADD6DE;
+}
+.shiyuan{
+  text-align: center;
+  /* background-color: rgb(201, 149, 38); */
+  font-size: 40rpx;
+}
+.qiuzhuling{
+  width: 550rpx;
+  height: 1000rpx;
+  margin: 0 auto;
+  background-color:#EDF5F7;
+}
+.tu{
+  padding-top: 150rpx;
+  position: relative;
+}
+.wenzi{
+  width: 550rpx;
+  height: 100px;
+  text-align: center;
+  /* background-color: rgb(26, 226, 126); */
+  font-size: 40rpx;
+}
+.ling{
+  margin: 0 auto;
+  width: 550rpx;
+  height: 700rpx;
+}
+.shuihuli{
+  width: 250rpx;
+  top: 15rpx;
+  right: 20rpx;
+
+  position: absolute;
+}
+/* 导航栏 */
+.nav-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  /* 自定义导航栏高度 */
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.nav-item image {
+  width: 80rpx;
+  /* 自定义图标宽度 */
+  height: 80rpx;
+  /* 自定义图标高度 */
+}
+.nav-item text {
+  font-size: 40rpx;
+  /* 自定义文字大小 */
+}

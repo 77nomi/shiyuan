@@ -1,0 +1,30 @@
+
+
+<view class="rect1"></view>
+<view class="rect2">
+<!-- 下边框框 -->
+<view class="container1">
+<view class="title">标题：</view>
+<view class="faburen">发布人：</view>
+<view class="id">id:</view>
+</view>
+<view class="container2">
+  <view class="top">
+    <input class="input" placeholder="举报原因" />
+  </view>
+  <view class="line"></view>
+  <view class="bottom">
+    <textarea class="textarea" placeholder="具体描述"  maxlength="-1"></textarea>
+  </view>
+  
+</view>
+
+ <view class="xuanxiang">
+<view class="butt" bindtap="showOverlay">取消</view>
+<view class="butt" bindtap="towanchenghou">上传</view>
+
+</view>
+</view>
+<view class="overlay" wx:if="{{showOverlay}}" bindtap="hideOverlay">
+    <view class="box">取消成功</view>
+  </view>
