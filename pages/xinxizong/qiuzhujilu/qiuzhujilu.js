@@ -1,18 +1,33 @@
 // pages/qiuzhujilu/qiuzhujilu.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
+  getSeekDatas(){
+    wx.request({
+      url: "http://8.130.118.211:5795/user/request/list",
+      data: {
+        'key': null,
+        'label': label,
+        'page': page,
+        'pageSize': 5,
+      },
+      // header:{
+      //   'authentication': token,
+      // },
+      method: 'GET',
+      success: (res) => {
+        console.log(res)
+      },
+      fail: (err) => {
+        console.log(err)
+      }
+    })
+  },
 
+  onLoad(options) {
+    getSeekDatas()
   },
 
   /**

@@ -41,7 +41,9 @@ Page({
     wx.getUserProfile({
       desc: '用于完善用户信息',
       success:(res)=>{
-        wx.showToast({ title: '登录中', icon: 'loading', duration: 2000, mask: true, });
+        wx.showLoading({
+            title: '登陆中'
+        });
         console.log(res)
         name = res.userInfo.nickName
         image = res.userInfo.avatarUrl

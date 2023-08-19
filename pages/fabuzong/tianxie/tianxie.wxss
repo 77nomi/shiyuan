@@ -23,9 +23,7 @@
   left: 60rpx;  
   width: calc(100% - 120rpx);  
   height: calc(100vh - 120rpx);  
-  border-radius: 30rpx;  
-  /* display: flex;
-  justify-content: center; */
+  border-radius: 30rpx;
 }
 .container {
   width: 500rpx;
@@ -38,17 +36,15 @@
 }
 .top{
   display: flex;
-  justify-content: center;
 }
 .shuxian{
-  margin-left: 165rpx;
+  margin-left: 5rpx;
   font-weight: 700rpx;
   font-size: 50rpx;
 }
 input{
   height: 80rpx;
   padding-left: 10rpx;
-  /* background-color: rgb(163, 35, 35); */
   font-size: 40rpx;
   line-height: 80rpx;
 }
@@ -57,6 +53,23 @@ input{
   /* height: 100rpx; */
 border:5rpx solid #7A6C68;
 }
+.textarea{  
+  width: 500rpx;  
+  height: 250rpx;  
+  background-color:d #fff;  
+}  
+.pics{
+  border-top:5rpx solid #7A6C68;
+  height: 100rpx;
+  white-space: nowrap;
+}
+.picture{
+  display: inline-block;
+  margin: 5rpx;
+  height: 90rpx;
+  width: 90rpx;
+  background-color: rgb(182, 182, 182);
+}
 .camera{
   width: 495rpx;
   border-top:5rpx solid #7A6C68;
@@ -64,18 +77,11 @@ border:5rpx solid #7A6C68;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: rgb(141, 73, 73); */  
 }
 image{
   width: 50rpx;
   height: 40rpx;
 }
-.textarea{  
-  width: 490rpx;  
-  height: 400rpx;  
-  padding-left: 10rpx;  
-  background-color:d #fff;  
-}  
 .shuru{
   width: 600rpx;
   height: 80rpx;
@@ -102,43 +108,36 @@ image{
 .input2{
   height: 80rpx;
   line-height: 100rpx;
-font-size: 30rpx;
+  font-size: 30rpx;
 }
 .biaoqian {
-  width: 500rpx;
-  height: 200rpx;
+  width: 600rpx;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
-  /* background-color: rgb(145, 182, 10); */
-}
-.box-group {
-  width: 500rpx;
-  height: 100rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* margin-bottom: 20rpx; */
+  flex-wrap: wrap;
 }
 .box {
-  width: 110rpx;
+  display: inline-block;
+  width: 140rpx;
   height: 80rpx;
   border-radius: 30rpx;
+  margin: 10rpx 5rpx;
   background-color: #FFFAEB;
   line-height: 80rpx;
   text-align: center;
 }
+.choosed{
+  background-color: #ff8d60;
+}
 .yiwen{
   width: 500rpx;
   height: 100rpx;
-  margin: 50rpx auto;
+  margin: 50rpx auto 30rpx;
   text-align: center;
   font-size:60rpx;
   line-height: 100rpx;
   color:#B86662;
-  
 }
 .huida{
   width: 500rpx;
@@ -149,14 +148,19 @@ font-size: 30rpx;
   /* background-color: rgb(214, 37, 37); */
 }
 .butt{
-  width: 200rpx;
-height: 90rpx;
-text-align: center;
-line-height: 90rpx;
-color: #710606;
-border:5rpx solid #710606;
-font-size: 50rpx;
+  width: 200rpx !important;
+  height: 90rpx !important;
+  text-align: center !important;
+  line-height: 90rpx !important;
+  color: #710606 !important;
+  border:5rpx solid #710606 !important;
+  font-size: 50rpx !important;
+  padding: 0 !important;
+  font-weight: 500 !important;
+  background-color: none !important;
+  margin: 0 !important;
 }
+
 .overlay {
   position: absolute;
   top: 0;
@@ -170,29 +174,25 @@ font-size: 50rpx;
 }
 .tan {
   width: 600rpx;
-  height: 600rpx;
+  height: 700rpx;
   background-color: #FFF0DB;
-  /* font-size: 50rpx; */
-  /* display: flex; */
-  /* justify-content: center; */
   border-radius: 20px;
+  padding-top: 10rpx;
 }
 .tan1 
 {
-width: 400rpx;
-height: 100rpx;
-margin: 50rpx auto;
-margin-bottom: 0;
-display: flex;
-font-size: 50rpx;
-/* background-color: rgb(175, 206, 38); */
+  width: 500rpx;
+  height: 100rpx;
+  margin: 50rpx auto;
+  margin-bottom: 50rpx;
+  display: flex;
+  font-size: 50rpx;
 }
 .baochou{
   width: 150rpx;
-line-height: 100rpx;
+  line-height: 100rpx;
   text-align: center;
   color:#710606;
-  /* background-color: #fff; */
 }
 .baochoushumu{
   width: 150rpx;
@@ -209,8 +209,13 @@ line-height: 100rpx;
 image{
   height: 100rpx;
 }
+.totalTimes{
+  font-size: 40rpx;
+  font-weight: 600;
+  color: rgb(189, 0, 0);
+}
 .tan2{
-  /* width: 250rpx; */
+  width: 500rpx;
   font-size:30rpx ;
   margin: 10rpx auto;
   text-align: center;
@@ -218,38 +223,45 @@ image{
   /* text-align: center; */
 }
 .tan3{
-  margin-top: 50rpx;
+  margin-top: 20rpx;
+}
+.dates{
+  height: 70rpx;
+  border: solid black 1rpx;
+  font-size: 35rpx;
+  padding: 0 0 0 5rpx;
+  margin: 20rpx auto;
 }
 .shijian{
-  width: 400rpx;
-  height: 50rpx;
+  width: 500rpx;
+  height: 70rpx;
   margin: 0 auto;
   line-height: 50rpx;
   /* background-color: rgb(187, 44, 44); */
 }
 .fabu
 {
-  width: 200rpx;
-  height: 100rpx;
- line-height: 100rpx;
-  border:5rpx solid #710606;
-  text-align: center;
-  font-size: 45rpx;
-  margin-top: 60rpx;
-  /* margin: 100rpx auto; */
-  margin-left: 300rpx;
-  transform: rotate(-30deg);
-  /* margin-top: 220px; */
-  color:#9C0A0A;
+  background-color: white !important;
+  width: 200rpx !important;
+  padding: 0 !important;
+  height: 100rpx !important;
+  line-height: 100rpx !important;
+  border:5rpx solid #710606 !important;
+  text-align: center !important;
+  font-size: 45rpx !important;
+  margin-top: 70rpx !important;
+  margin-left: 350rpx !important;
+  transform: rotate(-30deg) !important;
+  color:#9C0A0A !important;
 }
-.chenggong {
-  width: 300rpx;
-  height: 120rpx;
-  background-color: #666666;
-  text-align: center;
-  line-height: 120rpx;
-  font-size: 50rpx;
-  color: white;
-  border-radius: 30rpx;
-  /* background-color: #fff; */
+.imgbox{
+  margin-top: 70rpx;
+  width: 600rpx;
+  height: 10rpx;
+  display: flex;
+  justify-content: center;
+}
+.close{
+  width: 80rpx;
+  height: 80rpx;
 }

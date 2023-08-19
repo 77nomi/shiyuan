@@ -27,7 +27,7 @@ Page({
       wx.request({
         url: 'http://8.130.118.211:5795/user/user/' + id,
         headers: {
-          token : wx.getStorageSync('token')
+          authentication : wx.getStorageSync('token')
         },
         method : 'GET',
         success: (res) => {
@@ -49,6 +49,12 @@ Page({
         }
       })
     }
+  },
+
+  cheakmyseek(){
+    wx.navigateTo({
+      url: '/pages/xinxizong/qiuzhujilu/qiuzhujilu',
+    })
   },
 
   logout(){

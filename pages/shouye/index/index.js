@@ -103,7 +103,6 @@ Page({
 
   getforms:function (label,page) {
     var token = wx.getStorageSync('token')
-    var code = app.globalData.code
     wx.request({
       url: "http://8.130.118.211:5795/user/request/list",
       data: {
@@ -126,9 +125,12 @@ Page({
   },
  
   onLoad(options) {
-
+    this.getforms(0,1)
   },
 
+  onShow(){
+    this.onLoad()
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
