@@ -1,6 +1,5 @@
 Page({
   data: {
-    id: '',
     bonus: '',
     comNum: '',
     contact: '',

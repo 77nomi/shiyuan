@@ -2,6 +2,8 @@ const FormData = require('../../../utils/formdata.js')
 const DatePickerUtil = require('../../.././utils/DatePicker') 
 Page({
   data: {
+    flag: 0,
+    imageNums: 0,
     state: 1,
     showOverlay: false,
     indexlabels:[
@@ -47,12 +49,12 @@ Page({
       }
     ],
     fileList: [],
+    imageList: [],
     title: '',
     content: '',
     phone: '',
     nums: '',
-    labels: [
-    ],
+    labels: [],
     emergency: '',
     bonus: '',
     reqTime: '',
@@ -151,7 +153,6 @@ Page({
       content: '发布后将扣除您的'+Number(this.data.bonus)*Number(this.data.nums)+'益时',
       success: function (res) {
         if (res.confirm) {
-          console.log(1)
           that.uploadDatas()
         }
       }
@@ -159,29 +160,18 @@ Page({
   },
 
 
-  //发请求
+  //循环上传图片
   uploadDatas(){
-    wx.showLoading({
-      title:'发布中',
-    })
+    console.log('上传图片')
     var that = this
-    var title = that.data.title
     var imgList
     if(that.data.fileList.length == 0){
-      console.log(0)
       imgList = null
     }
-    else
+    else{
       imgList = that.data.fileList
-    var content = that.data.content
-    var phone = that.data.phone
-    var nums = Number(that.data.nums)
-    var labels = that.data.labels
-    var emergency = Number(that.data.emergency)
-    var bonus = Number(that.data.bonus)
-    var reqTime = that.data.reqTime
-    var endTime = that.data.endTime
-    console.log(imgList,title,content,phone,nums,labels,emergency,bonus,reqTime,endTime)
+      that.setData({imageNums:imgList.length})
+    }
     if(imgList){
       wx.showLoading({
         title: '发布中...',
@@ -197,6 +187,30 @@ Page({
       }
       wx.hideLoading()
     }
+    
+  },
+
+  //发送请求
+  sendRequset(){
+    console.log('发送请求')
+    var that = this
+    var title = that.data.title
+    var imgList
+    if(that.data.imageList.length == 0){
+      imgList = null
+    }
+    else{
+      imgList = that.data.imageList
+    }
+    var content = that.data.content
+    var phone = that.data.phone
+    var nums = Number(that.data.nums)
+    var labels = that.data.labels
+    var emergency = Number(that.data.emergency)
+    var bonus = Number(that.data.bonus)
+    var reqTime = that.data.reqTime
+    var endTime = that.data.endTime
+    console.log(imgList,title,content,phone,nums,labels,emergency,bonus,reqTime,endTime)
     wx.request({
       url: 'http://8.130.118.211:5795/user/request',
       data:{
@@ -222,7 +236,6 @@ Page({
       success: (res) => {
         console.log(res)
         if(res.data.code==1){
-          wx.hideLoading()
           wx.showToast({
             title: '发布成功！',
             icon: 'success', 
@@ -336,7 +349,7 @@ Page({
   chooseImage:function (){
     var that = this
     var imageList = this.data.fileList
-    if(imageList.length < 9){
+    if(imageList.length < 3){
       wx.chooseImage({
         count: 1,
         sizeType: ['compressed'],
@@ -407,7 +420,7 @@ Page({
       })
     }else{
       wx.showToast({
-        title: '最多只能上传九张图片！',icon: 'none',duration: 1000, mask: true,
+        title: '最多只能上传三张图片！',icon: 'none',duration: 1000, mask: true,
       })
     }
   },
@@ -441,6 +454,7 @@ Page({
 
   // 上传图片到服务器
   uploadImage(url) {
+    console.log('传到服务器')
     var that = this
     let _name = url.split("\/");
     let name = _name[_name.length-1];
@@ -449,17 +463,30 @@ Page({
     formData.appendFile("file",url,name);
     let data = formData.getData();
     console.log(data.buffer)
+    wx.showLoading({title: '上传图片中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/common/file',
       header: {
         'content-type': data.contentType
       },
       data: data.buffer,
+      method: 'POST',
       success: function(res){
-        console.log('res')
+        var imgurl = res.data.data
+        var simageList = that.data.imageList
+        simageList = simageList.concat(imgurl)
+        that.setData({
+          imageList: simageList,
+          flag:that.data.flag+1
+        })
+        console.log(that.data.imageList)
+        if(that.data.imageNums == that.data.flag)
+        {
+          wx.hideLoading()
+          that.sendRequset()
+        }
         return 
       },
-      method: 'POST',
       fail(res){
         console.log(res)
         wx.showToast({title: '图片上传失败！',icon: 'error', duration:1500, mask:true})

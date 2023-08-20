@@ -2,44 +2,7 @@ var app = getApp()
 Page({
 
   data: {
-    helplist:[
-      {
-        label: '问卷',
-        title: '求助帮忙填问卷',
-        name: 'czx',
-        x: '1',
-        n: '5',
-        time: "2023年8月18日9:01"
-      },{
-        label: '问卷',
-        title: '求助帮忙填问卷',
-        name: 'czx',
-        x: '1',
-        n: '5',
-        time: "2023年8月18日9:01"
-      },{
-        label: '问卷',
-        title: '求助帮忙填问卷',
-        name: 'czx',
-        x: '1',
-        n: '5',
-        time: "2023年8月18日9:01"
-      },{
-        label: '问卷',
-        title: '求助帮忙填问卷',
-        name: 'czx',
-        x: '1',
-        n: '5',
-        time: "2023年8月18日9:01"
-      },{
-        label: '问卷',
-        title: '求助帮忙填问卷',
-        name: 'czx',
-        x: '1',
-        n: '5',
-        time: "2023年8月18日9:01"
-      }
-    ],
+    helplist:[],
     indextabs:[
       {
         id:0,
@@ -87,8 +50,8 @@ Page({
         isActive:false
       }
     ]
-
   },
+
   handleTabsItemChange(e){
     //获取被点击事件的标题索引
     const {index}=e.detail;
@@ -102,11 +65,11 @@ Page({
   },
 
   getforms:function (label,page) {
+    var that = this
     var token = wx.getStorageSync('token')
     wx.request({
       url: "http://8.130.118.211:5795/user/request/list",
       data: {
-        'key': null,
         'label': label,
         'page': page,
         'pageSize': 5,
@@ -116,7 +79,8 @@ Page({
       // },
       method: 'GET',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
+        that.setData({helplist:res.data.data.records})
       },
       fail: (err) => {
         console.log(err)
@@ -128,21 +92,10 @@ Page({
     this.getforms(0,1)
   },
 
-  onShow(){
-    // this.onLoad()
-  },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
+  getDetailTap:function (e) {
+    console.log(e.currentTarget.dataset.index)
+    wx.navigateTo({
+      url: '/pages/shouye/help-page-detail/help-page-detail?id='+e.currentTarget.dataset.index,
+    })
+  }
 })
