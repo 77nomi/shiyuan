@@ -97,12 +97,15 @@ Page({
       wx.showToast({title: '帮助人数不能为空！',icon: 'none', duration: 1000, mask: true,})
       return 
     }else if(e.detail.value.nums){
-      var nums = e.detail.value.nums.replace(/\D/g, '')
-      if(!nums){
-        wx.showToast({title: '帮助人数格式错误！',icon: 'none', duration: 1000, mask: true,})
-        return 
+      var reqNum = e.detail.value.nums
+      for(var i=0;i<reqNum.length;i++){
+        if(reqNum[i]<'0' || reqNum[i]>'9'){
+          wx.showToast({title: '帮助人数格式错误',icon: 'none', duration: 1500, mask: true,})
+          return 
+        }
       }
     }
+
     if(e.detail.value.title && e.detail.value.phone && e.detail.value.nums){
       this.setData({
         title: e.detail.value.title,
@@ -162,11 +165,11 @@ Page({
 
   //循环上传图片
   uploadDatas(){
-    console.log('上传图片')
     var that = this
     var imgList
     if(that.data.fileList.length == 0){
       imgList = null
+      this.sendRequset()
     }
     else{
       imgList = that.data.fileList

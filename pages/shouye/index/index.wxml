@@ -10,7 +10,7 @@
     <indextabs tabs="{{indextabs}}" bindtabsItemChange="handleTabsItemChange">
     </indextabs>
     
-    <scroll-view class="content-scroll" scroll-y>
+    <scroll-view bindscrolltolower="getMore" class="content-scroll" scroll-y>
       <block wx:for="{{helplist}}" wx:for-item="form">
         <template is="help-synopsis" data="{{...form}}"/> 
       </block>

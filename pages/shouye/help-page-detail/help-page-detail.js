@@ -15,6 +15,7 @@ Page({
     reqTime: '',
     status: '',
     title: '',
+    userId: '',
     userImage: '',
     userName: '',
   },
@@ -23,6 +24,7 @@ Page({
     this.getDetailData(options.id)
   },
 
+  //获取详细信息
   getDetailData:function(id){
     var that = this
     wx.showLoading({title: '加载中...',})
@@ -54,6 +56,7 @@ Page({
           reqTime: data.reqTime,
           status: data.status,
           title: data.title,
+          userId: data.userId,
           userImage: data.userImage,
           userName: data.userName,
         })
