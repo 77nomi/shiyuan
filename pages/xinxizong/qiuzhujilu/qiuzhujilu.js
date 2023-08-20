@@ -1,17 +1,22 @@
 // pages/qiuzhujilu/qiuzhujilu.js
 Page({
   data: {
-
+    helplist:[],
   },
 
-  getSeekDatas(){
+  onLoad(options) {
+    this.getSeekDatas(1)
+  },
+
+  getSeekDatas:function(page){
+    var that = this
+    var id = wx.getStorageSync('id')
     wx.request({
-      url: "http://8.130.118.211:5795/user/request/list",
+      url: "http://8.130.118.211:5795/common/request",
       data: {
-        'key': null,
-        'label': label,
-        'page': page,
-        'pageSize': 5,
+        page: page,
+        pageSize: 5,
+        userId: id,
       },
       // header:{
       //   'authentication': token,
@@ -19,6 +24,12 @@ Page({
       method: 'GET',
       success: (res) => {
         console.log(res)
+        if(res.data.data.records){
+          var records = res.data.data.records
+          that.setData({helplist:records})
+        }else{wx.showToast({
+            title: '暂无更多记录',icon: 'none', duration: 1500})
+        }
       },
       fail: (err) => {
         console.log(err)
@@ -26,10 +37,7 @@ Page({
     })
   },
 
-  onLoad(options) {
-    getSeekDatas()
-  },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

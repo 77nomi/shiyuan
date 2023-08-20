@@ -120,32 +120,50 @@ Page({
 
   //获取第二页中的input数据
   getdatas2(e){
+    var bonus = e.detail.value.bonus
     if(!this.data.reqTime || !this.data.endTime){
       wx.showToast({title: '时间错误！',icon: 'none', duration: 1000, mask: true,})
       return 
     }
     var that = this
-    if(!e.detail.value.bonus){
+    if(!bonus){
       wx.showToast({title: '报酬不能为空！',icon: 'none', duration: 1000, mask: true,})
       return 
-    }else if(e.detail.value.bonus){
-      var nums = e.detail.value.bonus.replace(/\D/g, '')
-      if(!nums){
-        wx.showToast({title: '报酬格式错误！',icon: 'none', duration: 1000, mask: true,})
-        return 
+    }else{
+      for(var i=0;i<bonus.length;i++){
+        if((bonus[i]<'0' && bonus[i]!='.') || (bonus[i]>'9' && bonus[i]!='.')){
+          wx.showToast({title: '有除数字及小数点以外的字符',icon: 'none', duration: 1500, mask: true,})
+          return 
+        }
       }
     }
+    console.log(Number(bonus))
+    if(that.data.emergency==1 && Number(bonus)<1){
+      wx.showToast({title: '加急贴的报酬不能低于1!',icon: 'none', duration: 1500, mask: true,})
+      return 
+    }
     this.setData({
-      bonus: e.detail.value.bonus,
+      bonus: bonus,
     })
-    this.uploadDatas()
+
+    wx.showModal({
+      title: '确认发布',
+      content: '发布后将扣除您的'+Number(this.data.bonus)*Number(this.data.nums)+'益时',
+      success: function (res) {
+        if (res.confirm) {
+          console.log(1)
+          // that.uploadDatas()
+        }
+      }
+    })
   },
+
 
   //发请求
   uploadDatas(){
-    // wx.showLoading({
-    //   title:'发布中',
-    // })
+    wx.showLoading({
+      title:'发布中',
+    })
     var that = this
     var title = that.data.title
     var imgList
@@ -204,6 +222,8 @@ Page({
           wx.switchTab({
             url: '/pages/shouye/index/index',
           })
+        }else{
+          console.log('aaa')
         }
       },
       fail: (err) => {
