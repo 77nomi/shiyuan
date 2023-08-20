@@ -39,5 +39,18 @@
     </view>
 
     <view class="more">更多</view>
+    
+  <!-- 第一类 是本人时不显示 -->
+    <view class="button" hidden="{{flag}}">立即帮助</view>
+    <!-- </view> -->
+  <!-- 第二类 显示且内容发生根据status变化 -->
+  <view class="button" wx:if="{{type1===1}}">{{msg}}</view>
+<!-- 第三类 有两个按钮 -->
+    <view class="status"  wx:if="{{type2===2}}">
+    <view class="button1"  >{{msg2}}</view>
+    <view class="button1" >{{msg3}}</view>
+    </view>
+   
+
   </view>
 </view>

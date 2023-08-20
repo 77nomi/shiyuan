@@ -211,3 +211,36 @@
   text-align: center;
   margin-bottom: 30rpx;
 }
+.button{
+  position: absolute;
+  bottom: 80rpx;
+  left: 140rpx;
+  width: 400rpx;
+  height: 100rpx;
+  border-radius: 30rpx;
+/* margin: 0 auto; */
+  background-color: #1A92A6;
+}
+.status{
+  position: absolute;
+  width: 600rpx;
+  bottom: 80rpx;
+  left: 40rpx;
+  display: flex;
+  justify-content: space-evenly;
+  align-items:center;
+  line-height:100rpx ;
+  background-color: rgb(197, 32, 32);
+
+}
+.button1{
+  margin-top: 40rpx;
+  width: 260rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #1A92A6;
+  text-align: center;
+  border-radius: 30rpx;
+  font-size: 40rpx;
+
+}
