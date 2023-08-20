@@ -31,7 +31,7 @@ Page({
         },
         method : 'GET',
         success: (res) => {
-          // console.log(res)
+          console.log(res)
           var datas={
             avatar: res.data.data.image,
             name: res.data.data.name,

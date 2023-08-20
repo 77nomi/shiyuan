@@ -1,5 +1,5 @@
 <template name="help-synopsis">
-  <view class="whole"  catchtap="getDetailTap">
+  <view class="whole" catchtap="getDetailTap" data-index="{{id}}">
     <view class="simples">
       <view class="biaoqian">【{{labels[0].label}}】</view>
       <view class="title">{{title}}</view>

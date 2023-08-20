@@ -1,65 +1,80 @@
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    id: '',
+    bonus: '',
+    comNum: '',
+    contact: '',
+    content: '',
+    createTime: '',
+    credit: '',
+    endTime: '',
+    helpId: '',
+    helpNum: '',
+    id: '',
+    image: '',
+    reqNum: '',
+    reqTime: '',
+    status: '',
+    title: '',
+    userImage: '',
+    userName: '',
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    this.setData({id:options.id})
+    this.getDetailData(options.id)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  getDetailData:function(id){
+    var that = this
+    wx.showLoading({title: '加载中...',})
+    wx.request({
+      url: 'http://8.130.118.211:5795//common/request/' + id,
+      headers: {
+        authentication : wx.getStorageSync('token')
+      },
+      data:{
+        'userId': wx.getStorageSync('id')
+      },
+      method : 'GET',
+      success: (res) => {
+        console.log(res)
+        var data = res.data.data
+        that.setData({
+          bonus: data.bonus,
+          comNum: data.comNum,
+          contact: data.contact,
+          content: data.content,
+          createTime: data.createTime,
+          credit: data.credit,
+          endTime: data.endTime,
+          helpId: data.helpId,
+          helpNum: data.helpNum,
+          id: data.id,
+          image: data.image,
+          reqNum: data.reqNum,
+          reqTime: data.reqTime,
+          status: data.status,
+          title: data.title,
+          userImage: data.userImage,
+          userName: data.userName,
+        })
+      },
+      fail: (err) => {
+        console.log(err)
+      },
+      complete:()=>{
+        wx.hideLoading()
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  // 查看图片
+  preview(e){
+    var index = e.currentTarget.dataset.index
+    var imageList = this.data.image
+    wx.previewImage({
+      current: imageList[index], 
+      urls: imageList
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

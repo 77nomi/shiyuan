@@ -183,6 +183,9 @@ Page({
     var endTime = that.data.endTime
     console.log(imgList,title,content,phone,nums,labels,emergency,bonus,reqTime,endTime)
     if(imgList){
+      wx.showLoading({
+        title: '发布中...',
+      })
       for(let i=0;i<imgList.length;i++){
         console.log(imgList[i])
         this.uploadImage(imgList[i])
@@ -192,6 +195,7 @@ Page({
           return 
         }
       }
+      wx.hideLoading()
     }
     wx.request({
       url: 'http://8.130.118.211:5795/user/request',
@@ -218,9 +222,17 @@ Page({
       success: (res) => {
         console.log(res)
         if(res.data.code==1){
-          wx.showToast({title: '发布成功！',icon: 'success', duration: 1500, mask:true})
-          wx.switchTab({
-            url: '/pages/shouye/index/index',
+          wx.hideLoading()
+          wx.showToast({
+            title: '发布成功！',
+            icon: 'success', 
+            duration: 1500, 
+            success: function () {
+              setTimeout(function () {
+              wx.reLaunch({
+              url: '/pages/shouye/index/index',
+                })
+              }, 2000);}
           })
         }else{
           console.log('aaa')
@@ -228,7 +240,7 @@ Page({
       },
       fail: (err) => {
         console.log(err)
-      }
+      },
     })
   },
 
@@ -444,7 +456,7 @@ Page({
       },
       data: data.buffer,
       success: function(res){
-        console.log('上传成功')
+        console.log('res')
         return 
       },
       method: 'POST',

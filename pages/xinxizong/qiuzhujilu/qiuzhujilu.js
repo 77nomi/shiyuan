@@ -49,5 +49,12 @@ Page({
   getMore:function(){
     this.setData({page:this.data.page+1})
     this.getSeekDatas()
+  },
+
+  getDetailTap:function (e) {
+    console.log(e.currentTarget.dataset.index)
+    wx.navigateTo({
+      url: '/pages/shouye/help-page-detail/help-page-detail?id='+e.currentTarget.dataset.index,
+    })
   }
 })
