@@ -96,6 +96,7 @@ Page({
           var finrecord = helpList.concat(newrecords)
           that.setData({helplist:finrecord})
         }else{
+          that.setData({helplist:[]})
           wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500})
         }
       },
