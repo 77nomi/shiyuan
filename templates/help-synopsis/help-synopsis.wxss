@@ -18,7 +18,8 @@
   font-size: 40rpx;
 }
 .emergency{
-  margin-left: 200rpx;
+  position: absolute;
+  right: 50rpx;
   width: 120rpx;
   height: 60rpx;
   display: flex;

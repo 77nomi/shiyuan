@@ -152,7 +152,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           console.log(1)
-          // that.uploadDatas()
+          that.uploadDatas()
         }
       }
     })

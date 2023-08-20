@@ -2,20 +2,24 @@
 Page({
   data: {
     helplist:[],
+    isloading:false,
+    page: 1,
   },
 
   onLoad(options) {
-    this.getSeekDatas(1)
+    this.getSeekDatas()
   },
 
-  getSeekDatas:function(page){
+  getSeekDatas:function(){
     var that = this
+    var page = this.data.page
     var id = wx.getStorageSync('id')
+    wx.showLoading({title: '加载中...',})
     wx.request({
       url: "http://8.130.118.211:5795/common/request",
       data: {
         page: page,
-        pageSize: 5,
+        pageSize: 7,
         userId: id,
       },
       // header:{
@@ -24,66 +28,26 @@ Page({
       method: 'GET',
       success: (res) => {
         console.log(res)
-        if(res.data.data.records){
-          var records = res.data.data.records
-          that.setData({helplist:records})
-        }else{wx.showToast({
-            title: '暂无更多记录',icon: 'none', duration: 1500})
+        if(res.data.data.records[0]){
+          var helpList = that.data.helplist
+          var newrecords = res.data.data.records
+          var finrecord = helpList.concat(newrecords)
+          that.setData({helplist:finrecord})
+        }else{
+          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500})
         }
       },
       fail: (err) => {
         console.log(err)
+      },
+      complete:()=>{
+        wx.hideLoading()
       }
     })
   },
 
-  
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  getMore:function(){
+    this.setData({page:this.data.page+1})
+    this.getSeekDatas()
   }
 })

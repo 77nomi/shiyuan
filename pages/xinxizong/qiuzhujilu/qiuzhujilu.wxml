@@ -4,7 +4,7 @@
 <view class="rect1"></view>
 <view class="rect2"> 
 <view class="information">我的求助记录</view>
-<scroll-view  scroll-y>
+<scroll-view  scroll-y bindscrolltolower="getMore">
   <block wx:for="{{helplist}}" wx:for-item="form">
     <template is="help-synopsis" data="{{...form}}"/> 
   </block>
