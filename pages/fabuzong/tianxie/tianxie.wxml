@@ -36,7 +36,7 @@
     </view>
 
 
-    <view  class="yiwen">是否加急？</view>
+    <view bindtap="uploadImage" class="yiwen">是否加急？</view>
     <view class="huida">
       <button form-type="submit" bindtap="changeEmergency" data-index="1" class="butt">是</button>
       <button form-type="submit" bindtap="changeEmergency" data-index="0" class="butt">否</button>
@@ -54,10 +54,16 @@
       </view>
       <view class="tan3">
         <view class="shijian">
-          <input class="reqTime dates" name="reqTime" placeholder="开始时间" type="text"/>
+          <picker class="dates" mode="multiSelector" bindchange="StartPickerChange"  bindcolumnchange="StartPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"> 
+              开始时间：{{StartTime}}
+            <view class="triangle_border_down"> </view>
+          </picker>
         </view>
         <view class="shijian">
-          <input type="text" name="endTime" placeholder="结束时间" class="endTime dates"/>
+          <picker class="dates" mode="multiSelector" bindchange="EndPickerChange"  bindcolumnchange="EndPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"> 
+              结束时间：{{EndTime}}
+            <view class="triangle_border_down"> </view>
+          </picker>
         </view>
       </view>
       <button form-type="submit" class="fabu">发布</button>

@@ -227,8 +227,9 @@ image{
 }
 .dates{
   height: 70rpx;
+  line-height: 70rpx;
   border: solid black 1rpx;
-  font-size: 35rpx;
+  font-size: 30rpx;
   padding: 0 0 0 5rpx;
   margin: 20rpx auto;
 }
