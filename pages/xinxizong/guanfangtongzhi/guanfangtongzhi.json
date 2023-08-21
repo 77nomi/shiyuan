@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "indextabs":"/components/indextabs/indextabs"
+
+  }
 }

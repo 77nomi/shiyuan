@@ -1,3 +1,5 @@
+<import src="/templates/questionnaire/questionnaire"/>
+<import src="/templates/notice/notice"/>
 <view class="rect1"></view>
 <view class="rect2"> 
 <view class="information" >官方信息通知</view>
@@ -6,23 +8,32 @@
 <view class="row2">开发人员：吉祥物</view>
 <image src="/images/shuihuli.png" mode="widthFix" class="shuihuli"/>
 </view>
-<view class="gonggao" bindtap="togongaoxiangxi">
-  <view class="left"><image src="/images/lingdang.png" mode="heightFix" class="image3"/></view>
-  <view class="middle">
-  <view class="title">公告标题</view>
-  <view class="time">发布时间</view>
-  </view>
-  <view class="right" ><image src="/images/you.png" mode="heightFix" class="image3"/></view>
-    <!-- 内容区域 -->
-  </view>
+<!-- 分类栏 -->
+<indextabs tabs="{{indextabs}}" bindtabsItemChange="handleTabsItemChange">
 
-<view class="wenjuan"  bindtap="towenjuanxiangxi" >
-  <view class="left"><image src="/images/wenhao.png" mode="heightFix" class="image3"/></view>
-  <view class="middle">
-  <view class="title">问卷标题</view>
-  <view class="time">发布时间</view>
-  </view>
-  <view class="right"><image src="/images/you.png" mode="heightFix" class="image3"/></view>
-    <!-- 内容区域 -->
-  </view>
+
+<block wx:if="{{indextabs[0].isActive}}">
+  <scroll-view bindscrolltolower="getMoreNot" scroll-y>
+    <block
+      wx:for="{{noticeList}}"
+      wx:key="id" 
+      data-index="{{noticeList.id}}"
+    >
+      <template is="notice" data="{{...item}}"/>
+    </block>
+  </scroll-view>
+</block>
+
+<block wx:if="{{indextabs[1].isActive}}">
+  <scroll-view bindscrolltolower="getMoreQue" scroll-y>
+    <block wx:for="{{questionnaireList}}"
+     wx:key="id"
+     data-index="{{questionnaireList.id}}"
+     >
+  <template is="questionnaire" data="{{...item}}" />
+</block>
+</scroll-view>
+</block>
+
+</indextabs>
 </view>

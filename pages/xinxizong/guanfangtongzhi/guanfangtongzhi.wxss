@@ -1,4 +1,6 @@
-/* pages/guanfangtongzhi/guanfangtongzhi.wxss */
+@import "/templates/notice/notice.wxss"; 
+@import "/templates/questionnaire/questionnaire.wxss"; 
+
 .rect1 {
   position: fixed;
   top: 0;
@@ -55,49 +57,28 @@
   height: 60rpx;
   line-height: 60rpx;
 }
-.gonggao,
-.wenjuan{
-  width: 600rpx;
-  height: 120rpx;
-  margin: 30rpx auto;
-  background-color: #D3EBF8;
-  border-radius: 30rpx;  
-  display: flex;
-  flex-direction: row;
-}
+
 .image1{
   height: 60rpx;
 }
 .image2{
   height: 280rpx;
 }
-.left,
-.right{
-  width: 100rpx;
-  height: 120rpx;
-  /* background-color: rgb(218, 50, 50); */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+scroll-view{
+  margin: 0 auto;
+  /* padding-bottom: 10rpx; */
+  /* margin-top: 30rpx; */
+  /* width: 650rpx; */
+  height: 960rpx;
+  background-color:  #E5F1F5;
+  /* background-color: #159cc9; */
 }
-.middle{
-  padding-left: 20rpx;
-  width: 400rpx;
-  /* background-color: rgb(156, 207, 14); */
-}
-.title{
-  height: 80rpx;
-  /* background-color: rgb(63, 28, 121); */
-  font-size: 40rpx;
-  line-height:80rpx;
-}
-.time{
-  height: 40rpx;
-  /* background-color: rgb(102, 179, 79); */
-  line-height:40rpx;
-  font-size: 30rpx;
-}
-.image3{
-  height: 60rpx;
-  /* background-color: rgb(131, 47, 47); */
-}
+/* #E5F1F5 */
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+  }
+

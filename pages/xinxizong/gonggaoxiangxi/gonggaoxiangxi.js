@@ -1,66 +1,41 @@
-// pages/gonggaoxiangxi/gonggaoxiangxi.js
+// pages/admin/shouyezong/gonggaoxiangxi/gonggaoxiangxi.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    'title': '',
+    'content': '',
+    'image': '',
+    'adminId': '',
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    const {id}=options;
+    this.getnoticedetails(id);
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  getnoticedetails(id){
+    wx.showLoading({title: '加载中',})
+    var that = this
+    wx.request({
+    url:'http://8.130.118.211:5795/common/notice/'+id,
+    method:'GET',
+    success:(res) => {
+      wx.hideLoading()
+      var data = res.data.data
+      console.log(data)
+      var content = data.content
+      var image = data.image
+      var title = data.title
+      var adminId = data.adminId
+      that.setData({
+        'title': title,
+        'content': content,
+        'image': image,
+        'adminId': adminId,
+      })
+    },
+    fail:(err)=>{
+      console.log(err)
+    }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

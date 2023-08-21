@@ -56,7 +56,11 @@ Page({
       url: '/pages/xinxizong/qiuzhujilu/qiuzhujilu',
     })
   },
-
+  cheakmyhelp(){
+    wx.navigateTo({
+      url: '/pages/xinxizong/bangzhujilu/bangzhujilu',
+    })
+  },
   logout(){
     wx.request({
       url: 'http://8.130.118.211:5795/user/user/logout',

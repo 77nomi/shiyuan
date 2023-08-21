@@ -19,7 +19,8 @@
     "pages/xinxizong/bangzhujilu/bangzhujilu",
     "pages/xinxizong/wanchenghou/wanchenghou",
     "pages/geren/geren",
-    "pages/login/login"
+    "pages/login/login",
+    "templates/notice/notice.wxss"
   ],
   "tabBar": {
     "selectedColor": "#FF9B69",

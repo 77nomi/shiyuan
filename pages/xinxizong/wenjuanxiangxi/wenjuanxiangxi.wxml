@@ -1,31 +1,39 @@
-
 <view class="rect1"></view>
-<view class="rect2">  </view>
+<view class="rect2"></view>
 <view class="rect3"> 
-<view class="wenzi">你有一份调查问卷待查收，填写后即可获得益时奖励！</view>
-<view class="wangzhi">https://</view>
-<view class="bott">
-<view class="row1">
-<view class="left">
-<view class="top">调研问卷</view>
-<view class="bot">时间</view>
+  <scroll-view class="content" scroll-y >{{content}}</scroll-view>
+  <view class="bott">
+    <view class="row1">
+      <view class="left">
+        <view class="top">
+          <view>{{title}}</view>
+        </view>
+        <view class="bot">{{createTime}}</view>
+      </view>
+      <view class="right"><view class="shumu">{{comNum}}/999</view></view>
+    </view>
+    <view class="line"></view>
+    <!-- 第二行 -->
+    <view class="row2">
+      <view class="p1">管理员</view>
+      <view class="p2">
+        <view class="left2"><image class="avatar" src="{{adminImage}}" mode="widthFix"/></view>
+        <view class="name">{{adminName}}</view>
+      </view>
+    </view>
+    <view class="line"></view>
+    <view class="row3">
+      <view class="left3">报酬：{{bonus}}益时/人</view>
+      <view class="right3"><image src="/images/yishi.png" mode="heightFix" class="yishi"/></view>
+    </view>
+    <view class="line"></view>
+
+    <view class="pic" wx:if="{{image}}">
+      <view class="p4">补充图片:</view>
+      <scroll-view class="picsbox" scroll-x="true">
+        <image bindtap="preview" data-index="{{index}}" wx:for="{{image}}" wx:key="index" wx:for-item="imgs" class="pics" src="{{imgs}}" mode=""/>
+      </scroll-view>
+    </view>
+    <view class="write">立即填写</view>
+  </view>
 </view>
-<view class="right"><view class="shumu">x/n</view></view>
-</view>
-<view class="line"></view>
-<view class="row2">
-<view class="left2"><image src="/images/touxiang.png" mode="widthFix"/></view>
-<view class="right">
-<!-- id -->
-<view class=".guanliyuan">管理员</view>
-</view>
-</view>
-<view class="line"></view>
-<view class="row3">
-<view class="left3">报酬：</view>
-<image src="" mode=""/>
-</view>
-<view class="line"></view>
-<view class="tianxie">立即填写</view>
-</view>
- </view>

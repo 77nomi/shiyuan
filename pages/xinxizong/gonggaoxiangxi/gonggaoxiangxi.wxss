@@ -51,6 +51,7 @@
 }
 .line {
   width: 600rpx;  
+  height: 2rpx;
   background-color: rgb(108, 110, 110);
   margin: 10rpx 0;  
 }

@@ -1,66 +1,65 @@
-// pages/wenjuanxiangxi/wenjuanxiangxi.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    adminId: '',
+    adminImage: '',
+    adminName: '',
+    bonus: '',
+    comNum: '',
+    content: '',
+    createTime: '',
+    id: '',
+    image: '',
+    title: '',
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    this.setData({id:options.id})
+    this.getDetailData(options.id)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  //获取详细信息
+  getDetailData:function(id){
+    var that = this
+    wx.showLoading({title: '加载中...',})
+    wx.request({
+      url: 'http://8.130.118.211:5795/common/survey/' + id,
+      headers: {
+        token : wx.getStorageSync('token')
+      },
+      method : 'GET',
+      success: (res) => {
+        console.log(res)
+        if(res.data.code==1){
+          var data = res.data.data
+          that.setData({
+            adminId: data.adminId,
+            adminImage: data.adminImage,
+            adminName: data.adminName,
+            bonus: data.bonus,
+            comNum: data.comNum,
+            content: data.content,
+            createTime: data.createTime,
+            id: data.id,
+            image: data.image,
+            title: data.title,
+          })
+        }
+      },
+      fail: (err) => {
+        console.log(err)
+      },
+      complete:()=>{
+        wx.hideLoading()
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  // 查看图片
+  preview(e){
+    var index = e.currentTarget.dataset.index
+    var imageList = this.data.image
+    wx.previewImage({
+      current: imageList[index], 
+      urls: imageList
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

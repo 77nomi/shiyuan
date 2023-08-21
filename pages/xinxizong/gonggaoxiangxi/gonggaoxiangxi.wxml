@@ -3,8 +3,8 @@
 <view class="information">官方信息通知</view>
 <view class="gonggao">公告</view>
 <view class="container">
-  <view class="biaoti">标题</view>
+  <view class="biaoti">{{title}}</view>
   <view class="line"></view>
-  <scroll-view class="neirong" scroll-y>内容</scroll-view>
+  <scroll-view class="neirong" scroll-y>{{content}}</scroll-view>
 </view>
 </view>
