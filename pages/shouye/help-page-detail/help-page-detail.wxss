@@ -105,6 +105,7 @@
 }
 .avatar{
   width: 120rpx;
+  height: 120rpx;
   margin-top: 7rpx;
   border: solid rgb(167, 167, 167) 1rpx;
   border-radius: 50%;
@@ -212,10 +213,14 @@
   margin-bottom: 30rpx;
 }
 .button{
+  font-size: 40rpx;
+  text-align: center;
+  line-height: 100rpx;
+  letter-spacing: 20rpx;
   position: absolute;
   bottom: 80rpx;
-  left: 140rpx;
-  width: 400rpx;
+  left: 165rpx;
+  width: 350rpx;
   height: 100rpx;
   border-radius: 30rpx;
 /* margin: 0 auto; */

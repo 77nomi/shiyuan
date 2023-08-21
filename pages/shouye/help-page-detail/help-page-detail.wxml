@@ -7,7 +7,6 @@
       <view class="left">
         <view class="top">
           <view>{{title}}</view>
-          <view class="id">id:{{id}}</view>
         </view>
         <view class="bot">{{reqTime}}</view>
       </view>
@@ -41,7 +40,7 @@
     <view class="more">更多</view>
     
   <!-- 第一类 是本人时不显示 -->
-    <view class="button" hidden="{{flag}}">立即帮助</view>
+    <view class="button" wx:if="{{flag}}">立即帮助</view>
     <!-- </view> -->
   <!-- 第二类 显示且内容发生根据status变化 -->
   <view class="button" wx:if="{{type1===1}}">{{msg}}</view>
