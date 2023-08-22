@@ -1,11 +1,14 @@
 <view class="rect1"></view>
 <view class="rect2">
-<view class="yuan"><navigator url="">查看原帖</navigator></view>
-<view class="zhuangtai">
-<view class="touxiang"><image src="/images/touxiang.png" mode="widthFix"/></view>
-<view class="nicheng">昵称</view>
-<view class="zhaungtai2">
-<view class="butt">待完成</view>
-</view>
-</view>
+  <scroll-view bindscrolltolower="getMore" class="content-scroll" scroll-y>
+    <!-- <block wx:for="{{records}}" wx:for-item="form"> -->
+      <view class="zhuangtai">
+        <view class="touxiang"><image src="/images/touxiang.png" mode="widthFix"/></view>
+        <view class="nicheng">昵称</view>
+        <view class="zhaungtai2">
+          <view class="butt">待完成</view>
+        </view>
+      </view>
+    <!-- </block> -->
+  </scroll-view>
 </view>

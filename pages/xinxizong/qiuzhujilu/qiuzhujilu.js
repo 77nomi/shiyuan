@@ -19,7 +19,7 @@ Page({
       url: "http://8.130.118.211:5795/common/request",
       data: {
         page: page,
-        pageSize: 7,
+        pageSize: 10,
         userId: id,
       },
       // header:{

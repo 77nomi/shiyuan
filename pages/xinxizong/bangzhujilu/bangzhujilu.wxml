@@ -1,30 +1,11 @@
-<!-- 帮助记录模板 -->
 <import src="/templates/help-record/help-record"/>
 <view class="rect1"></view>  
-<view class="rect2">   
-<view class="information">我的帮助记录</view>  
-<Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange">
-<block wx:if="{{tabs[0].isActive}}">
-<scroll-view  scroll-y>
-<template is="help-record" data=""/>
-</scroll-view>
-</block>
-<block wx:if="{{tabs[1].isActive}}">
-  <scroll-view  scroll-y>
-    <template is="help-record" data=""/>
-    <template is="help-record" data=""/>
-    <template is="help-record" data=""/>
-    <template is="help-record" data=""/>
-    <template is="help-record" data=""/>
-    <template is="help-record" data=""/>
-    <template is="help-record" data=""/>
-</scroll-view>
-</block>
-<block wx:if="{{tabs[2].isActive}}">
-  <scroll-view  scroll-y>
-    <template is="help-record" data=""/>
-</scroll-view>
-</block>
-</Tabs>
- 
+  <view class="rect2">   
+  <view class="information">我的帮助记录</view>  
+  <Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange"></Tabs>
+    <scroll-view  scroll-y bindscrolltolower="getMore">
+      <block wx:for="{{records}}" wx:for-item="item">
+        <template is="help-record" data="{{...item}}"/>
+      </block>
+    </scroll-view>
 </view>  

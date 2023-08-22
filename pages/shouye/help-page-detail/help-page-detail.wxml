@@ -48,7 +48,7 @@
     <!-- 第三类 有两个按钮 -->
     <view class="status"  wx:if="{{type===2}}">
       <view bindtap="cancelHelp" class="button1">{{msg1}}</view>
-      <view class="button1">{{msg2}}</view>
+      <view bindtap="completeHelp" class="button1">{{msg2}}</view>
     </view>
   </view>
 </view>

@@ -205,7 +205,7 @@
 
 .more{
   position: absolute;
-  bottom: -25rpx;
+  bottom: -10rpx;
   width: 678rpx;
   text-decoration:underline;
   font-size: 30rpx;
@@ -216,7 +216,8 @@
   font-size: 40rpx;
   text-align: center;
   line-height: 100rpx;
-  letter-spacing: 20rpx;
+  letter-spacing: 10rpx;
+  text-indent: 10rpx;
   position: absolute;
   bottom: 80rpx;
   left: 165rpx;
@@ -241,6 +242,8 @@
   width: 260rpx;
   height: 100rpx;
   line-height: 100rpx;
+  letter-spacing: 10rpx;
+  text-indent: 10rpx;
   background-color: #1A92A6;
   text-align: center;
   border-radius: 30rpx;

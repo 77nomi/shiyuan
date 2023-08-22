@@ -175,9 +175,6 @@ Page({
       that.setData({imageNums:imgList.length})
     }
     if(imgList){
-      wx.showLoading({
-        title: '发布中...',
-      })
       for(let i=0;i<imgList.length;i++){
         // console.log(imgList[i])
         this.uploadImage(imgList[i])
@@ -187,7 +184,6 @@ Page({
           return 
         }
       }
-      wx.hideLoading()
     }
     
   },
@@ -249,7 +245,7 @@ Page({
               }, 1500);}
           })
         }else{
-          wx.showToast({title: res.data.data.msg})
+          wx.showToast({title: res.data.msg,duration:1500,icon: 'error'})
           console.log(res)
         }
       },

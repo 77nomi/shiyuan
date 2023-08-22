@@ -27,8 +27,6 @@ Page({
   },
 
   onLoad(options) {
-    // this.getDetailData("1693229843784212481")
-    // this.setData({id:"1693229843784212481"})
     if(options)
       this.setData({id:options.id})
     this.setData({flag:false,type:0})
@@ -87,7 +85,7 @@ Page({
     var that = this
     if(this.data.userId == wx.getStorageSync('id')){
       wx.navigateTo({
-        url: '/pages/shouye/seek-helper/states/states?id='+that.data.ueseId,
+        url: '/pages/shouye/seek-helper/states/states?id='+that.data.id,
       })
     }
   },
@@ -110,29 +108,28 @@ Page({
       this.setData({flag:false,type:0})
     }else{
       if(status=='0'){
-        this.setData({type:2,msg1:'取消帮助',msg2:'完成帮助'})
+        this.setData({flag:false,type:2,msg1:'取消帮助',msg2:'完成帮助'})
       }
       else if(!status){
-        this.setData({flag:true})
+        this.setData({flag:true,type:0})
       }
       else if(status===1){
-        this.setData({type:1,msg:'已完成'})
+        this.setData({flag:false,type:1,msg:'待求助者确认'})
       }
       else if(status===2){
-        this.setData({type:1,msg:'已被确认'})
+        this.setData({flag:false,type:1,msg:'已确认'})
       }
       else if(status===3){
-        this.setData({type:1,msg:'已取消'})
+        this.setData({flag:false,type:1,msg:'已取消'})
       }
       else if(status===5){
-        this.setData({type:1,msg:'已被取消'})
+        this.setData({flag:false,type:1,msg:'已被取消'})
       }
       else if(status===4){
-        this.setData({type:2,msg1:'取消帮助',msg2:'重新上传'})
+        this.setData({flag:false,type:2,msg1:'取消帮助',msg2:'重新上传'})
       }
     }
   },
-
   // 立即帮助
   help(){
     var that = this
@@ -171,7 +168,6 @@ Page({
       }
     })
   },
-
   //取消帮助
   cancelHelp(){
     var that = this
@@ -214,6 +210,11 @@ Page({
         }
       }
     })
+  },
+  // 完成帮助
+  completeHelp(){
+    var id = this.data.id
+    wx.navigateTo({url: '/pages/shouye/helper/complete/complete?id='+id,})
   },
 
   //点击更多

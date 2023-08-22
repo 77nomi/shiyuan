@@ -3,6 +3,7 @@
     "pages/shouye/index/index",
     "pages/shouye/help-page-detail/help-page-detail",
     "pages/shouye/helper/report/report",
+    "pages/shouye/helper/complete/complete",
     "pages/shouye/seek-helper/states/states",
     "pages/shouye/seek-helper/audit/audit",
     "pages/shouye/seek-helper/audit/audit-fail/audit-fail",

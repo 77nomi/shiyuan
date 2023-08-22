@@ -1,10 +1,9 @@
 // pages/bangzhujilu/bangzhujilu.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+    status: 0,
+    records: [],
+    page: 1,
     tabs:[
       {
         id:0,
@@ -25,69 +24,71 @@ Page({
 
   },
  
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    this.getRecords()
   },
-  // 标题点击事件
+
+  getRecords(){
+    var that = this
+    var id = wx.getStorageSync('id')
+    var status = this.data.status
+    var page = this.data.page
+    wx.showLoading({title: '加载中...',})
+    wx.request({
+      url: 'http://8.130.118.211:5795/user/request',
+      headers: {
+        authentication : wx.getStorageSync('token')
+      },
+      data:{
+        'id': id,
+        'status': status,
+        'page': page,
+        'pageSize': 10
+      },
+      method : 'GET',
+      success: (res) => {
+        wx.hideLoading()
+        var newrecords = res.data.data.records
+        console.log(newrecords)
+        if(newrecords[0]){
+          var records = that.data.records
+          records = records.concat(newrecords)
+          that.setData({records:records})
+        }
+        else{
+          wx.showToast({title: '暂无更多记录',icon:'none',duration:1500})
+        }
+      },
+      fail: (err) => {
+        wx.hideLoading()
+        console.log(err)
+        wx.showToast({title: '暂无更多记录',icon:'none',duration:1500})
+      },
+    })
+  },
+  
+  getMore:function(){
+    this.setData({page:this.data.page+1})
+    this.getRecords()
+  },
+
   handleTabsItemChange(e){
-//获取被点击事件的标题索引
-const {index}=e.detail;
-//修改数组
-let{tabs}=this.data;
-tabs.forEach((v,i)=>i===index?v.isActive=true:v.isActive=false);
-this.setData({
-  tabs
-})
+    //获取被点击事件的标题索引
+    const {index}=e.detail;
+    console.log(index)
+    //修改数组
+    let{tabs}=this.data;
+    tabs.forEach((v,i)=>i===index?v.isActive=true:v.isActive=false);
+    this.setData({
+      tabs
+    })
+    if(index==0)
+      this.setData({status:0})
+    else if(index==1)
+      this.setData({status:1})
+    else if(index==2)
+      this.setData({status:2})
+    this.setData({records:[],page:1})
+    this.getRecords()
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

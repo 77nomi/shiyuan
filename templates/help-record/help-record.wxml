@@ -1,13 +1,13 @@
 <template name="help-record">
   <view class="whole"  catchtap="getDetailTap">
     <view class="simples">
-      <view class="biaoqian">【{{label}}】</view>
+      <view class="biaoqian">【{{labels[0].label}}】</view>
       <view class="title">{{title}}</view>
+      <view wx:if="{{labels[1]}}" class="emergency"><text>紧急</text></view>
     </view>
     <view class="details">
-      <view class="name">{{name}}</view>
-      <!-- <view class="states">{{x}}/{{n}}</view> -->
-      <view class="time">{{time}}</view>
+      <view class="name">{{userName}}</view>
+      <view class="time">{{createTime}}</view>
     </view>
   </view>
 </template>

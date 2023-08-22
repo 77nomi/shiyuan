@@ -1,0 +1,24 @@
+<view class="rect1"></view>
+<view class="rect2">
+<!-- 下边框框 -->
+  <view class="container1">
+    <view class="title">标题：{{title}}</view>
+    <view class="faburen">发布人：{{userName}}</view>
+    <view class="id">原帖id:{{requestId}}</view>
+  </view>
+  <view class="container2">
+    <view class="bottom">
+      <textarea bindblur="getDetail" class="textarea" placeholder="描述完成记录或上传图片记录"  maxlength="-1"></textarea>
+    </view>
+    <scroll-view wx:if="{{image[0]}}" scroll-x="true" class="pics">
+      <image class="picture" mode="center" wx:for="{{image}}" wx:key="index" bindtap="preview" bindlongpress="deleteImage" data-index="{{index}}" wx:for-item="picurl" src="{{picurl}}" mode=""/>
+    </scroll-view>
+    <view bindtap="chooseImage" class="camera">
+      <image src="/images/zhaoxiangji_1.png" mode="aspectFit"/>
+    </view>
+  </view>
+  <view class="xuanxiang">
+    <view bindtap="cancel" class="butt">取消</view>
+    <view bindtap="confirm" class="butt">上传</view>
+  </view>
+</view>
