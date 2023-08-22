@@ -6,7 +6,9 @@
 <view class="information">我的求助记录</view>
 <scroll-view  scroll-y bindscrolltolower="getMore">
   <block wx:for="{{helplist}}" wx:for-item="form">
-    <template is="help-synopsis" data="{{...form}}"/> 
+    <block wx:if="{{form.deleted==0}}">
+      <template is="help-synopsis" data="{{...form}}"/> 
+    </block>
   </block>
 </scroll-view>
 

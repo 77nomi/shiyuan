@@ -1,5 +1,5 @@
 @import "/templates/notice/notice.wxss"; 
-@import "/templates/questionnaire/questionnaire.wxss"; 
+/* @import "/templates/questionnaire/questionnaire.wxss";  */
 
 .rect1 {
   position: fixed;

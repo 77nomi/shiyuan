@@ -1,7 +1,13 @@
-const FormData = require('../../../utils/formdata.js')
-const DatePickerUtil = require('../../.././utils/DatePicker') 
+const FormData = require('../../../../utils/formdata')
+const DatePickerUtil = require('../../../../utils/DatePicker') 
 Page({
   data: {
+    newtitle: '',
+    newcontent: '',
+    newphone: '',
+    oldList: [],
+    newList: [],
+    id: '',
     flag: 0,
     imageNums: 0,
     state: 1,
@@ -53,10 +59,8 @@ Page({
     title: '',
     content: '',
     phone: '',
-    nums: '',
     labels: [],
     emergency: '',
-    bonus: '',
     reqTime: '',
     endTime: '',
     StartTime: '',
@@ -71,47 +75,88 @@ Page({
     minute:'',//选择的分
   },
 
+  onLoad(options){
+    this.getDetailData(options.id)
+    wx.showToast({title: '所需人数及报酬无法更改',icon:'none',duration:2000})
+  },
+
+  //获取初始详细信息
+  getDetailData:function(id){
+    var that = this
+    wx.showLoading({title: '加载中...',})
+    wx.request({
+      url: 'http://8.130.118.211:5795/common/request/' + id,
+      headers: {
+        authentication : wx.getStorageSync('token')
+      },
+      data:{
+        'userId': wx.getStorageSync('id')
+      },
+      method : 'GET',
+      success: (res) => {
+        console.log(res)
+        var data = res.data.data
+        that.setData({
+          newtitle: data.title,
+          newcontent: data.content,
+          newphone: data.contact,
+          bonus: data.bonus,
+          phone: data.contact,
+          content: data.content,
+          endTime: data.endTime,
+          id: data.id,
+          fileList: data.image,
+          nums: data.reqNum,
+          reqTime: data.reqTime,
+          title: data.title,
+        })
+        if(that.data.fileList){
+          var oldList = []
+          for(var i=0;i<that.data.fileList.length;i++){
+            oldList.push(that.data.fileList[i])
+          }
+          that.setData({oldList:oldList})
+        }
+      },
+      fail: (err) => {
+        console.log(err)
+      },
+      complete:()=>{
+        wx.hideLoading()
+      }
+    })
+  },
+
   //获取textarea内容
   getcontent(e){
     this.setData({
-      content: e.detail.value,
+      newcontent: e.detail.value,
     })
+  },
+
+  changetitle(e){
+    this.setData({newtitle:e.detail.value})
+  },
+  changephone(e){
+    this.setData({newphone:e.detail.value})
   },
 
   //获取第一页中的input数据
   getdatas1(e){
     var that = this
-    if(!e.detail.value.title){
+    console.log(that.data)
+    if(!that.data.newtitle){
       wx.showToast({title: '标题不能为空！',icon: 'none', duration: 1000, mask: true,})
       return 
-    }else if(!that.data.content){
+    }else if(!that.data.newcontent){
       wx.showToast({title: '内容不能为空！',icon: 'none', duration: 1000, mask: true,})
       return 
-    }else if(e.detail.value.title.length>10){
+    }else if(that.data.newtitle.length>10){
       wx.showToast({title: '标题不能多于20个字',icon: 'none', duration: 1000, mask: true,})
       return 
-    }else if(!e.detail.value.phone){
+    }else if(!that.data.newphone){
       wx.showToast({title: '联系方式不能为空！',icon: 'none', duration: 1000, mask: true,})
       return 
-    }else if(!e.detail.value.nums){
-      wx.showToast({title: '帮助人数不能为空！',icon: 'none', duration: 1000, mask: true,})
-      return 
-    }else if(e.detail.value.nums){
-      var reqNum = e.detail.value.nums
-      for(var i=0;i<reqNum.length;i++){
-        if(reqNum[i]<'0' || reqNum[i]>'9'){
-          wx.showToast({title: '帮助人数格式错误',icon: 'none', duration: 1500, mask: true,})
-          return 
-        }
-      }
-    }
-
-    if(e.detail.value.title && e.detail.value.phone && e.detail.value.nums){
-      this.setData({
-        title: e.detail.value.title,
-        phone: e.detail.value.phone,
-        nums: e.detail.value.nums,
-      })
     }
     if(!this.getLabel())
       return 
@@ -119,7 +164,7 @@ Page({
     if(datas.title && datas.content && datas.phone && datas.nums && datas.labels && datas.emergency){
       this.showOverlay()
     }else{
-      wx.showToast({title: '暂无数据',icon: 'none', duration: 1000, mask: true,})
+      wx.showToast({title: '有未填写内容',icon: 'none', duration: 1000, mask: true,})
     }
   },
 
@@ -131,28 +176,14 @@ Page({
       return 
     }
     var that = this
-    if(!bonus){
-      wx.showToast({title: '报酬不能为空！',icon: 'none', duration: 1000, mask: true,})
-      return 
-    }else{
-      for(var i=0;i<bonus.length;i++){
-        if((bonus[i]<'0' && bonus[i]!='.') || (bonus[i]>'9' && bonus[i]!='.')){
-          wx.showToast({title: '有除数字及小数点以外的字符',icon: 'none', duration: 1500, mask: true,})
-          return 
-        }
-      }
-    }
     if(that.data.emergency==1 && Number(bonus)<1){
       wx.showToast({title: '加急贴的报酬不能低于1!',icon: 'none', duration: 1500, mask: true,})
       return 
     }
-    this.setData({
-      bonus: bonus,
-    })
 
     wx.showModal({
-      title: '确认发布',
-      content: '发布后将扣除您的'+Number(this.data.bonus)*Number(this.data.nums)+'益时',
+      title: '确认重新发布',
+      content: '点击确认后即重新发布',
       success: function (res) {
         if (res.confirm) {
           that.uploadDatas()
@@ -164,22 +195,20 @@ Page({
 
   //循环上传图片
   uploadDatas(){
+    this.setData({imageList:this.data.oldList})
     var that = this
     var imgList
-    if(that.data.fileList.length == 0){
+    if(that.data.newList.length == 0){
       imgList = null
       this.sendRequset()
     }
     else{
-      imgList = that.data.fileList
+      imgList = that.data.newList
       that.setData({imageNums:imgList.length})
     }
     if(imgList){
-      wx.showLoading({
-        title: '发布中...',
-      })
       for(let i=0;i<imgList.length;i++){
-        // console.log(imgList[i])
+        console.log(imgList[i])
         this.uploadImage(imgList[i])
         if(this.data.state != 1)
         {
@@ -187,42 +216,81 @@ Page({
           return 
         }
       }
-      wx.hideLoading()
     }
     
   },
-
+  // 上传图片到服务器
+  uploadImage(url) {
+    var that = this
+    let _name = url.split("\/");
+    let name = _name[_name.length-1];
+    name = name.length > 10 ? name.substring(name.length - 9, name.length) : name;
+    let formData = new FormData();
+    formData.appendFile("file",url,name);
+    let data = formData.getData();
+    console.log(data.buffer)
+    wx.showLoading({title: '上传图片中...',})
+    wx.request({
+      url: 'http://8.130.118.211:5795/common/file',
+      header: {
+        'content-type': data.contentType
+      },
+      data: data.buffer,
+      method: 'POST',
+      success: function(res){
+        var imgurl = res.data.data
+        var simageList = that.data.imageList
+        simageList = simageList.concat(imgurl)
+        that.setData({
+          imageList: simageList,
+          flag:that.data.flag+1
+        })
+        console.log(that.data.imageList)
+        if(that.data.imageNums == that.data.flag)
+        {
+          wx.hideLoading()
+          that.sendRequset()
+        }
+        return 
+      },
+      fail(res){
+        wx.hideLoading()
+        console.log(res)
+        wx.showToast({title: '图片上传失败！',icon: 'error', duration:1500, mask:true})
+        that.setData({
+          state:0
+        })
+        return 
+      }
+    });
+  },
   //发送请求
   sendRequset(){
+    wx.showLoading({title: '发布中',})
     var that = this
-    var title = that.data.title
+    var title = that.data.newtitle
     var imgList
     if(that.data.imageList.length == 0){
-      imgList = null
+      imgList = ['clear']
     }
     else{
       imgList = that.data.imageList
     }
-    var content = that.data.content
-    var phone = that.data.phone
-    var nums = Number(that.data.nums)
+    var content = that.data.newcontent
+    var phone = that.data.newphone
+    var id = that.data.id
     var labels = that.data.labels
     var emergency = Number(that.data.emergency)
-    var bonus = Number(that.data.bonus)
     var reqTime = that.data.reqTime
     var endTime = that.data.endTime
-    console.log(imgList,title,content,phone,nums,labels,emergency,bonus,reqTime,endTime)
     wx.request({
       url: 'http://8.130.118.211:5795/user/request',
       data:{
-        'id': null,
+        'id': id,
         'userId': wx.getStorageSync('id'),
         'title': title,
         'content': content,
-        'reqNum': nums,
-        'helpNum': null,
         'contact': phone,
-        'bonus': bonus,
         'reqTime': reqTime,
         'endTime': endTime,
         'emergency': emergency,
@@ -233,9 +301,10 @@ Page({
         'content-type': 'application/json',
         "authentication" : wx.getStorageSync('token')
       },
-      method : 'POST',
+      method : 'PUT',
       success: (res) => {
         console.log(res)
+        wx.hideLoading()
         if(res.data.code==1){
           wx.showToast({
             title: '发布成功！',
@@ -244,16 +313,16 @@ Page({
             success: function () {
               setTimeout(function () {
               wx.reLaunch({
-              url: '/pages/xinxizong/qiuzhujilu/qiuzhujilu',
+              url: '/pages/shouye/index/index',
                 })
               }, 1500);}
           })
         }else{
-          wx.showToast({title: res.data.data.msg})
           console.log(res)
         }
       },
       fail: (err) => {
+        wx.hideLoading()
         console.log(err)
       },
     })
@@ -284,7 +353,7 @@ Page({
       }else{
         sendLabel = [{'label':labelllll}]
       }
-      // console.log(sendLabel)
+      console.log(sendLabel)
       that.setData({
         labels: sendLabel,
       })
@@ -350,7 +419,12 @@ Page({
   //选择照片
   chooseImage:function (){
     var that = this
-    var imageList = this.data.fileList
+    var imageList
+    if(this.data.fileList)
+      imageList = this.data.fileList
+    else
+      imageList = []
+    var newList = this.data.newList
     if(imageList.length < 3){
       wx.chooseImage({
         count: 1,
@@ -401,11 +475,12 @@ Page({
                       that.setData({
                         fileList: imageList
                       });
+                      wx.hideLoading();
                       wx.showToast({title: '上传成功',icon: 'success',duration: 500, mask: true,})
                     },
                     fail: function fail(e) {
                       wx.hideLoading();
-                      wx.showToast({title: '头像上传失败',icon: 'error',duration: 1000});
+                      wx.showToast({title: '上传失败',icon: 'error',duration: 1000});
                     }
                   });
                 }, 1000);
@@ -413,8 +488,10 @@ Page({
             });
           } else {
             imageList.push(res.tempFiles[0].path)
+            newList.push(res.tempFiles[0].path)
             that.setData({
-              fileList: imageList
+              fileList: imageList,
+              newList: newList
             });
             wx.showToast({title: '上传成功',icon: 'success',duration: 500, mask: true,})
           }
@@ -439,66 +516,35 @@ Page({
   deleteImage(e) {
     var index = e.currentTarget.dataset.index
     var imgData = this.data.fileList;
+    var oldList = this.data.oldList
+    var newList = this.data.newList
     var that = this
     wx.showModal({
       title: '确认删除',
       content: '确认删除则点击确定',
       success: function (res) {
         if (res.confirm) {
+          if(oldList[0]){
+            for(var i=0;i<oldList.length;i++){
+              if(oldList[i]==imgData[index]){
+                oldList.splice(index, 1);
+              }
+              that.setData({oldList:oldList})
+            }
+          }
+          if(newList[0]){
+            for(var i=0;i<newList.length;i++){
+              if(newList[i]==imgData[index]){
+                newList.splice(index, 1);
+              }
+              that.setData({newList:newList})
+            }
+          }
           imgData.splice(index, 1);
-          that.setData({
-              fileList: imgData
-          })
+          that.setData({fileList: imgData})
         }
       }
     })
-  },
-  // 上传图片到服务器
-  uploadImage(url) {
-    wx.showLoading({title: '图片上传中',})
-    var that = this
-    let _name = url.split("\/");
-    let name = _name[_name.length-1];
-    name = name.length > 10 ? name.substring(name.length - 9, name.length) : name;
-    let formData = new FormData();
-    formData.appendFile("file",url,name);
-    let data = formData.getData();
-    console.log(data.buffer)
-    wx.showLoading({title: '上传图片中...',})
-    wx.request({
-      url: 'http://8.130.118.211:5795/common/file',
-      header: {
-        'content-type': data.contentType
-      },
-      data: data.buffer,
-      method: 'POST',
-      success: function(res){
-        wx.hideLoading()
-        var imgurl = res.data.data
-        var simageList = that.data.imageList
-        simageList = simageList.concat(imgurl)
-        that.setData({
-          imageList: simageList,
-          flag:that.data.flag+1
-        })
-        console.log(that.data.imageList)
-        if(that.data.imageNums == that.data.flag)
-        {
-          wx.hideLoading()
-          that.sendRequset()
-        }
-        return 
-      },
-      fail(res){
-        wx.hideLoading()
-        console.log(res)
-        wx.showToast({title: '图片上传失败！',icon: 'error', duration:1500, mask:true})
-        that.setData({
-          state:0
-        })
-        return 
-      }
-    });
   },
 
 

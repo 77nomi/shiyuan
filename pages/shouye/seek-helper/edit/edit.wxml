@@ -1,0 +1,75 @@
+<canvas canvas-id="attendCanvasId" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;position: absolute;left:-8000px;top:-8000px;" ></canvas>
+<view class="rect1"></view>
+<view class="rect2">  </view>
+<view class="rect3"> 
+  <form bindsubmit="getdatas1">
+    <view class="container">
+      <view class="top">
+        <view class="shuxian">|</view>
+        <input bindinput="changetitle" value="{{title}}" name="newtitle" class="input" placeholder="输入标题" />
+      </view>
+
+      <view class="bottom">
+        <textarea value="{{content}}" bindblur="getcontent" class="textarea" placeholder="输入内容" maxlength="-1"></textarea>
+        <scroll-view wx:if="{{fileList[0]}}" scroll-x="true" class="pics">
+          <image class="picture" mode="center" wx:for="{{fileList}}" wx:key="index" bindtap="preview" bindlongpress="deleteImage" data-index="{{index}}" wx:for-item="picurl" src="{{picurl}}" mode=""/>
+        </scroll-view>
+        <view bindtap="chooseImage" class="camera">
+        <image src="/images/zhaoxiangji_1.png" mode="aspectFit"/>
+        </view>
+      </view>
+  </view>
+
+  <view class="shuru">
+    <view class="m1">
+      <view class="shuxian1">|</view>   
+      <input bindinput="changephone" value="{{phone}}" name="newphone" class="input2" placeholder="输入联系方式" />
+    </view>
+    <view class="m1">
+      <view class="shuxian1">|</view>   
+      <input disabled="true" value="{{nums}}" name="nums" class="input2" placeholder="输入帮助人数" />
+    </view>
+  </view>
+    
+    <view class="biaoqian">
+      <view wx:for="{{indexlabels}}" wx:for-item="tab" bindtap="changeLabel" data-index="{{tab.id}}" class="box {{tab.isChoosed?'choosed':''}}">{{tab.value}}</view>
+    </view>
+
+
+    <view bindtap="uploadImage" class="yiwen">是否加急？</view>
+    <view class="huida">
+      <button form-type="submit" bindtap="changeEmergency" data-index="1" class="butt">是</button>
+      <button form-type="submit" bindtap="changeEmergency" data-index="0" class="butt">否</button>
+    </view>
+  </form>
+</view>
+
+<view class="overlay" wx:if="{{showOverlay}}" >
+  <form bindsubmit="getdatas2">
+    <view class="tan">
+      <view class="tan1">
+        <view class="baochou">报酬：</view> 
+        <input disabled="true" type="text" value="{{bonus}}" class="baochoushumu"/>
+        <view class="tubiao"><image src="/images/yishi.png" mode="heightFix"/></view>
+      </view>
+      <view class="tan3">
+        <view class="shijian">
+          <picker class="dates" mode="multiSelector" bindchange="StartPickerChange"  bindcolumnchange="StartPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"> 
+              开始时间：{{StartTime}}
+            <view class="triangle_border_down"> </view>
+          </picker>
+        </view>
+        <view class="shijian">
+          <picker class="dates" mode="multiSelector" bindchange="EndPickerChange"  bindcolumnchange="EndPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"> 
+              结束时间：{{EndTime}}
+            <view class="triangle_border_down"> </view>
+          </picker>
+        </view>
+      </view>
+      <button form-type="submit" class="fabu">发布</button>
+      <view class="imgbox">
+        <image bindtap="hideOverlay" class="close" src="/images/closel.png" mode=""/>
+      </view>
+    </view>
+  </form>
+</view>

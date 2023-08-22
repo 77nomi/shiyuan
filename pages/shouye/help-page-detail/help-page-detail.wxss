@@ -223,7 +223,6 @@
   width: 350rpx;
   height: 100rpx;
   border-radius: 30rpx;
-/* margin: 0 auto; */
   background-color: #1A92A6;
 }
 .status{
@@ -235,7 +234,6 @@
   justify-content: space-evenly;
   align-items:center;
   line-height:100rpx ;
-  background-color: rgb(197, 32, 32);
 
 }
 .button1{
@@ -247,5 +245,4 @@
   text-align: center;
   border-radius: 30rpx;
   font-size: 40rpx;
-
 }

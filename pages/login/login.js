@@ -42,7 +42,7 @@ Page({
       desc: '用于完善用户信息',
       success:(res)=>{
         wx.showLoading({
-            title: '登陆中'
+            title: '登录中'
         });
         console.log(res)
         name = res.userInfo.nickName
