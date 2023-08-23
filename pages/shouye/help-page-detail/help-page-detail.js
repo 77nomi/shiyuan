@@ -126,7 +126,7 @@ Page({
         this.setData({flag:false,type:1,msg:'已被取消'})
       }
       else if(status===4){
-        this.setData({flag:false,type:2,msg1:'取消帮助',msg2:'重新上传'})
+        this.setData({flag:false,type:3,msg:'重新上传'})
       }
     }
   },
@@ -195,17 +195,25 @@ Page({
             },
             method : 'PUT',
             success: (res) => {
+              wx.hideLoading()
               console.log(res)
-              that.onLoad()
+              if(res.data.code==1){
+                wx.showToast({
+                  title: '已取消',
+                  icon: 'none', 
+                  duration: 1500, 
+                  success: function () {
+                    setTimeout(function () {
+                      that.onLoad()
+                    }, 1500);}
+                })
+              }
             },
             fail: (err) => {
               wx.hideLoading()
               wx.showToast({title: err.data.data.msg})
               console.log(err)
             },
-            complete:()=>{
-              wx.hideLoading()
-            }
           })
         }
       }

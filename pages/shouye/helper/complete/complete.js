@@ -188,7 +188,7 @@ Page({
         console.log(res)
         if(res.data.code==1){
           wx.showToast({
-            title: '发布成功！',
+            title: '上传成功！',
             icon: 'success', 
             duration: 1500, 
             success: function () {

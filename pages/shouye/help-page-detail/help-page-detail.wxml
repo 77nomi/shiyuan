@@ -50,5 +50,6 @@
       <view bindtap="cancelHelp" class="button1">{{msg1}}</view>
       <view bindtap="completeHelp" class="button1">{{msg2}}</view>
     </view>
+    <view bindtap="completeHelp" class="button" wx:if="{{type===3}}">{{msg}}</view>
   </view>
 </view>
