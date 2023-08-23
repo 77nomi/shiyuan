@@ -51,9 +51,8 @@ Page({
     if(imageList){
       wx.showLoading({title: '发布中...',})
       for(let i=0;i<imageList.length;i++){
-        console.log(imageList[i])
-        this.uploadImage(imageList[i])
-        if(this.data.state != 1)
+        that.uploadImage(imageList[i])
+        if(that.data.state != 1)
         {
           wx.showToast({title: '图片上传失败！',icon: 'error', duration: 1500, mask:true})
           return 
@@ -102,9 +101,7 @@ Page({
         wx.hideLoading()
         console.log(res)
         wx.showToast({title: '图片上传失败！',icon: 'error', duration:1500, mask:true})
-        that.setData({
-          state:0
-        })
+        that.setData({state:0})
         return 
       }
     });

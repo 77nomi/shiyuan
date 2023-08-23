@@ -1,18 +1,19 @@
-
 <view class="rect1"></view>
 <view class="rect2"></view>
-<!-- 框框 -->
 <view class="rect3">
   <view class="row1">
-<view class="left"><image src="/images/touxiang.png" mode="widthFix"/></view>
-<view class="name">昵称</view>
-<view class="finished">已完成</view>
-</view>
-<scroll-view scroll-y show-scrollbar="false" >
- 内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容  内容 内容 内容 内容 
-</scroll-view>
-<view class="row3">
-<view class="button">不通过</view>
-    <view class="button">通过</view>
+    <view class="left"><image src="{{userImage}}" mode="widthFix"/></view>
+    <view class="name">{{userName}}</view>
+    <view class="finished">已完成</view>
+  </view>
+  <scroll-view class="content" scroll-y show-scrollbar="false" >{{content}}</scroll-view>
+  <view class="pic" wx:if="{{image}}">
+    <scroll-view class="picsbox" scroll-x="true">
+      <image bindtap="preview" data-index="{{index}}" wx:for="{{image}}" wx:key="index" wx:for-item="imgs" class="pics" src="{{imgs}}" mode=""/>
+    </scroll-view>
+  </view>
+  <view class="row3">
+    <view bindtap="rejectHelp" class="button">不通过</view>
+    <view bindtap="passHelp" class="button">通过</view>
   </view>
 </view>

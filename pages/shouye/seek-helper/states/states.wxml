@@ -1,14 +1,19 @@
 <view class="rect1"></view>
 <view class="rect2">
   <scroll-view bindscrolltolower="getMore" class="content-scroll" scroll-y>
-    <!-- <block wx:for="{{records}}" wx:for-item="form"> -->
+    <block wx:for="{{records}}" wx:for-item="item">
       <view class="zhuangtai">
-        <view class="touxiang"><image src="/images/touxiang.png" mode="widthFix"/></view>
-        <view class="nicheng">昵称</view>
+        <view class="touxiang"><image src="{{item.userImage}}" mode="widthFix"/></view>
+        <view class="nicheng">{{item.userName}}</view>
         <view class="zhaungtai2">
-          <view class="butt">待完成</view>
+          <view bindtap="cancelHelp" data-datas="{{item}}" wx:if="{{item.status=='0'}}" class="butt">待完成</view>
+          <view style="background-color: yellow;" bindtap="confirmHelp" data-datas="{{item}}" wx:if="{{item.status=='1'}}" class="butt">已完成</view>
+          <view style="background-color: aquamarine;" wx:if="{{item.status==2}}" class="butt">已确认</view>
+          <view style="background-color: rgb(207, 207, 207);" wx:if="{{item.status==3}}" class="butt">已取消</view>
+          <view style="background-color: red;" wx:if="{{item.status==4}}" class="butt">不通过</view>
+          <view style="background-color: rgb(207, 207, 207);" wx:if="{{item.status==5}}" class="butt">已被取消</view>
         </view>
       </view>
-    <!-- </block> -->
+    </block>
   </scroll-view>
 </view>

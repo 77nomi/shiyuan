@@ -19,14 +19,14 @@
 }
 .emergency{
   position: absolute;
-  line-height: 50rpx;
+  line-height: 40rpx;
   right: 50rpx;
-  width: 100rpx;
-  height: 50rpx;
+  width: 80rpx;
+  height: 40rpx;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 33rpx;
+  font-size: 28rpx;
   color: white;
   font-weight: 600;
   background-color: rgb(255, 0, 0);

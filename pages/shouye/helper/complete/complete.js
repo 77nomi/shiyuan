@@ -12,7 +12,7 @@ Page({
     imageList: [],
     imageNums: '',
     flag: '',
-    state: '',
+    state: 1,
   },
 
   onLoad(options) {
@@ -83,27 +83,17 @@ Page({
     var imgList
     if(that.data.image.length == 0){
       imgList = null
-      this.sendRequset()
+      that.sendRequset()
     }
     else{
       imgList = that.data.image
       that.setData({imageNums:imgList.length})
     }
     if(imgList){
-      wx.showLoading({
-        title: '发布中...',
-      })
       for(let i=0;i<imgList.length;i++){
-        // console.log(imgList[i])
-        this.uploadImage(imgList[i])
-        if(this.data.state != 1)
-        {
-          wx.hideLoading()
-          wx.showToast({title: '图片上传失败！',icon: 'error', duration: 1500, mask:true})
-          return 
-        }
+        console.log(imgList[i])
+        that.uploadImage(imgList[i])
       }
-      wx.hideLoading()
     }
     
   },
@@ -146,15 +136,17 @@ Page({
         wx.hideLoading()
         console.log(res)
         wx.showToast({title: '图片上传失败！',icon: 'error', duration:1500, mask:true})
-        that.setData({
-          state:0
-        })
+        that.setData({state:0})
         return 
       }
     });
   },
   //发送请求
   sendRequset(){
+    if(this.data.state != 1){
+      wx.showToast({title: '图片上传失败！',icon: 'error', duration: 1500, mask:true})
+      return 
+    }
     var that = this
     var id = this.data.id
     var requestId = this.data.requestId
@@ -201,8 +193,8 @@ Page({
             duration: 1500, 
             success: function () {
               setTimeout(function () {
-              wx.reLaunch({
-              url: '/pages/xinxizong/qiuzhujilu/qiuzhujilu',
+                wx.redirectTo({
+                  url: '/pages/shouye/help-page-detail/help-page-detail?id='+requestId,
                 })
               }, 1500);}
           })

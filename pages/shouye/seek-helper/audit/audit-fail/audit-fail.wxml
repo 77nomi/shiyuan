@@ -1,23 +1,17 @@
 <view class="rect1"></view>
 <view class="rect2">
 <view class="row1">
-<view class="left"><image src="/images/touxiang.png" mode="widthFix"/></view>
-<view class="right">
-<!-- id -->
-<view class="nicheng">昵称</view>
-<view class="id">用户ID</view>
-</view>
+  <view class="left"><image src="{{userImage}}" mode="widthFix"/></view>
+  <view class="right">
+    <view class="nicheng">{{userName}}</view>
+    <view class="id">{{userId}}</view>
+  </view>
 </view>
 <!-- 下边框框 -->
-<view class="container">
-  <view class="top">
-    <input class="input" placeholder="不通过的原因" />
+  <view class="container">
+    <view class="bottom">
+      <textarea bindblur="getreason" class="textarea" placeholder="请描述不通过的原因"  maxlength="-1"></textarea>
+    </view>
   </view>
-  <view class="line"></view>
-  <view class="bottom">
-    <textarea class="textarea" placeholder="| 添加描述"  maxlength="-1"></textarea>
-    <view class="fasong">发送</view>
-  </view>
-  
-</view>
+  <view bindtap="submit" class="fasong">发送</view>
 </view>

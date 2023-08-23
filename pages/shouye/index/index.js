@@ -73,7 +73,6 @@ Page({
     var that = this
     var label = that.data.nowLabel
     var page = that.data.page
-    console.log(page)
     var token = wx.getStorageSync('token')
     wx.showLoading({title: '加载中',})
     wx.request({
@@ -90,7 +89,7 @@ Page({
       success: (res) => {
         console.log(res)
         wx.hideLoading()
-        if(res.data.data.records){
+        if(res.data.data.records[0]){
           var helpList = that.data.helplist
           var newrecords = res.data.data.records
           var finrecord = helpList.concat(newrecords)

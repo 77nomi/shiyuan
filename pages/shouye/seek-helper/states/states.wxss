@@ -45,10 +45,10 @@
   width: 100rpx;
   height: 150rpx;
   /* background-color: rgb(199, 196, 41); */
-  display: flex;
-justify-content: center;
-align-items: center;
-padding-left: 20rpx;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20rpx;
 }
 .nicheng{
   width: 350rpx;
@@ -68,7 +68,7 @@ padding-left: 20rpx;
   /* background-color: rgb(187, 17, 17); */
 }
 .butt{
-  width: 120rpx;
+  width: 130rpx;
   height: 50rpx;
   background-color: rgb(226, 126, 43);
   border-radius: 10px;
