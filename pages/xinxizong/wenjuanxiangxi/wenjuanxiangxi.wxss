@@ -47,6 +47,7 @@
   height: 130rpx;
   margin: 10rpx 30rpx;
   display: flex;
+  
 }
 .top{
   width: 450rpx;
@@ -54,6 +55,9 @@
   font-size: 40rpx;
   display: flex;
   align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .right{
   width: 150rpx;

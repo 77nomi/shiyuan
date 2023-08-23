@@ -26,9 +26,18 @@
 }
 .title{
   font-size: 38rpx;
+  height: 80rpx;
+  width: 400rpx;
+  line-height: 80rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* background-color: #fff; */
 }
 .time{
   font-size: 25rpx;
+  height: 50rpx;
+  line-height: 50rpx;
 }
 .image3{
   height: 60rpx;

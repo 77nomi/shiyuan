@@ -16,6 +16,11 @@
 }
 .title{
   font-size: 37rpx;
+  width: 350rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* background-color: rgb(221, 24, 24); */
 }
 .emergency{
   position: absolute;

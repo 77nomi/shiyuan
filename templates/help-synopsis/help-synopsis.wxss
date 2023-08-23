@@ -34,19 +34,26 @@
 }
 .details{
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
   height: 65rpx;
 }
 .name{
   font-size: 2-rpx;
-  text-align: center;
+  /* text-align: center; */
+  padding-left: 30rpx;
+  width: 230rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* background-color: rgb(223, 34, 34); */
 }
 .states{
   height: 45rpx;
   width: 100rpx;
   text-align: center;
   font-size: 30rpx;
+  margin-right: 20rpx;
   background-color: #70c9db;
   border-radius: 10rpx;
 }

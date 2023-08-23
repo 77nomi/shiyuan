@@ -35,10 +35,14 @@
   font-size: 35rpx;
   /* line-height: 300rpx; */
   border-radius: 20rpx;
+  padding: 10rpx;
   background-color: rgb(255, 255, 255);
 }
 .time{
-  width: 580rpx;
+  /* width: 580rpx; */
   text-align: center;
   margin: 10rpx auto;
+  margin-right: 300rpx;
+  /* background-color: #fff; */
+
 }

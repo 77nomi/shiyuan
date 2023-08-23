@@ -88,7 +88,7 @@ Page({
       wx.showToast({title: '内容不能为空！',icon: 'none', duration: 1000, mask: true,})
       return 
     }else if(e.detail.value.title.length>10){
-      wx.showToast({title: '标题不能多于20个字',icon: 'none', duration: 1000, mask: true,})
+      wx.showToast({title: '标题不能多于10个字',icon: 'none', duration: 1000, mask: true,})
       return 
     }else if(!e.detail.value.phone){
       wx.showToast({title: '联系方式不能为空！',icon: 'none', duration: 1000, mask: true,})

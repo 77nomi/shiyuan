@@ -101,17 +101,22 @@
 .part3{
   width: 204rpx;
   height: 180rpx;
+
 }
 .part1,
 .part2{
   border-right: 4rpx solid #D9D9D9;
 }
 .num{
+  width: 204rpx;
   font-weight: 700;
   height: 130rpx;
   text-align: center;
   line-height: 130rpx;
   font-size: 50rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .zi{
   height: 50rpx;
