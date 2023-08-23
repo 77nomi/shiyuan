@@ -1,21 +1,12 @@
-
-<import src="/templates/helped/helped"/>
-<import src="/templates/finished/finished"/>
+<import src="/templates/info/info"/>
 <view class="rect1"></view>
 <view class="rect2"> 
 <view class="information">求助信息通知</view>
 
-<scroll-view  scroll-y>
-    <template is="helped" data=""/>
-
-    <template is="helped" data=""/>
-    <template is="helped" data=""/>
-    <template is="helped" data=""/>
-    <template is="helped" data=""/>
-    <template is="helped" data=""/>
-    <template is="helped" data=""/>
-    <template is="helped" data=""/>
-    <template is="finished" data=""/> 
+<scroll-view bindscrolltolower="getMore" scroll-y>
+  <view bindtap="gotoDetail" data-index="{{index}}" wx:for="{{records}}" wx:key="index" wx:for-item="item">
+    <template is="info" data="{{...item}}"/>
+  </view>
 </scroll-view>
 </view>
 

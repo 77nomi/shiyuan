@@ -1,0 +1,10 @@
+<template name="info">
+  <view class="message">
+    <view wx:if="{{status==0}}" class="dot">.</view>
+    <view class="left">
+      <view class="row1">{{title}}</view>
+      <view class="row2">{{updateTime}}</view>
+    </view>
+    <view class="right"><image src="/images/you.png" mode="widthFix"/></view>
+  </view>
+</template>

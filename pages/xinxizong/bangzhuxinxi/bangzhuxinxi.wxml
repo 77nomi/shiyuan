@@ -1,17 +1,11 @@
-<import src="/templates/confirmed/confirmed"/>
-<import src="/templates/cancelled/cancelled"/>
-<import src="/templates/overruled/overruled"/>
-<!-- confirmed确认 cancelled 取消 overruled驳回 -->
+<import src="/templates/info/info"/>
 <view class="rect1"></view>
 <view class="rect2"> 
 <view class="information">帮助信息通知</view>
 
-<scroll-view  scroll-y>
-   
-    <template is="confirmed" data=""/>
-    <template is="cancelled" data=""/>
-    <template is="overruled" data=""/>
+<scroll-view bindscrolltolower="getMore" scroll-y>
+  <view bindtap="gotoDetail" data-index="{{index}}" wx:for="{{records}}" wx:key="index" wx:for-item="item">
+    <template is="info" data="{{...item}}"/>
+  </view>
 </scroll-view>
-
 </view>
-

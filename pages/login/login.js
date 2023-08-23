@@ -23,6 +23,7 @@ Page({
           success: (res) => {
             wx.showToast({ title: '登录成功!', icon: 'none', duration: 1500, mask: true, });
             console.log(res)
+            app.openSocket()
             wx.setStorageSync ('token', res.data.data.token)
             wx.setStorageSync('id', res.data.data.id)
             wx.switchTab({

@@ -1,0 +1,44 @@
+.rect1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #C5DFE8;
+}
+.rect2 {
+  position: fixed;
+  top: 30rpx;  
+  left: 30rpx;  
+  width: calc(100% - 60rpx);  
+  height: calc(100vh - 60rpx);  
+  border-radius: 30rpx;  
+  background-color: #E5F1F5;
+}
+.title{
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 40rpx;
+  letter-spacing: 5rpx;
+  text-indent: 5rpx;
+  width: 580rpx;
+  text-align: center;
+  margin: 100rpx auto 50rpx;
+  border-radius: 20rpx;
+  background-color: rgb(255, 255, 255);
+}
+.content{
+  height: 300rpx;
+  width: 580rpx;
+  margin: 0 auto;
+  word-break: break-all;
+  font-size: 35rpx;
+  /* line-height: 300rpx; */
+  border-radius: 20rpx;
+  background-color: rgb(255, 255, 255);
+}
+.time{
+  width: 580rpx;
+  text-align: center;
+  margin: 10rpx auto;
+}

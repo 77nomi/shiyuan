@@ -1,6 +1,4 @@
-
-@import "/templates/helped/helped.wxss";
-@import "/templates/finished/finished.wxss";
+@import "/templates/info/info.wxss";
 .rect1 {
   position: fixed;
   top: 0;

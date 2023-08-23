@@ -1,65 +1,55 @@
-// pages/xinxi/xinxi.js
+const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+    type0: 0,
+    type1: 0,
+    type2: 0,
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  onLoad(){
+    var type0 = app.globalData.type0Num
+    var type1 = app.globalData.type1Num
+    var type2 = app.globalData.type2Num
+    this.setData({type0:type0,type1:type1,type2:type2,})
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
+    app.hideTabBarBadge()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  // 官方通知
+  officialNotice(){
+    this.setData({type2:0})
+    app.globalData.type2=0
+    wx.navigateTo({
+      url: '/pages/xinxizong/guanfangtongzhi/guanfangtongzhi',
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  // 求助信息
+  seekHelpInfo(){
+    this.setData({type0:0})
+    app.globalData.type0=0
+    wx.navigateTo({
+      url: '/pages/xinxizong/qiuzhuxinxi/qiuzhuxinxi?type=0',
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  // 求助记录
+  seekHelpRecord(){
+    wx.navigateTo({
+      url: '/pages/xinxizong/qiuzhujilu/qiuzhujilu',
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
+  // 帮助信息
+  helpInfo(){
+    this.setData({type1:0})
+    app.globalData.type1=0
+    wx.navigateTo({
+      url: '/pages/xinxizong/bangzhuxinxi/bangzhuxinxi?type=1',
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+  // 帮助记录
+  helpRecord(){
+    wx.navigateTo({
+      url: '/pages/xinxizong/bangzhujilu/bangzhujilu',
+    })
+  },
 })

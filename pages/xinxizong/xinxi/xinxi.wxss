@@ -76,12 +76,13 @@
   height: 80rpx;
   margin: 0 auto;
   border-radius: 15px;
-line-height: 80rpx;
-text-align: center;
-font-size: 40rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 40rpx;
   background-color: #A5C9C7;
 }
 .two{
+  position: relative;
   width: 600rpx;
 height: 280rpx;
 margin: 0rpx auto;
@@ -96,10 +97,23 @@ margin-top: 30rpx;
   width: 200rpx;
   height: 220rpx;
   border-radius: 20px;
-/* background-color: blue; */
-border: 10rpx solid #F0ECCC;
+  /* background-color: blue; */
+  border: 10rpx solid #F0ECCC;
   /* background-color: rgb(206, 31, 31); */
-
+}
+.dot{
+  position: absolute;
+  top: -210rpx;
+  left: 200rpx;
+  font-size: 250rpx;
+  color: red;
+}
+.dot2{
+  position: absolute;
+  font-size: 250rpx;
+  color: red;
+  top: -150rpx;
+  left: 470rpx;
 }
 .tu{
   margin-top: 40rpx;

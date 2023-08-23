@@ -1,9 +1,0 @@
-<view class="rect1"></view>
-<view class="rect2">
-<!-- 下边框框 -->
-    <textarea class="textarea" placeholder="| 添加描述"  maxlength="-1"></textarea>
-<view class="shangchuan" bindtap="showOverlay">上传</view>
-</view>
-<view class="overlay" wx:if="{{showOverlay}}" bindtap="hideOverlay">
-    <view class="box">上传成功</view>
-  </view>

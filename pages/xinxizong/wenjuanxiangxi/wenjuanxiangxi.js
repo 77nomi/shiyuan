@@ -1,5 +1,6 @@
 Page({
   data: {
+    flag: 1,
     adminId: '',
     adminImage: '',
     adminName: '',
@@ -12,6 +13,8 @@ Page({
     title: '',
   },
   onLoad(options) {
+    if(!wx.getStorageSync(options.id))
+      this.setData({flag:0})
     this.setData({id:options.id})
     this.getDetailData(options.id)
   },
@@ -62,4 +65,54 @@ Page({
       urls: imageList
     })
   },
+
+  // 完成问卷
+  complete(){
+    var that = this
+    wx.showModal({
+      title: '请确认已经完成',
+      content: '若未完成则有概率收回奖励益时',
+      complete: (res) => {
+        if (res.confirm) {
+          var id = that.data.id
+          var userid = wx.getStorageSync('id')
+          var bonus = parseInt(that.data.bonus)
+          wx.showLoading({title: '加载中...',})
+          wx.request({
+            url: 'http://8.130.118.211:5795/user/survey?id='+id+'&userId='+userid+'&bonus='+bonus,
+            header: {
+              "authentication" : wx.getStorageSync('token')
+            },
+            method: 'PUT',
+            success: (res) => {
+              wx.hideLoading()
+              console.log(res)
+              if(res.data.code==1){
+                wx.showToast({
+                  title: '已完成！',
+                  icon: 'success', 
+                  duration: 1500, 
+                  success: function () {
+                    wx.hideLoading()
+                    wx.setStorageSync(id, 1)
+                    setTimeout(function () {
+                    wx.reLaunch({
+                    url: '/pages/xinxizong/guanfangtongzhi/guanfangtongzhi',
+                      })
+                    }, 1500);}
+                })
+              }else{
+                wx.showToast({title: res.data.msg,icon:'none',duration:1500})
+              }
+            },
+            fail: (err) => {
+              wx.hideLoading()
+              console.log(err)
+            },
+          })
+        }
+      }
+    })
+  },
+
 })

@@ -34,6 +34,6 @@
         <image bindtap="preview" data-index="{{index}}" wx:for="{{image}}" wx:key="index" wx:for-item="imgs" class="pics" src="{{imgs}}" mode=""/>
       </scroll-view>
     </view>
-    <view class="write">立即填写</view>
+    <view wx:if="{{!flag}}" bindtap="complete" class="write">立即完成</view>
   </view>
 </view>

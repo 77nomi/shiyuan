@@ -1,8 +1,4 @@
-/* <!-- confirmed确认 cancelled 取消 overruled驳回 --> */
-
-@import "/templates/confirmed/confirmed.wxss";
-@import "/templates/cancelled/cancelled.wxss";
-@import "/templates/overruled/overruled.wxss";
+@import "/templates/info/info.wxss";
 .rect1 {
   position: fixed;
   top: 0;
@@ -28,6 +24,8 @@
   text-align: center;
   font-size: 40rpx;
 }
+
+
 scroll-view{
   margin: 0 auto;
   /* margin-top: 30rpx; */
@@ -36,7 +34,6 @@ scroll-view{
   height: 1250rpx;
   background-color: #E5F1F5;
 }
-/* #E5F1F5 */
 /* 隐藏滚动条 */
 ::-webkit-scrollbar{
   width: 0;

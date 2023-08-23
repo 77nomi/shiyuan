@@ -1,11 +1,11 @@
 <template name="notice">
-<view class="gonggao" bindtap="gotonotdetails" data-index="{{id}}" >
-  <view class="left"><image src="/images/lingdang.png" mode="heightFix" class="image3"/></view>
-  <view class="middle">
-  <view class="title">{{title}}</view>
-  <view class="time">{{createTime}}</view>
+  <view class="gonggao" bindtap="gotonotdetails" data-index="{{id}}" >
+    <view class="left"><image src="/images/lingdang.png" mode="heightFix" class="image3"/></view>
+    <view class="middle">
+      <view class="title">{{title}}</view>
+      <view class="time">{{createTime}}</view>
+    </view>
+    <view class="right" ><image src="/images/you.png" mode="heightFix" class="image3"/></view>
+      <!-- 内容区域 -->
   </view>
-  <view class="right" ><image src="/images/you.png" mode="heightFix" class="image3"/></view>
-    <!-- 内容区域 -->
-</view>
 </template>

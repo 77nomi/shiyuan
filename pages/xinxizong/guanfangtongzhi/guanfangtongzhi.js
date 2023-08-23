@@ -1,8 +1,5 @@
-// pages/admin/shouyezong/shouye/shouye.js
+
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     page: 1,
     indextabs:[
@@ -22,20 +19,7 @@ Page({
   },
   onLoad(options) {
     this.getnoticeList()
-    this.getToken()
     // this.getquestionnaireList()
-  },
-
-
-
-  // 获取token
-  getToken:function (){
-    let token = wx.getStorageSync('token')
-    if(!token){
-      wx.redirectTo({
-        url: '/pages/geren/authentication/authentication',
-      })
-    }
   },
   // 更换公告/问卷
   handleTabsItemChange(e){
@@ -148,14 +132,4 @@ Page({
       url: '/pages/xinxizong/wenjuanxiangxi/wenjuanxiangxi?id='+id
     });
   },
-
-  getDetailTap:function (e) {
-    // console.log(e.currentTarget.dataset.index)
-    wx.navigateTo({
-      url: '/pages/shouye/help-page-detail/help-page-detail?id='+e.currentTarget.dataset.index,
-    })
-  }
-
-
-
 })

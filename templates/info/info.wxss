@@ -1,10 +1,18 @@
 .message{
+  position: relative;
   width: 650rpx;
   height: 160rpx;
   background-color: rgb(255, 255, 255);
   margin:10rpx auto 20rpx;
   /* border-radius: 30rpx; */
   display: flex;
+}
+.dot{
+  top: -180rpx;
+  left: -5rpx;
+  position: absolute;
+  color: red;
+  font-size: 200rpx;
 }
 .left{
   width: 550rpx;

@@ -48,9 +48,9 @@ Page({
       method : 'GET',
       success: (res) => {
         wx.hideLoading()
-        var newrecords = res.data.data.records
-        console.log(newrecords)
-        if(newrecords[0]){
+        // console.log(res.data)
+        if(res.data.data){
+          var newrecords = res.data.data.records
           var records = that.data.records
           records = records.concat(newrecords)
           that.setData({records:records})

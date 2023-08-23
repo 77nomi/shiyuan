@@ -70,6 +70,7 @@ Page({
       method : 'POST',
       success: (res) => {
         console.log(res)
+        app.closeSocket()
         wx.removeStorageSync('token')
         this.onLoad()
       },

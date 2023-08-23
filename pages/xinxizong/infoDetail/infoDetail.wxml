@@ -1,0 +1,6 @@
+<view class="rect1"></view>
+<view class="rect2"> 
+  <view class="title">{{title}}</view>
+  <view class="content">{{content}}</view>
+  <view class="time">{{createTime}}</view>
+</view>

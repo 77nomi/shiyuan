@@ -1,11 +1,10 @@
 <template name="questionnaire">
-<view class="questionnaire"  bindtap="gotoquedetails" data-index="{{id}}">
-  <!-- <view class="questionnaire"  bindtap="getDetailTap" data-index="{{id}}"> -->
-  <view class="left"><image src="/images/wenhao.png" mode="heightFix" class="image3"/></view>
-  <view class="middle">
-  <view class="title">{{title}}</view>
-  <view class="time">{{createTime}}</view>
-  </view>
+  <view class="questionnaire"  bindtap="gotoquedetails" data-index="{{id}}">
+    <view class="left"><image src="/images/wenhao.png" mode="heightFix" class="image3"/></view>
+    <view class="middle">
+      <view class="title">{{title}}</view>
+      <view class="time">{{createTime}}</view>
+    </view>
   <view class="right"><image src="/images/you.png" mode="heightFix" class="image3"/></view>
     <!-- 内容区域 -->
   </view>
