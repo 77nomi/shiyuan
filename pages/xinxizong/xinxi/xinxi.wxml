@@ -1,3 +1,4 @@
+
 <view class="all">
   <view class="container">
     <view class="bottle">  
@@ -9,35 +10,35 @@
       <view class="pingjing"></view>
       <view class="pingshen">
         <!-- 求助部分 -->
-        <view class="qiuzhu">
-          <view class="wenzi">求助</view>
-          <view class="two">
-            <view wx:if="{{type0}}" class="dot">.</view>
+        <view class="qiuzhu type">
+          <view wx:if="{{type0}}" class="dot1">.</view>
             <view bindtap="seekHelpInfo" class="zuo" >
               <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
               <view class="tishi">求助信息</view>
             </view>
-            <view bindtap="seekHelpRecord" class="you" >
-              <view class="tu"><image src="/images/xinxi2.png" mode="widthFix"/></view>
-              <view class="tishi">求助记录</view>
-            </view>
-          </view>
+     
+      
         </view>
         <!-- 帮助部分 -->
-        <view class="bangzhu">
-          <view class="wenzi">帮助</view>
-          <view class="two">
-            <view wx:if="{{type1}}" class="dot">.</view>
+        <view class="bangzhu type">
+            <view wx:if="{{type1}}" class="dot3">.</view>
             <view bindtap="helpInfo" class="zuo" >
               <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
               <view class="tishi">帮助信息</view>
             </view>
-            <view bindtap="helpRecord" class="you" >
-              <view class="tu"><image src="/images/xinxi2.png" mode="widthFix"/></view>
-              <view class="tishi" >帮助记录</view>
-            </view>
-          </view>
+           
+         
         </view>
+        <view class="jubao type">
+        
+      <view wx:if="{{type3}}" class="dot4">.</view>
+      <view bindtap="helpInfo" class="zuo" >
+        <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
+        <view class="tishi">举报信息</view>
+      </view>
+     
+   
+  </view>
       </view>
     </view>
   </view>

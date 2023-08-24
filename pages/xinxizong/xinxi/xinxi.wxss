@@ -1,3 +1,4 @@
+
 .all {
   width: 100%;
   height: 100vh;
@@ -65,10 +66,6 @@
   border-top: none;
   /* background-color: rgb(201, 25, 25); */
 }
-/* .qiuzhu,
-.bangzhu{
-  display: flex;
-} */
 .wenzi{
   width: 200rpx;
   height: 80rpx;
@@ -79,33 +76,37 @@
   font-size: 40rpx;
   background-color: #A5C9C7;
 }
-.two{
-  position: relative;
-  width: 600rpx;
-height: 280rpx;
-margin: 0rpx auto;
-margin-top: 30rpx;
-  display: flex;
-  /* background-color: rgb(205, 83, 216); */
-  justify-content: space-evenly;
-  /* align-items:center; */
-}
 .zuo,
 .you{
-  width: 200rpx;
-  height: 220rpx;
+  width: 500rpx;
+  height: 120rpx;
   border-radius: 20px;
-  /* background-color: blue; */
-  border: 10rpx solid #F0ECCC;
-  /* background-color: rgb(206, 31, 31); */
+  display: flex;
+  /* border: 10rpx solid #F0ECCC; */
 }
-.dot{
+.bangzhu,
+.jubao{
+  position: relative;
+}
+.dot1,
+.dot3,
+.dot4
+{
   position: absolute;
-  top: -210rpx;
-  left: 200rpx;
+  top: -220rpx;
+  left: 100rpx;
   font-size: 250rpx;
   color: red;
 }
+.dot1{
+  position: absolute;
+  top: -220rpx;
+  left: 100rpx;
+  font-size: 250rpx;
+  color: red;
+}
+
+
 .dot2{
   position: absolute;
   font-size: 250rpx;
@@ -113,8 +114,21 @@ margin-top: 30rpx;
   top: -150rpx;
   left: 470rpx;
 }
+.type{
+  position: relative;
+  width: 550rpx;
+  height: 150rpx;
+  margin: 0rpx auto;
+  margin-bottom: 50rpx;
+  display: flex;
+  border-radius: 30rpx;
+  border: 10rpx solid #C5DFE8;
+  /* background-color: rgb(25, 66, 180); */
+}
 .tu{
-  margin-top: 40rpx;
+  width: 150rpx;
+  height: 150rpx;
+  /* margin-top: 40rpx; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,16 +136,13 @@ margin-top: 30rpx;
 }
 .tishi{
   width: 200rpx;
-  height:80rpx;
-  margin: 0 auto;
+  height:150rpx;
+  /* margin: 0 auto; */
   text-align: center;
-  font-size: 40rpx; 
-  line-height:80rpx;
+  font-size: 50rpx; 
+  line-height:150rpx;
   /* background-color: rgb(59, 23, 83); */
-
-
 }
 image{
   width: 100rpx;
-  height: 100rpx;
 }

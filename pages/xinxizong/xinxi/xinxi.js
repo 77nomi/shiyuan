@@ -4,6 +4,7 @@ Page({
     type0: 0,
     type1: 0,
     type2: 0,
+    type3: 0,
   },
 
   onLoad(){
