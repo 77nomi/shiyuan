@@ -7,11 +7,20 @@
       </view>
     </view>
 
-    <indextabs tabs="{{indextabs}}" bindtabsItemChange="handleTabsItemChange">
-    </indextabs>
+    <scroll-view class="tab" scroll-x="true">
+      <view
+        wx:for="{{indextabs}}"
+        wx:key="index"
+        class="title_item {{item.isActive?'active':''}}"
+        bindtap="handleTabsItemChange"
+        data-index="{{index}}"
+      >
+        {{item.value}}
+      </view>
+    </scroll-view>
     
     <scroll-view bindscrolltolower="getMore" class="content-scroll" scroll-y>
-      <block wx:for="{{helplist}}" wx:for-item="form">
+      <block wx:for="{{helplist}}" wx:key="index" wx:for-item="form">
         <block wx:if="{{form.deleted==0}}">
           <template is="help-synopsis" data="{{...form}}"/> 
         </block>

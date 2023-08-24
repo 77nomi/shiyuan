@@ -33,11 +33,30 @@
   line-height:80rpx;
   text-align: center;
   border-radius: 20px;
-
-  /* background-color: rgb(250, 19, 19); */
   margin-bottom: 2px; /* 盒子的下边距 */
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* 阴影效果 */
 }
+
+.tab{
+  height: 80rpx;
+  background-color:white;
+  display: flex;
+  white-space: nowrap;
+}
+.title_item{
+  display: inline-block;
+  padding: 0 15rpx;
+  margin: 0 15rpx;
+  height: 70rpx;
+  text-align: center;
+  font-size: 35rpx;
+  line-height: 80rpx;
+  flex: 1;
+}
+.active{
+  border-bottom: 8rpx solid #FF8D1A;
+}
+
 
 .content-scroll{
   margin: 0 auto;

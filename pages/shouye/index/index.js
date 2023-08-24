@@ -54,9 +54,7 @@ Page({
   },
 
   handleTabsItemChange(e){
-    //获取被点击事件的标题索引
-    const {index}=e.detail;
-    //修改数组
+    const index=e.currentTarget.dataset.index;
     let{indextabs}=this.data;
     indextabs.forEach((v,i)=>i===index?v.isActive=true:v.isActive=false);
     this.setData({
@@ -87,7 +85,7 @@ Page({
       // },
       method: 'GET',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         wx.hideLoading()
         if(res.data.data.records[0]){
           var helpList = that.data.helplist
@@ -125,7 +123,7 @@ Page({
       method: 'GET',
       success: (res) => {
         wx.hideLoading()
-        console.log(res)
+        // console.log(res)
         if(res.data.data.records){
           that.setData({helplist:res.data.data.records})
         }else{
