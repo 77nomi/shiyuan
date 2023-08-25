@@ -1,0 +1,29 @@
+<view class="rect1"></view>
+<view class="rect2">
+  <view class="reason">
+    <view class="content1">被举报帖标题：{{title}}</view>
+    <view class="content2">
+        <scroll-view scroll-y>{{content}}</scroll-view>
+        <view class="pic" wx:if="{{image}}">
+          <!-- <view class="pic" > -->
+        <view class="line"></view>
+        <view class="p4">补充图片:</view>
+        <scroll-view class="picsbox" scroll-x="true">
+          <image bindtap="preview" data-index="{{index}}" wx:for="{{image}}" wx:key="index" wx:for-item="imgs" class="pics" src="{{imgs}}" mode=""/>
+        </scroll-view>
+      </view>
+      <!-- 被举报用户ID： -->
+      <view class="idshuoming">
+        <view class="wenziid">被举报用户ID：</view>
+        <view class="id">{{reportId}}</view>
+      </view>
+    </view>
+      <view class="yuan" bindtap="toyuanpost">查看原帖</view>
+    </view>
+
+  <view wx:if="{{reason}}" class="reject">
+    <view class="title">不通过原因</view>
+        <view class="line"></view>
+    <scroll-view class="content">{{reason}}</scroll-view>
+  </view>
+</view>

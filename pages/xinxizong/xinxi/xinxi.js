@@ -33,12 +33,6 @@ Page({
       url: '/pages/xinxizong/qiuzhuxinxi/qiuzhuxinxi?type=0',
     })
   },
-  // 求助记录
-  seekHelpRecord(){
-    wx.navigateTo({
-      url: '/pages/xinxizong/qiuzhujilu/qiuzhujilu',
-    })
-  },
   // 帮助信息
   helpInfo(){
     this.setData({type1:0})
@@ -47,10 +41,12 @@ Page({
       url: '/pages/xinxizong/bangzhuxinxi/bangzhuxinxi?type=1',
     })
   },
-  // 帮助记录
-  helpRecord(){
+  //举报信息
+  reportInfo(){
+    this.setData({type2:0})
+    app.globalData.type2=0
     wx.navigateTo({
-      url: '/pages/xinxizong/bangzhujilu/bangzhujilu',
+      url: '/pages/xinxizong/reportinfo/reportinfo',
     })
   },
 })

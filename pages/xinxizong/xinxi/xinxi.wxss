@@ -9,7 +9,6 @@
 }
 .container {
   position: relative;
-  /* padding: 0; */
   width: calc(100% - 30px);
   height: calc(100% - 30px);
   border-radius: 20px;
@@ -33,7 +32,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: rgb(240, 33, 33); */
 }
 .neirong{
   width: 320rpx;
@@ -53,18 +51,13 @@
   border-top-right-radius: 120px;
   border: 10rpx solid #C7782A;
   border-bottom: none;
-  /* border-right: 10rpx solid #C7782A; */
-  /* background-color: rgb(47, 201, 47); */
-  /* background-color: pink; */
 }
 .pingshen{
   width: 600rpx;
   height: 850rpx;
   margin: 0 auto;
-  /* background-color: rgb(221, 51, 51); */
   border: 10rpx solid #C7782A;
   border-top: none;
-  /* background-color: rgb(201, 25, 25); */
 }
 .wenzi{
   width: 200rpx;
@@ -82,7 +75,6 @@
   height: 120rpx;
   border-radius: 20px;
   display: flex;
-  /* border: 10rpx solid #F0ECCC; */
 }
 .bangzhu,
 .jubao{
@@ -123,25 +115,19 @@
   display: flex;
   border-radius: 30rpx;
   border: 10rpx solid #C5DFE8;
-  /* background-color: rgb(25, 66, 180); */
 }
 .tu{
   width: 150rpx;
   height: 150rpx;
-  /* margin-top: 40rpx; */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: rgb(166, 168, 46); */
 }
 .tishi{
-  width: 200rpx;
   height:150rpx;
-  /* margin: 0 auto; */
   text-align: center;
   font-size: 50rpx; 
   line-height:150rpx;
-  /* background-color: rgb(59, 23, 83); */
 }
 image{
   width: 100rpx;

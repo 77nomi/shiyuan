@@ -20,6 +20,8 @@
     "pages/xinxizong/bangzhuxinxi/bangzhuxinxi",
     "pages/xinxizong/bangzhujilu/bangzhujilu",
     "pages/xinxizong/infoDetail/infoDetail",
+    "pages/xinxizong/reportinfo/reportinfo",
+    "pages/xinxizong/reportdetail/reportdetail",
     "pages/geren/geren",
     "pages/login/login"
   ],

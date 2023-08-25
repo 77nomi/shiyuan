@@ -16,8 +16,6 @@
               <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
               <view class="tishi">求助信息</view>
             </view>
-     
-      
         </view>
         <!-- 帮助部分 -->
         <view class="bangzhu type">
@@ -26,19 +24,15 @@
               <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
               <view class="tishi">帮助信息</view>
             </view>
-           
-         
         </view>
         <view class="jubao type">
-        
-      <view wx:if="{{type3}}" class="dot4">.</view>
-      <view bindtap="helpInfo" class="zuo" >
-        <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
-        <view class="tishi">举报信息</view>
-      </view>
-     
-   
-  </view>
+          <view wx:if="{{type2}}" class="dot4">.</view>
+          <view bindtap="reportInfo" class="zuo" >
+            <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
+            <view class="tishi">举报信息记录</view>
+          </view>
+        </view>
+
       </view>
     </view>
   </view>

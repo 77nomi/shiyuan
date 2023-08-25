@@ -65,7 +65,7 @@ App({
       else if(message.type===1)
         that.globalData.type1Num = that.globalData.type1Num+1
       else if(message.type===2)
-        that.globalData.type1Num = that.globalData.type1Num+1
+        that.globalData.type2Num = that.globalData.type2Num+1
     })
     // 打开信道
     wx.connectSocket({

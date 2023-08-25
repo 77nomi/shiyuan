@@ -7,12 +7,8 @@
     <view class="id">id:{{id}}</view>
   </view>
   <view class="container2">
-    <view class="top">
-      <input bindinput="getReason" class="input" placeholder="举报原因" />
-    </view>
-    <view class="line"></view>
     <view class="bottom">
-      <textarea bindblur="getDetail" class="textarea" placeholder="具体描述"  maxlength="-1"></textarea>
+      <textarea bindinput="getcontent" class="textarea" placeholder="请详细描述举报内容"  maxlength="-1"></textarea>
     </view>
     <scroll-view wx:if="{{image[0]}}" scroll-x="true" class="pics">
       <image class="picture" mode="center" wx:for="{{image}}" wx:key="index" bindtap="preview" bindlongpress="deleteImage" data-index="{{index}}" wx:for-item="picurl" src="{{picurl}}" mode=""/>

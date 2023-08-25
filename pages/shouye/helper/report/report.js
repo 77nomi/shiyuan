@@ -1,8 +1,7 @@
 const FormData = require('../../../.././utils/formdata')
 Page({
   data: {
-    reason: '',
-    detail: '',
+    content: '',
     id: '',
     title: '',
     userId: '',
@@ -18,14 +17,9 @@ Page({
     this.getDetailData()
   },
 
-  // 获取具体描述
-  getDetail(e){
-    this.setData({detail:e.detail.value,})
-  },
-
   // 获取举报原因
-  getReason(e){
-    this.setData({reason:e.detail.value})
+  getcontent(e){
+    this.setData({content:e.detail.value})
   },
 
   // 取消
@@ -38,6 +32,10 @@ Page({
   
   // 确认上传，循环上传图片
   confirm(){
+    if(!this.data.content){
+      wx.showToast({title: '内容不能为空',icon:'none',duration:1500,mask:true})
+      return 
+    }
     var that = this
     var imageList
     if(that.data.image.length == 0){
@@ -49,7 +47,6 @@ Page({
       that.setData({imageNums:imageList.length})
     }
     if(imageList){
-      wx.showLoading({title: '发布中...',})
       for(let i=0;i<imageList.length;i++){
         that.uploadImage(imageList[i])
         if(that.data.state != 1)
@@ -58,12 +55,10 @@ Page({
           return 
         }
       }
-      wx.hideLoading()
     }
   },
   // 上传图片到服务器
   uploadImage(url) {
-    wx.showLoading({title: '图片上传中',})
     var that = this
     let _name = url.split("\/");
     let name = _name[_name.length-1];
@@ -92,7 +87,6 @@ Page({
         console.log(that.data.imageList)
         if(that.data.imageNums == that.data.flag)
         {
-          wx.hideLoading()
           that.sendRequset()
         }
         return 
@@ -108,9 +102,7 @@ Page({
   },
   //发送请求
   sendRequset(){
-    console.log('发送请求')
     var that = this
-    var title = that.data.title
     var imgList
     if(that.data.imageList.length == 0){
       imgList = null
@@ -118,17 +110,19 @@ Page({
     else{
       imgList = that.data.imageList
     }
+    var title = that.data.title
+    var content = that.data.content
     var reportId = that.data.userId
     var requestId = that.data.id
-    console.log(imgList,title)
     wx.request({
       url: 'http://8.130.118.211:5795/user/report',
       data:{
-        'title': title,
         'userId': wx.getStorageSync('id'),
         'reportId': reportId,
         'requestId': requestId,
         'image': imgList,
+        'content':content,
+        'title':title,
       },
       header: {
         "authentication" : wx.getStorageSync('token')

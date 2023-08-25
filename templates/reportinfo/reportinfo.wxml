@@ -1,0 +1,12 @@
+<template name="reportinfo">
+  <view class="message">
+    <view wx:if="{{status==0}}" class="dot">.</view>
+    <view wx:if="{{!reason}}" class="state pass">通过</view>
+    <view wx:else class="state reject">不通过</view>
+    <view class="left">
+      <view class="row1">{{title}}</view>
+      <view class="row2">{{updateTime}}</view>
+    </view>
+    <view class="right"><image src="/images/you.png" mode="widthFix"/></view>
+  </view>
+</template>
