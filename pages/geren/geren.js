@@ -1,7 +1,7 @@
-const api = require('../../utils/API')
 var app = getApp();
 Page({
   data: {
+    isShow:0,
     selfdatas:{
       avatar: '',
       name: '',
@@ -12,39 +12,58 @@ Page({
     }
   },
 
-  onLoad(options) {
+  onShow(options) {
+    this.setData({isShow:0,})
     this.getToken()
   },
 
+  show(){
+    this.setData({
+      isShow:1
+    })
+  },
+  hide(){
+    this.setData({
+     isShow:0
+    })},
+
   async getToken() {
-    let token = wx.getStorageSync('token')
+    var that = this
+    wx.showLoading({title: '加载中',})
+    var token = wx.getStorageSync('token')
     if(!token){
-      wx.redirectTo({
-        url: '/pages/login/login',
-      })
+      wx.hideLoading()
+      wx.redirectTo({url: '/pages/login/login',})
     }else{
       var id = wx.getStorageSync('id')
       wx.request({
         url: 'http://8.130.118.211:5795/user/user/' + id,
-        headers: {
-          authentication : wx.getStorageSync('token')
+        header:{
+          'authentication': token
         },
         method : 'GET',
         success: (res) => {
-          console.log(res)
-          var datas={
-            avatar: res.data.data.image,
-            name: res.data.data.name,
-            id: res.data.data.id,
-            yishi: res.data.data.time,
-            credibility: res.data.data.credit,
-            helptimes: res.data.data.help
+          // console.log(res)
+          wx.hideLoading()
+          if(res.statusCode==401){
+            wx.removeStorageSync('token')
+            wx.reLaunch({url: '/pages/login/login',})
+          }else{
+            var datas={
+              'avatar': res.data.data.image,
+              'name': res.data.data.name,
+              'id': res.data.data.id,
+              'yishi': res.data.data.time,
+              'credibility': res.data.data.credit,
+              'helptimes': res.data.data.help
+            }
+            that.setData({
+              selfdatas: datas
+            })
           }
-          this.setData({
-            selfdatas: datas
-          })
         },
         fail: (err) => {
+          wx.hideLoading()
           console.log(err)
         }
       })
@@ -61,18 +80,27 @@ Page({
       url: '/pages/xinxizong/bangzhujilu/bangzhujilu',
     })
   },
+  cheakmyreport(){
+    wx.navigateTo({
+      url: '/pages/xinxizong/reportjilu/reportjilu',
+    })
+  },
   logout(){
     wx.request({
       url: 'http://8.130.118.211:5795/user/user/logout',
-      headers: {
-        token : wx.getStorageSync('token')
+      header: {
+        'authentication' : wx.getStorageSync('token')
       },
       method : 'POST',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         app.closeSocket()
         wx.removeStorageSync('token')
-        this.onLoad()
+        wx.removeStorageSync('id')
+        wx.removeStorageSync('isLogin')
+        wx.reLaunch({
+          url: '/pages/login/login',
+        })
       },
       fail: (err) => {
         console.log(err)
@@ -80,4 +108,9 @@ Page({
     })
   },
 
+  changeDetail(){
+    wx.navigateTo({
+      url: '/pages/login/login?flag=1',
+    })
+  }
 })

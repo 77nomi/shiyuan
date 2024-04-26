@@ -66,12 +66,8 @@
 }
 scroll-view{
   margin: 0 auto;
-  /* padding-bottom: 10rpx; */
-  /* margin-top: 30rpx; */
-  /* width: 650rpx; */
-  height: 960rpx;
+  height: 1000rpx;
   background-color:  #E5F1F5;
-  /* background-color: #159cc9; */
 }
 /* #E5F1F5 */
 

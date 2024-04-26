@@ -1,14 +1,18 @@
 <view class="all">
+  <view wx:if="{{isShow}}" bindtap="hide" class="connect">
+    <image class="gzh" src="/images/gzh.jpg" mode="center"/>
+    <text class="text">截图保存二维码并扫描后可联系我们</text>
+  </view>
   <view class="container">
     <view class="container1">
       <image src="/images/zhuazi1.png" mode="heightFix" class="zhuazi"/>
       <view class="contact">
-        <view class="contact-text">联系我们</view>
+        <view bindtap="show" class="contact-text">联系我们</view>
       </view>
       <view class="row2">
         <view class="left">
           <view class="circle">
-            <image class="avatar" src="{{selfdatas.avatar}}"></image>
+            <image bindtap="changeDetail" class="avatar" src="{{selfdatas.avatar}}"></image>
           </view>
         </view>
         <view class="xinxi">
@@ -45,6 +49,15 @@
           <image src="/images/xinxitubiao.png" mode="widthFix" class="tubiao1"/>
         </view>
         <view class="wenzi">我的帮助</view>
+        <view class="box1">
+          <image src="/images/you.png" mode="widthFix" class="tubiao2"/>
+        </view>
+      </view>
+      <view bindtap="cheakmyreport" class="bang">
+        <view class="box1">
+          <image src="/images/xinxitubiao.png" mode="widthFix" class="tubiao1"/>
+        </view>
+        <view class="wenzi">我的举报</view>
         <view class="box1">
           <image src="/images/you.png" mode="widthFix" class="tubiao2"/>
         </view>

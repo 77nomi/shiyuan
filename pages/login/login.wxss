@@ -1,20 +1,63 @@
-/* pages/dengluqian/page1/page1.wxss */
-.wen{
-  width: 560rpx;
-  height: 100rpx;
-  margin: 0 auto;
-  line-height: 100rpx;
-  /* background-color: #FF9B69; */
+.logo{
+  margin: 50rpx auto 0;
+  display: flex;
+  width: 300rpx;
+  justify-content: center;
+}
+.avatar-wrapper {
+  padding: 0;
+  width: 56px !important;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: #fff;
+}
+
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.container {
+  display: flex;
+}
+.changeTitle{
+  width: 500rpx;
   text-align: center;
-  }
-  .fast{
-  background-color: #FF9B69;
-  color:white;
+  letter-spacing: 5rpx;
+  text-indent: 5rpx;
+  margin: 0 auto;
+  font-size: 40rpx;
+}
+.row{
+   border-top: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
+   display: flex;
+   align-items: center;
+   height: 80rpx;
+   padding-left: 20rpx;
+}
+.text1{
+    flex: 2;
+}
+.weui-input{
+    flex: 6;
+}
+.login{
+  width: 300rpx;
+  height: 100rpx;
+  margin: 150rpx auto 30rpx;
   line-height: 100rpx;
-  }
-  
-  .logo{
-    margin-top: 150rpx;
-    display: flex;
-    justify-content: center;
-  }
+  text-align: center;
+  font-size: 40rpx;
+  letter-spacing: 15rpx;
+  text-indent: 15rpx;
+  border-radius: 10rpx;
+  background-color: rgb(255, 134, 20);
+}
+.tips{
+  width: 400rpx;
+  text-align: center;
+  margin: 0 auto;
+}

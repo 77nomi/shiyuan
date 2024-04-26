@@ -50,7 +50,48 @@ Page({
         value:"其它",
         isActive:false
       }
-    ]
+    ],
+    status: 0,
+  },
+
+  onShow(options) {
+    this.setData({helplist:[],})
+    if(app.globalData.isLogin)
+      this.getToken()
+    this.getforms(0,1)
+  },
+
+  getToken(){
+    if(wx.getStorageSync('token')){
+      var id = wx.getStorageSync('id')
+      var token = wx.getStorageSync('token')
+      wx.request({
+        url: 'http://8.130.118.211:5795/user/user/' + id,
+        header:{
+          'authentication': token
+        },
+        method : 'GET',
+        success: (res) => {
+          console.log(res)
+          wx.hideLoading()
+          if(res.data.code==401){
+            wx.removeStorageSync('token')
+            return
+          }
+          else{
+            var status = res.data.data.status
+            if(status != 0){
+              wx.removeStorageSync('token')
+              wx.reLaunch({url: '/pages/login/login',})
+            }
+          }
+        },
+        fail: (err) => {
+          wx.hideLoading()
+          console.log(err)
+        }
+      })
+    }
   },
 
   handleTabsItemChange(e){
@@ -65,13 +106,11 @@ Page({
     this.changeLabelGet(e.detail.index,1)
   },
 
-
   //获取&增加表单信息
   getforms:function () {
     var that = this
     var label = that.data.nowLabel
     var page = that.data.page
-    var token = wx.getStorageSync('token')
     wx.showLoading({title: '加载中',})
     wx.request({
       url: "http://8.130.118.211:5795/user/request/list",
@@ -80,20 +119,20 @@ Page({
         'page': page,
         'pageSize': 10,
       },
-      // header:{
-      //   'authentication': token,
+      // header: {
+      //   authentication : wx.getStorageSync('token')
       // },
       method: 'GET',
       success: (res) => {
-        // console.log(res)
         wx.hideLoading()
-        if(res.data.data.records[0]){
+        console.log(res)
+        if(res.data.data.records){
           var helpList = that.data.helplist
           var newrecords = res.data.data.records
           var finrecord = helpList.concat(newrecords)
           that.setData({helplist:finrecord})
         }else{
-          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500})
+          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500, mask: true,})
         }
       },
       fail: (err) => {
@@ -117,9 +156,9 @@ Page({
         'page': page,
         'pageSize': 10,
       },
-      // header:{
-      //   'authentication': token,
-      // },
+      header:{
+        'authentication': token,
+      },
       method: 'GET',
       success: (res) => {
         wx.hideLoading()
@@ -129,7 +168,7 @@ Page({
         }else{
           that.setData({helplist:[]})
           console.log(this.data.helplist)
-          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500})
+          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500, mask: true,})
         }
       },
       fail: (err) => {
@@ -144,10 +183,6 @@ Page({
       page:this.data.page+1
     })
     this.getforms()
-  },
-
-  onLoad(options) {
-    this.getforms(0,1)
   },
 
   getDetailTap:function (e) {

@@ -25,6 +25,7 @@ Page({
   },
  
   onLoad(options) {
+    this.setData({records:[]})
     this.getRecords()
   },
 
@@ -36,7 +37,7 @@ Page({
     wx.showLoading({title: '加载中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/user/request',
-      headers: {
+      header: {
         authentication : wx.getStorageSync('token')
       },
       data:{
@@ -55,14 +56,45 @@ Page({
           records = records.concat(newrecords)
           that.setData({records:records})
         }
-        else{
-          wx.showToast({title: '暂无更多记录',icon:'none',duration:1500})
+        if(!res.data.data && status!=0){
+          wx.showToast({title: '暂无更多记录',icon:'none',duration:1500, mask: true,})
+        }
+        if(status==0){
+          wx.showLoading({title: '加载中...',})
+          wx.request({
+            url: 'http://8.130.118.211:5795/user/request',
+            header: {
+              authentication : wx.getStorageSync('token')
+            },
+            data:{
+              'id': id,
+              'status': 4,
+              'page': page,
+              'pageSize': 10
+            },
+            method : 'GET',
+            success: (res) => {
+              wx.hideLoading()
+              // console.log(res.data)
+              if(res.data.data){
+                var newrecords = res.data.data.records
+                var records = that.data.records
+                records = records.concat(newrecords)
+                that.setData({records:records})
+                console.log(that.data.records)
+              }else{
+                wx.showToast({title: '暂无更多记录',icon:'none',duration:1500, mask: true,})
+              }
+            }
+          })
         }
       },
       fail: (err) => {
         wx.hideLoading()
         console.log(err)
-        wx.showToast({title: '暂无更多记录',icon:'none',duration:1500})
+      },
+      complete:(res)=>{
+        wx.hideLoading()
       },
     })
   },
@@ -75,7 +107,6 @@ Page({
   handleTabsItemChange(e){
     //获取被点击事件的标题索引
     const {index}=e.detail;
-    console.log(index)
     //修改数组
     let{tabs}=this.data;
     tabs.forEach((v,i)=>i===index?v.isActive=true:v.isActive=false);
@@ -91,4 +122,11 @@ Page({
     this.setData({records:[],page:1})
     this.getRecords()
   },
+  
+  getDetailTap:function (e) {
+    console.log(e.currentTarget.dataset.index)
+    wx.navigateTo({
+      url: '/pages/shouye/help-page-detail/help-page-detail?id='+e.currentTarget.dataset.index,
+    })
+  }
 })

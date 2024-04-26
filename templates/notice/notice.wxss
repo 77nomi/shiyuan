@@ -1,6 +1,7 @@
 /* templates/notice/notice.wxss.wxss */
 
 .gonggao{
+  position: relative;
   width: 600rpx;
   height: 130rpx;
   margin: 30rpx auto;
@@ -8,6 +9,13 @@
   border-radius: 30rpx;  
   display: flex;
   flex-direction: row;
+}
+.dot{
+  position: absolute;
+  top: -170rpx;
+  left: 50rpx;
+  font-size: 200rpx;
+  color: red;
 }
 
 .left,

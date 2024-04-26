@@ -123,3 +123,8 @@ width: 100rpx;
 .content{
   padding: 0 5rpx;
 }
+.tips{
+  width: 630rpx;
+  word-break: break-all;
+  margin: 20rpx auto;
+}

@@ -5,9 +5,12 @@ Page({
     records: [],
     createTime: '',
   },
-
-  onLoad(options) {
+  onLoad(options){
     this.setData({id:options.id,records:[]})
+  },
+
+  onShow(options) {
+    this.setData({records:[]})
     this.getRecords()
     this.getDetailData()
   },
@@ -19,7 +22,7 @@ Page({
     wx.showLoading({title: '加载中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/common/request/' + id,
-      headers: {
+      header: {
         authentication : wx.getStorageSync('token')
       },
       data:{
@@ -27,7 +30,6 @@ Page({
       },
       method : 'GET',
       success: (res) => {
-        // console.log(res)
         var data = res.data.data
         that.setData({
           createTime: data.createTime,
@@ -49,7 +51,7 @@ Page({
     wx.showLoading({title: '加载中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/user/help',
-      headers: {
+      header: {
         authentication : wx.getStorageSync('token')
       },
       data:{
@@ -65,8 +67,6 @@ Page({
           var newrecords = res.data.data.records
           newrecords = oldrecords.concat(newrecords)
           that.setData({records:newrecords})
-        }else{
-          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500, mask: true,})
         }
       },
       fail: (err) => {
@@ -85,9 +85,10 @@ Page({
   // 取消他人帮助
   cancelHelp(e){
     var datas = e.currentTarget.dataset.datas
-    if(!datas.dl)
+    if(!datas.dl){
       wx.showToast({title: '对方帮助您还未满12小时，您无法取消',duration: 2000, icon: 'none'})
-    // console.log(datas)
+      return 
+    }
     var that = this
     var requestId = this.data.id
     var userId = datas.userId
@@ -100,7 +101,7 @@ Page({
           wx.showLoading({title: '加载中...',})
           wx.request({
             url: 'http://8.130.118.211:5795/user/help',
-            headers: {
+            header: {
               authentication : wx.getStorageSync('token')
             },
             data:{
@@ -111,21 +112,19 @@ Page({
             },
             method : 'PUT',
             success: (res) => {
-                console.log(res)
+              wx.hideLoading()
+              console.log(res)
               if(res.code==1){
                 that.onloadThisPage()
               }else{
-                wx.showToast({title: res.data.msg,duration: 2000, icon: 'none'})
+                wx.showToast({title: res.data.msg,duration: 2000, icon: 'none', mask: true,})
               }
             },
             fail: (err) => {
               wx.hideLoading()
-              wx.showToast({title: err.data.data.msg})
+              wx.showToast({title: err.data.msg,duration:1500,icon:'none', mask: true,})
               console.log(err)
             },
-            complete:()=>{
-              wx.hideLoading()
-            }
           })
         }
       }

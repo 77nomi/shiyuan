@@ -136,8 +136,8 @@ Page({
       return 
     }else{
       for(var i=0;i<bonus.length;i++){
-        if((bonus[i]<'0' && bonus[i]!='.') || (bonus[i]>'9' && bonus[i]!='.')){
-          wx.showToast({title: '有除数字及小数点以外的字符',icon: 'none', duration: 1500, mask: true,})
+        if(bonus[i]<'0' || bonus[i]>'9'){
+          wx.showToast({title: '格式错误',icon: 'none', duration: 1500, mask: true,})
           return 
         }
       }
@@ -167,7 +167,7 @@ Page({
     var that = this
     var imgList
     if(that.data.fileList.length == 0){
-      imgList = null
+      imgList = []
       this.sendRequset()
     }
     else{
@@ -237,6 +237,7 @@ Page({
             title: '发布成功！',
             icon: 'success', 
             duration: 1500, 
+            mask: true,
             success: function () {
               setTimeout(function () {
               wx.reLaunch({
@@ -244,9 +245,23 @@ Page({
                 })
               }, 1500);}
           })
-        }else{
-          wx.showToast({title: res.data.msg,duration:1500,icon: 'error'})
+        }else if(res.data.msg == "已提交，等待后台人员审核后即发布"){
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none', 
+              duration: 3000,
+              mask: true,
+              success: function () {
+                setTimeout(function () {
+                  wx.reLaunch({
+                    url: '/pages/shouye/index/index',
+                  })
+                }, 3000);}
+            })
           console.log(res)
+        }else{
+            wx.showToast({title:"发布错误，请稍后再试",duration:3000,icon: 'error', mask: true,})
+            console.log(res)
         }
       },
       fail: (err) => {
@@ -464,7 +479,8 @@ Page({
     wx.request({
       url: 'http://8.130.118.211:5795/common/file',
       header: {
-        'content-type': data.contentType
+        'content-type': data.contentType,
+        'authentication' : wx.getStorageSync('token')
       },
       data: data.buffer,
       method: 'POST',

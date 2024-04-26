@@ -1,0 +1,47 @@
+Page({
+  data: {
+    long: 0,
+    id: '',
+    content: '',
+    createTime: '',
+    title: '',
+  },
+
+  onLoad(options) {
+    this.setData({id:options.id})
+    this.getDetailData()
+  },
+
+  //获取详细信息
+  getDetailData:function(){
+    var that = this
+    var id = this.data.id
+    wx.showLoading({title: '加载中...',})
+    wx.request({
+      url: 'http://8.130.118.211:5795/user/message/' + id,
+      header: {
+        authentication : wx.getStorageSync('token')
+      },
+      method : 'GET',
+      success: (res) => {
+        console.log(res)
+        if(res.data.code==1){
+          var data = res.data.data
+          if(data.title.length>12)
+            that.setData({long:1})
+          that.setData({
+            content: data.content,
+            createTime: data.createTime,
+            title: data.title,
+          })
+        }
+      },
+      fail: (err) => {
+        console.log(err)
+      },
+      complete:()=>{
+        wx.hideLoading()
+      }
+    })
+  },
+})

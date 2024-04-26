@@ -12,59 +12,50 @@ Page({
       url:"/pages/fabuzong/tianxie/tianxie"
     });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  onLoad(){
+    this.getToken()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  async getToken() {
+    var that = this
+    wx.showLoading({title: '加载中',})
+    var token = wx.getStorageSync('token')
+    if(!token){
+      wx.hideLoading()
+      wx.redirectTo({url: '/pages/login/login',})
+    }else{
+      var id = wx.getStorageSync('id')
+      wx.request({
+        url: 'http://8.130.118.211:5795/user/user/' + id,
+        header:{
+          'authentication': token
+        },
+        method : 'GET',
+        success: (res) => {
+          // console.log(res)
+          wx.hideLoading()
+          if(res.statusCode==401){
+            wx.removeStorageSync('token')
+            wx.reLaunch({url: '/pages/login/login',})
+          }else{
+            var datas={
+              'avatar': res.data.data.image,
+              'name': res.data.data.name,
+              'id': res.data.data.id,
+              'yishi': res.data.data.time,
+              'credibility': res.data.data.credit,
+              'helptimes': res.data.data.help
+            }
+            that.setData({
+              selfdatas: datas
+            })
+          }
+        },
+        fail: (err) => {
+          wx.hideLoading()
+          console.log(err)
+        }
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

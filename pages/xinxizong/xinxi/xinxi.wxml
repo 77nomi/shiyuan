@@ -1,17 +1,16 @@
-
 <view class="all">
   <view class="container">
     <view class="bottle">  
       <view class="ding"></view>
       <view class="chashou">
-        <view wx:if="{{type2}}" class="dot2">.</view>
+        <view wx:if="{{type3}}" class="dot2">.</view>
         <view class="neirong" bindtap="officialNotice">官方通知请查收</view>
       </view>
       <view class="pingjing"></view>
       <view class="pingshen">
         <!-- 求助部分 -->
         <view class="qiuzhu type">
-          <view wx:if="{{type0}}" class="dot1">.</view>
+          <text wx:if="{{type0}}" class="dot">.</text>
             <view bindtap="seekHelpInfo" class="zuo" >
               <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
               <view class="tishi">求助信息</view>
@@ -19,20 +18,19 @@
         </view>
         <!-- 帮助部分 -->
         <view class="bangzhu type">
-            <view wx:if="{{type1}}" class="dot3">.</view>
+            <view wx:if="{{type1}}" class="dot">.</view>
             <view bindtap="helpInfo" class="zuo" >
               <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
               <view class="tishi">帮助信息</view>
             </view>
         </view>
         <view class="jubao type">
-          <view wx:if="{{type2}}" class="dot4">.</view>
+          <view wx:if="{{type2}}" class="dot">.</view>
           <view bindtap="reportInfo" class="zuo" >
             <view class="tu"><image src="/images/lingdang2.png" mode="widthFix"/></view>
-            <view class="tishi">举报信息记录</view>
+            <view class="tishi">举报信息</view>
           </view>
         </view>
-
       </view>
     </view>
   </view>

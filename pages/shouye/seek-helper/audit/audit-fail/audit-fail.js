@@ -36,7 +36,7 @@ Page({
           })
           that.getUser()
         }else{
-          wx.showToast({title: res.data.msg,duration:1500,icon: 'error'})
+          wx.showToast({title: res.data.msg,duration:1500,icon: 'error', mask: true,})
           console.log(res)
         }
       },
@@ -51,7 +51,7 @@ Page({
     var id = that.data.userId
     wx.request({
       url: 'http://8.130.118.211:5795/user/user/' + id,
-      headers: {
+      header: {
         authentication : wx.getStorageSync('token')
       },
       method : 'GET',
@@ -63,7 +63,7 @@ Page({
             userName: res.data.data.name
           })
         else{
-          wx.showToast({title: res.data.msg,duration:1500,icon: 'error'})
+          wx.showToast({title: res.data.msg,duration:1500,icon: 'error', mask: true,})
           console.log(res)
         }
       },
@@ -89,14 +89,14 @@ Page({
       complete: (res) => {
         if (res.confirm) {
           if(!that.data.reason){
-            wx.showToast({title: '不通过原因不能为空',icon:'none',duration:1500,})
+            wx.showToast({title: '不通过原因不能为空',icon:'none',duration:1500,mask: true,})
             return 
           }
           var reason = that.data.reason
           wx.showLoading({title: '加载中...',})
           wx.request({
             url: 'http://8.130.118.211:5795/user/help',
-            headers: {
+            header: {
               authentication : wx.getStorageSync('token')
             },
             data:{
@@ -109,22 +109,23 @@ Page({
             method : 'PUT',
             success: (res) => {
               wx.hideLoading()
-              console.log(res)
+              // console.log(res)
               if(res.data.code==1){
                 wx.showToast({
                   title: '上传成功',
                   icon: 'success', 
                   duration: 1500, 
+                  mask: true,
                   success: function () {
                     setTimeout(function () {
-                      wx.redirectTo({
+                      wx.reLaunch({
                         url: '/pages/shouye/help-page-detail/help-page-detail?id='+requestId,
                       })
                     }, 1500);}
                 })
               }
               else
-                wx.showToast({title: res.data.msg,icon:'none',duration:1500})
+                wx.showToast({title: res.data.msg,icon:'none',duration:1500, mask: true,})
             },
             fail: (err) => {
               wx.hideLoading()

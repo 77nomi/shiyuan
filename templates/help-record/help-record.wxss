@@ -37,16 +37,6 @@
   background-color: rgb(255, 0, 0);
   border-radius: 10rpx;
 }
-.details{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 65rpx;
-}
-.name{
-  font-size: 2-rpx;
-  text-align: center;
-}
 .states{
   height: 45rpx;
   width: 100rpx;
@@ -55,7 +45,21 @@
   background-color: #70c9db;
   border-radius: 10rpx;
 }
+.details{
+  width: 650rpx;
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 65rpx;
+}
+.name{
+  position: absolute;
+  left: 30rpx;
+  font-size: 30rpx;
+}
 .time{
+  position: absolute;
+  right: 30rpx;
   font-size: 25rpx;
   border-radius: 30rpx;
   background-color: #fff;

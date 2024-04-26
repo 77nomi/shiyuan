@@ -51,38 +51,3 @@ function request(rquestParams) {
     })
 }
 
-
-
-
-/**
- * 封装wx.uploadFile接口上传文件
- */
-function uploadFile(rquestParams) {
-    let app = getApp();
-    if (!rquestParams.url) return;
-    let header = {
-        'content-type': 'application/x-www-form-urlencoded'
-    };
-    let cookie = app.globalData.cookie;
-    if (cookie) {
-        header = Object.assign(header, {
-            'cookie': cookie
-        });
-    };
-    let method = rquestParams.method || "GET";
-    let formData = jsonUtils.trimObject(rquestParams.formData);
-    let url = app.globalData.api + rquestParams.url;
-    return new Promise(function (resolve) {
-        wx.uploadFile({
-            url: url,
-            filePath: rquestParams.filePath,
-            name: rquestParams.name,
-            header: header,
-            formData: formData,
-            success: (res) => {
-                res.data = JSON.parse(res.data);
-                resolve(res);
-            }
-        })
-    })
-}

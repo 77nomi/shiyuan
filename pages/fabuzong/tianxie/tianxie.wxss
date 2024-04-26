@@ -54,9 +54,9 @@ input{
 border:5rpx solid #7A6C68;
 }
 .textarea{  
-  width: 500rpx;  
+  width: 495rpx;  
   height: 250rpx;  
-  background-color:d #fff;  
+  padding: 0 5rpx;
 }  
 .pics{
   border-top:5rpx solid #7A6C68;

@@ -1,7 +1,20 @@
-
-<view class="logo">
-<image src="/images/logo.png" mode="widthFix"/>
+<view class="logo"><image src="/images/logo.png" mode="widthFix"/></view>
+<view wx:if="{{!flag}}">
+  <view bindtap="login" class="login">一键登录</view>
+  <view class="tips">登录后可使用更多功能</view>
 </view>
-<view class="wen">
-  <view class="fast" bindtap="login">一键快捷登录</view>
+<view wx:if="{{flag}}">
+  <view class="changeTitle">更改头像和昵称</view>
+  <view data-weui-theme="{{theme}}">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{avatarUrl}}"></image>
+    </button> 
+    <form catchsubmit="formSubmit">
+      <view class="row">
+        <view class="text1">昵称：</view>
+          <input type="nickname" class="weui-input" name="nickname" placeholder="请输入昵称"/>
+      </view>
+      <button type="primary" style="margin-top: 40rpx;margin-bottom: 20rpx;" form-type="submit">登录</button>
+    </form>
+  </view>
 </view>

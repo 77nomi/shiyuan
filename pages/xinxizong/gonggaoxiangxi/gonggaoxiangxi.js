@@ -17,7 +17,13 @@ Page({
     var that = this
     wx.request({
     url:'http://8.130.118.211:5795/common/notice/'+id,
+    data:{
+      status: 0,
+    },
     method:'GET',
+    header: {
+      authentication : wx.getStorageSync('token')
+    },
     success:(res) => {
       wx.hideLoading()
       var data = res.data.data

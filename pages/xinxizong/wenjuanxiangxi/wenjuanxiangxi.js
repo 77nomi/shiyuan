@@ -25,12 +25,15 @@ Page({
     wx.showLoading({title: '加载中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/common/survey/' + id,
-      headers: {
-        token : wx.getStorageSync('token')
+      data:{
+        status: 0,
+      },
+      header: {
+        authentication : wx.getStorageSync('token')
       },
       method : 'GET',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         if(res.data.code==1){
           var data = res.data.data
           that.setData({
@@ -86,12 +89,13 @@ Page({
             method: 'PUT',
             success: (res) => {
               wx.hideLoading()
-              console.log(res)
+              // console.log(res)
               if(res.data.code==1){
                 wx.showToast({
                   title: '已完成！',
                   icon: 'success', 
                   duration: 1500, 
+                  mask: true,
                   success: function () {
                     wx.hideLoading()
                     wx.setStorageSync(id, 1)
@@ -102,7 +106,7 @@ Page({
                     }, 1500);}
                 })
               }else{
-                wx.showToast({title: res.data.msg,icon:'none',duration:1500})
+                wx.showToast({title: res.data.msg,icon:'none',duration:1500, mask: true,})
               }
             },
             fail: (err) => {

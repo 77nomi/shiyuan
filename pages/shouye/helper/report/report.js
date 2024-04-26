@@ -25,9 +25,7 @@ Page({
   // 取消
   cancel(){
     var that = this
-    wx.navigateTo({
-      url: '/pages/shouye/help-page-detail/help-page-detail?id'+that.data.id,
-    })
+    wx.navigateBack()
   },
   
   // 确认上传，循环上传图片
@@ -66,12 +64,12 @@ Page({
     let formData = new FormData();
     formData.appendFile("file",url,name);
     let data = formData.getData();
-    console.log(data.buffer)
     wx.showLoading({title: '上传图片中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/common/file',
       header: {
-        'content-type': data.contentType
+        'content-type': data.contentType,
+        authentication : wx.getStorageSync('token')
       },
       data: data.buffer,
       method: 'POST',
@@ -93,7 +91,7 @@ Page({
       },
       fail(res){
         wx.hideLoading()
-        console.log(res)
+        // console.log(res)
         wx.showToast({title: '图片上传失败！',icon: 'error', duration:1500, mask:true})
         that.setData({state:0})
         return 
@@ -129,12 +127,13 @@ Page({
       },
       method : 'POST',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         if(res.data.code==1){
           wx.showToast({
             title: '上传成功！',
             icon: 'success', 
-            duration: 1500, 
+            duration: 1500,
+            mask: true,
             success: function () {
               setTimeout(function () {
               wx.reLaunch({
@@ -159,7 +158,7 @@ Page({
     wx.showLoading({title: '加载中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/common/request/' + id,
-      headers: {
+      header: {
         authentication : wx.getStorageSync('token')
       },
       data:{
@@ -167,7 +166,7 @@ Page({
       },
       method : 'GET',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         var data = res.data.data
         that.setData({
           id: data.id,
@@ -243,7 +242,7 @@ Page({
                     },
                     fail: function fail(e) {
                       wx.hideLoading();
-                      wx.showToast({title: '头像上传失败',icon: 'error',duration: 1000});
+                      wx.showToast({title: '头像上传失败',icon: 'error',duration: 1000, mask: true,});
                     }
                   });
                 }, 1000);

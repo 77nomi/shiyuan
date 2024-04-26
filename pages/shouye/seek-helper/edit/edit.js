@@ -77,7 +77,7 @@ Page({
 
   onLoad(options){
     this.getDetailData(options.id)
-    wx.showToast({title: '所需人数及报酬无法更改',icon:'none',duration:2000})
+    wx.showToast({title: '所需人数及报酬无法更改',icon:'none',duration:2000, mask: true,})
   },
 
   //获取初始详细信息
@@ -86,7 +86,7 @@ Page({
     wx.showLoading({title: '加载中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/common/request/' + id,
-      headers: {
+      header: {
         authentication : wx.getStorageSync('token')
       },
       data:{
@@ -94,7 +94,7 @@ Page({
       },
       method : 'GET',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         var data = res.data.data
         that.setData({
           newtitle: data.title,
@@ -161,7 +161,11 @@ Page({
     if(!this.getLabel())
       return 
     var datas = this.data
-    if(datas.title && datas.content && datas.phone && datas.nums && datas.labels && datas.emergency){
+    console.log(datas.emergency)
+    if(datas.emergency=='error'){
+      wx.showToast({title: '紧急贴报酬不能低于1！',icon: 'none', duration:2000, mask:true})
+      return 
+    }else if(datas.title && datas.content && datas.phone && datas.nums && datas.labels && datas.emergency){
       this.showOverlay()
     }else{
       wx.showToast({title: '有未填写内容',icon: 'none', duration: 1000, mask: true,})
@@ -233,7 +237,8 @@ Page({
     wx.request({
       url: 'http://8.130.118.211:5795/common/file',
       header: {
-        'content-type': data.contentType
+        'content-type': data.contentType,
+        authentication : wx.getStorageSync('token')
       },
       data: data.buffer,
       method: 'POST',
@@ -303,13 +308,14 @@ Page({
       },
       method : 'PUT',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         wx.hideLoading()
         if(res.data.code==1){
           wx.showToast({
             title: '发布成功！',
             icon: 'success', 
             duration: 1500, 
+            mask: true,
             success: function () {
               setTimeout(function () {
               wx.reLaunch({
@@ -364,10 +370,15 @@ Page({
 
   //获取是否紧急
   changeEmergency(e){
+    var that = this
     var state = e.currentTarget.dataset.index
-    this.setData({
-      emergency: state,
-    })
+    if(state==1){
+      if(that.data.bonus<1){
+        this.setData({emergency: 'error'})
+        return
+      }
+    }
+    this.setData({emergency: state})
   },
 
   showOverlay: function () {
@@ -480,7 +491,7 @@ Page({
                     },
                     fail: function fail(e) {
                       wx.hideLoading();
-                      wx.showToast({title: '上传失败',icon: 'error',duration: 1000});
+                      wx.showToast({title: '上传失败',icon: 'error',duration: 1000, mask: true,});
                     }
                   });
                 }, 1000);

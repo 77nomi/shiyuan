@@ -1,5 +1,6 @@
 <view class="rect1"></view>
 <view class="rect2">
+  <view class="tips" wx:if="{{!records[0]}}">暂无帮助记录</view>
   <scroll-view bindscrolltolower="getMore" class="content-scroll" scroll-y>
     <block wx:for="{{records}}" wx:for-item="item">
       <view class="zhuangtai">

@@ -1,10 +1,6 @@
 // app.js
 App({
   globalData: {
-    webSocketNum: 0,// 记录webSocket的数据条数
-    type0Num: 0, //我的求助信息
-    type1Num: 0, //我的帮助信息
-    type2Num: 0, //我的举报信息
     socketStatus: 'closed',
     code: null,
     openId: null,
@@ -17,13 +13,14 @@ App({
       helptimes: '',
     },
     user: "",
-    isLogin: false,
     haveOpenId: false,
     api: "http://8.130.118.211:5795",
   },
+
   onLaunch: function() {
-    if(wx.getStorageSync('token'))
-      this.openSocket()
+    if(wx.getStorageSync('token')){
+      this.getDot()
+    }
   },
   //打开通信
   openSocket() { 
@@ -55,21 +52,11 @@ App({
         message = jj;
       }
       console.log(message);
-      that.globalData.webSocketNum = that.globalData.webSocketNum+1
-      wx.setTabBarBadge({
-        index: 2,
-        text: String(that.globalData.webSocketNum)
-      });
-      if(message.type===0)
-        that.globalData.type0Num = that.globalData.type0Num+1
-      else if(message.type===1)
-        that.globalData.type1Num = that.globalData.type1Num+1
-      else if(message.type===2)
-        that.globalData.type2Num = that.globalData.type2Num+1
+      wx.showTabBarRedDot({index: 2,});
     })
     // 打开信道
     wx.connectSocket({
-      url: "ws://8.130.118.211:5795/ws/" +wx.getStorageSync('id'),
+      url: "wss://shiyuan.ink/ws/" +wx.getStorageSync('id'),
     })
   },
     
@@ -83,11 +70,148 @@ App({
       })
     }
   },
-  // 关闭信息红点
-  hideTabBarBadge(){
-    this.globalData.webSocketNum=0
-    wx.removeTabBarBadge({
-      index: 2,
-    });
+
+  // 获取红点
+  getDot(){
+    wx.hideTabBarRedDot({index: 2,})
+    var that = this
+    var id = wx.getStorageSync('id')
+    wx.showLoading({title: '加载中...',})
+    wx.request({
+      url: "http://8.130.118.211:5795/user/message",
+      data: {
+        id: id,
+        type: 0,
+        page: 1,
+        pageSize: 1,
+      },
+      header:{
+        'authentication': wx.getStorageSync('token'),
+      },
+      method: 'GET',
+      success: (res) => {
+        wx.hideLoading()
+        // console.log(res)
+        if(res.data.code==401){
+          wx.removeStorageSync('token')
+          return 
+        }
+        that.openSocket()
+        if(res.data.data.records[0])
+          if(res.data.data.records[0].status==0){
+            wx.showTabBarRedDot({index: 2,})
+            return
+          }
+      },
+      fail: (err) => {
+        wx.hideLoading()
+        console.log(err)
+        return 
+      },
+    })
+    wx.request({
+      url: "http://8.130.118.211:5795/user/message",
+      data: {
+        id: id,
+        type: 1,
+        page: 1,
+        pageSize: 1,
+      },
+      header:{
+        'authentication': wx.getStorageSync('token'),
+      },
+      method: 'GET',
+      success: (res) => {
+        wx.hideLoading()
+        // console.log(res)
+        if(res.data.data.records[0])
+          if(res.data.data.records[0].status==0){
+            wx.showTabBarRedDot({index: 2,})
+            return
+          }
+      },
+      fail: (err) => {
+        wx.hideLoading()
+        console.log(err)
+        return 
+      },
+    })
+    wx.request({
+      url: "http://8.130.118.211:5795/user/message",
+      data: {
+        id: id,
+        type: 2,
+        page: 1,
+        pageSize: 1,
+      },
+      header:{
+        'authentication': wx.getStorageSync('token'),
+      },
+      method: 'GET',
+      success: (res) => {
+        wx.hideLoading()
+        // console.log(res)
+        if(res.data.data.records[0])
+          if(res.data.data.records[0].status==0){
+            wx.showTabBarRedDot({index: 2,})
+            return
+          }
+      },
+      fail: (err) => {
+        wx.hideLoading()
+        console.log(err)
+        return 
+      },
+    })
+    wx.request({
+    url:'http://8.130.118.211:5795/common/notice',
+    method:'GET',
+    data:{
+      'page': 1,
+      'pageSize': 20
+    },
+    header: {
+      authentication : wx.getStorageSync('token')
+    },
+    success: (res) => {
+      wx.hideLoading()
+      if(res.data.data.records[0])
+        for(var i=0;i<res.data.data.records.length;i++)
+          if(res.data.data.records[i].status==0){
+            wx.showTabBarRedDot({index: 2,})
+            return
+          }
+    },
+    fail: (err) => {
+      wx.hideLoading()
+      console.log(err)
+      return 
+    },
+    })
+    wx.request({
+      url:'http://8.130.118.211:5795/common/survey',
+      method:'GET',
+      data:{
+        'page': 1,
+        'pageSize': 20
+      },
+      header: {
+        authentication : wx.getStorageSync('token')
+      },
+      success:(res) => {
+        wx.hideLoading()
+        if(res.data.data.records[0])
+          for(var i=0;i<res.data.data.records.length;i++)
+            if(res.data.data.records[0].status==0){
+              wx.showTabBarRedDot({index: 2,})
+              return
+            }
+      },
+      fail:(err)=>{
+        wx.hideLoading()
+        console.log(err)
+      }
+    })
+    wx.hideLoading()
   },
 })

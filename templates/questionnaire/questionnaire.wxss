@@ -1,4 +1,5 @@
 .questionnaire{
+  position: relative;
   width: 600rpx;
   height: 130rpx;
   margin: 30rpx auto;
@@ -6,6 +7,13 @@
   border-radius: 30rpx;  
   display: flex;
   flex-direction: row;
+}
+.dot{
+  position: absolute;
+  top: -175rpx;
+  left: 55rpx;
+  font-size: 200rpx;
+  color: red;
 }
 
 .left,

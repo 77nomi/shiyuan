@@ -18,12 +18,12 @@ Page({
     wx.showLoading({title: '加载中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/user/message/' + id,
-      headers: {
-        token : wx.getStorageSync('token')
+      header: {
+        authentication : wx.getStorageSync('token')
       },
       method : 'GET',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         if(res.data.code==1){
           var data = res.data.data
           that.setData({

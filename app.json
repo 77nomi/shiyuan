@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/shouye/index/index",
+    "pages/geren/geren",
     "pages/shouye/help-page-detail/help-page-detail",
     "pages/shouye/helper/report/report",
     "pages/shouye/helper/complete/complete",
@@ -21,8 +22,9 @@
     "pages/xinxizong/bangzhujilu/bangzhujilu",
     "pages/xinxizong/infoDetail/infoDetail",
     "pages/xinxizong/reportinfo/reportinfo",
+    "pages/xinxizong/reportjilu/reportjilu",
     "pages/xinxizong/reportdetail/reportdetail",
-    "pages/geren/geren",
+    "pages/xinxizong/reportinfodetail/reportinfodetail",
     "pages/login/login"
   ],
   "tabBar": {

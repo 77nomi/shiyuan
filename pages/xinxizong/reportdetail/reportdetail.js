@@ -1,5 +1,6 @@
 Page({
   data: {
+    adminId:'',
     id: '',
     content: '',
     userId:'',
@@ -18,9 +19,9 @@ Page({
     var that = this
     wx.showLoading({title: '加载中...',})
     wx.request({
-      url: 'http://8.130.118.211:5795/admin/report/' + id,
-      headers: {
-        token : wx.getStorageSync('token')
+      url: 'http://8.130.118.211:5795/user/report/' + id,
+      header: {
+        authentication : wx.getStorageSync('token')
       },
       method : 'GET',
       success: (res) => {
@@ -28,6 +29,7 @@ Page({
         if(res.data.code==1){
           var data = res.data.data
           that.setData({
+            adminId:data.adminId,
             content: data.content,
             reportId: data.reportId,
             id: data.id,

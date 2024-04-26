@@ -1,4 +1,3 @@
-
 Page({
   data: {
     page: 1,
@@ -14,15 +13,29 @@ Page({
         isActive:false
       }
     ],
+    index: 0,
     noticeList:[],
     questionnaireList:[]
   },
-  onLoad(options) {
-    this.getnoticeList()
-    // this.getquestionnaireList()
+
+  onShow(){
+    this.setData({
+      noticeList:[],
+      questionnaireList:[],
+      page:1
+    })
+    if(this.data.index==0)
+      this.getnoticeList()
+    else
+      this.getquestionnaireList()
   },
+  
   // 更换公告/问卷
   handleTabsItemChange(e){
+    this.setData({
+      noticeList:[],
+      questionnaireList:[]
+    })
     //获取被点击事件的标题索引
     const {index}=e.detail;
     //修改数组
@@ -32,7 +45,8 @@ Page({
       indextabs,
       noticeList:[],
       questionnaireList:[],
-      page: 1
+      page: 1,
+      index:index
     })
     if(index==0)
       this.getnoticeList()
@@ -43,7 +57,6 @@ Page({
   getnoticeList(){
     wx.showLoading({title: '加载中',})
     var page = this.data.page
-    console.log(page)
     wx.request({
     url:'http://8.130.118.211:5795/common/notice',
     method:'GET',
@@ -51,8 +64,11 @@ Page({
       'page': page,
       'pageSize': 10
     },
+    header: {
+      authentication : wx.getStorageSync('token')
+    },
     success:(res) => {
-      console.log(res)
+      // console.log(res)
       wx.hideLoading()
       if(res.data.data.records[0]){
         var oldList = this.data.noticeList
@@ -62,7 +78,7 @@ Page({
           noticeList:newList
         })
       }else{
-        wx.showToast({title: '暂无更多数据',icon:'none',duration: 1500,})
+        wx.showToast({title: '暂无更多数据',icon:'none',duration: 1000, mask: true,})
       }
     },
     fail:(err)=>{
@@ -84,6 +100,9 @@ Page({
       'page': page,
       'pageSize': 10
     },
+    header: {
+      authentication : wx.getStorageSync('token')
+    },
     success:(res) => {
       wx.hideLoading()
       console.log(res)
@@ -95,7 +114,7 @@ Page({
           questionnaireList:newList
         })
       }else{
-        wx.showToast({title: '暂无更多数据',icon:'none',duration: 1500,})
+        wx.showToast({title: '暂无更多数据',icon:'none',duration: 1000, mask: true,})
       }
     },
     fail:(err)=>{
@@ -118,7 +137,7 @@ Page({
   gotonotdetails(e){
     // console.log(e)
     const id=e.currentTarget.dataset.index;
-    console.log(id)
+    // console.log(id)
     wx.navigateTo({
       url: '/pages/xinxizong/gonggaoxiangxi/gonggaoxiangxi?id='+id
     });

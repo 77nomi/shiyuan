@@ -36,7 +36,12 @@
 .neirong{
   width: 320rpx;
   height: 100rpx;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
+  color: red;
+  border: solid red 2rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+  text-indent: 1rpx;
   border-radius: 20px;
   margin: 0 auto;
   text-align: center;
@@ -80,32 +85,8 @@
 .jubao{
   position: relative;
 }
-.dot1,
-.dot3,
-.dot4
-{
-  position: absolute;
-  top: -220rpx;
-  left: 100rpx;
-  font-size: 250rpx;
-  color: red;
-}
-.dot1{
-  position: absolute;
-  top: -220rpx;
-  left: 100rpx;
-  font-size: 250rpx;
-  color: red;
-}
 
 
-.dot2{
-  position: absolute;
-  font-size: 250rpx;
-  color: red;
-  top: -150rpx;
-  left: 470rpx;
-}
 .type{
   position: relative;
   width: 550rpx;
@@ -116,6 +97,20 @@
   border-radius: 30rpx;
   border: 10rpx solid #C5DFE8;
 }
+.dot{
+  position: absolute;
+  top: -150%;
+  left: 17%;
+  font-size: 250rpx;
+  color: red;
+}
+.dot2{
+  position: absolute;
+  font-size: 250rpx;
+  color: red;
+  top: -12%;
+  right: 24%;
+}
 .tu{
   width: 150rpx;
   height: 150rpx;
@@ -123,12 +118,12 @@
   justify-content: center;
   align-items: center;
 }
+image{
+  width: 100rpx;
+}
 .tishi{
   height:150rpx;
   text-align: center;
   font-size: 50rpx; 
   line-height:150rpx;
-}
-image{
-  width: 100rpx;
 }

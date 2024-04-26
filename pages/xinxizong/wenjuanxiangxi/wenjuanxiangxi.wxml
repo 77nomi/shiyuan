@@ -10,7 +10,7 @@
         </view>
         <view class="bot">{{createTime}}</view>
       </view>
-      <view class="right"><view class="shumu">{{comNum}}/999</view></view>
+      <view class="right"><view class="shumu">{{comNum}}</view></view>
     </view>
     <view class="line"></view>
     <!-- 第二行 -->
@@ -23,8 +23,8 @@
     </view>
     <view class="line"></view>
     <view class="row3">
-      <view class="left3">报酬：{{bonus}}益时/人</view>
       <view class="right3"><image src="/images/yishi.png" mode="heightFix" class="yishi"/></view>
+      <view class="left3">报酬：{{bonus}}益时/人</view>
     </view>
     <view class="line"></view>
 

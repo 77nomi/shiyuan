@@ -26,4 +26,5 @@
         <view class="line"></view>
     <scroll-view class="content">{{reason}}</scroll-view>
   </view>
+  <view wx:if="{{!reason && adminId}}" class="tips">您举报的用户id:[{{reportId}}].涉嫌违规，已将其封禁。为了感谢您作出的贡献，奖励3益时</view>
 </view>

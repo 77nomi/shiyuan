@@ -36,7 +36,7 @@
     </view>
 
 
-    <view bindtap="uploadImage" class="yiwen">是否加急？</view>
+    <view class="yiwen">是否加急？</view>
     <view class="huida">
       <button form-type="submit" bindtap="changeEmergency" data-index="1" class="butt">是</button>
       <button form-type="submit" bindtap="changeEmergency" data-index="0" class="butt">否</button>

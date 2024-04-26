@@ -31,15 +31,17 @@ Page({
   // 确认
   confirm(){
     var that = this
-    if(!this.data.content){
-      wx.showToast({title: '内容不能为空！',icon: 'error', duration:1500})
-    }
     wx.showModal({
       title: '确认上传',
       content: '点击确认后即上传',
       complete: (res) => {
         if (res.confirm) {
-          that.uploadDatas()
+          if(!that.data.content){
+            wx.showToast({title: '内容不能为空！',icon: 'error', duration:1500, mask: true,})
+            return 
+          }else{
+            that.uploadDatas()
+          }
         }
       }
     })
@@ -52,7 +54,7 @@ Page({
     wx.showLoading({title: '加载中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/common/request/' + id,
-      headers: {
+      header: {
         authentication : wx.getStorageSync('token')
       },
       data:{
@@ -60,7 +62,7 @@ Page({
       },
       method : 'GET',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         var data = res.data.data
         that.setData({
           'id': data.helpId,
@@ -112,7 +114,8 @@ Page({
     wx.request({
       url: 'http://8.130.118.211:5795/common/file',
       header: {
-        'content-type': data.contentType
+        'content-type': data.contentType,
+        authentication : wx.getStorageSync('token')
       },
       data: data.buffer,
       method: 'POST',
@@ -134,7 +137,7 @@ Page({
       },
       fail(res){
         wx.hideLoading()
-        console.log(res)
+        // console.log(res)
         wx.showToast({title: '图片上传失败！',icon: 'error', duration:1500, mask:true})
         that.setData({state:0})
         return 
@@ -185,22 +188,23 @@ Page({
       },
       method : 'PUT',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         if(res.data.code==1){
           wx.showToast({
             title: '上传成功！',
             icon: 'success', 
-            duration: 1500, 
+            duration: 1500,
+            mask: true,
             success: function () {
               setTimeout(function () {
-                wx.redirectTo({
+                wx.reLaunch({
                   url: '/pages/shouye/help-page-detail/help-page-detail?id='+requestId,
                 })
               }, 1500);}
           })
         }else{
-          wx.showToast({title: res.data.msg,duration:1500,icon: 'error'})
-          console.log(res)
+          wx.showToast({title: res.data.msg,duration:1500,icon: 'error', mask: true,})
+          // console.log(res)
         }
       },
       fail: (err) => {
@@ -266,7 +270,7 @@ Page({
                     },
                     fail: function fail(e) {
                       wx.hideLoading();
-                      wx.showToast({title: '头像上传失败',icon: 'error',duration: 1000});
+                      wx.showToast({title: '头像上传失败',icon: 'error',duration: 1000, mask: true,});
                     }
                   });
                 }, 1000);

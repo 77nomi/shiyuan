@@ -1,0 +1,8 @@
+<view class="rect1"></view>
+<view class="rect2"> 
+  <view wx:if="{{!long}}" class="title1">{{title}}</view>
+  <view wx:if="{{long}}" class="title2">{{title}}</view>
+  <view wx:if="{{!long}}" class="content">详细：{{content}}</view>
+  <view wx:if="{{long}}" class="content">违规原因：{{content}}</view>
+  <view class="time">{{createTime}}</view>
+</view>

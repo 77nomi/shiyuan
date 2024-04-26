@@ -1,11 +1,11 @@
-<import src="/templates/reportinfo/reportinfo"/>
+<import src="/templates/info/info"/>
 <view class="rect1"></view>
 <view class="rect2"> 
-<view class="information">举报信息记录</view>
+<view class="information">举报信息通知</view>
 
 <scroll-view bindscrolltolower="getMore" scroll-y>
   <view bindtap="gotoDetail" data-index="{{index}}" wx:for="{{records}}" wx:key="index" wx:for-item="item">
-    <template is="reportinfo" data="{{...item}}"/>
+    <template is="info" data="{{...item}}"/>
   </view>
 </scroll-view>
 </view>

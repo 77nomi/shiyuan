@@ -40,7 +40,7 @@ Page({
     wx.showLoading({title: '加载中...',})
     wx.request({
       url: 'http://8.130.118.211:5795/common/request/' + id,
-      headers: {
+      header: {
         authentication : wx.getStorageSync('token')
       },
       data:{
@@ -48,7 +48,18 @@ Page({
       },
       method : 'GET',
       success: (res) => {
-        console.log(res)
+        wx.hideLoading()
+        if(res.data.msg=="此帖已被删除"){
+          wx.showToast({
+            title: '此帖已被删除',duration:1500,icon:'none', mask: 'true',
+            success: function () {
+              setTimeout(function () {
+              wx.reLaunch({
+              url: '/pages/shenhezong/shenhe/shenhe',
+                })
+              }, 1500);}
+          })
+        }
         var data = res.data.data
         that.setData({
           bonus: data.bonus,
@@ -72,16 +83,20 @@ Page({
         this.buttonStatus()
       },
       fail: (err) => {
+        wx.hideLoading()
         console.log(err)
       },
-      complete:()=>{
-        wx.hideLoading()
-      }
     })
   },
 
   // 查看原帖帮助记录
   getStatus(){
+    if(!wx.getStorageSync('token')){
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+      return 
+    }
     var that = this
     if(this.data.userId == wx.getStorageSync('id')){
       wx.navigateTo({
@@ -107,6 +122,9 @@ Page({
     if(this.data.userId == id){
       this.setData({flag:false,type:0})
     }else{
+      if(this.data.helpNum==this.data.reqNum){
+        wx.showToast({title: '帮助人数已满',icon:"none",duration:2000,mask:true})
+      }
       if(status=='0'){
         this.setData({flag:false,type:2,msg1:'取消帮助',msg2:'完成帮助'})
       }
@@ -132,6 +150,12 @@ Page({
   },
   // 立即帮助
   help(){
+    if(!wx.getStorageSync('token')){
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+      return 
+    }
     var that = this
     var requestId = this.data.id
     var userId = wx.getStorageSync('id')
@@ -143,7 +167,7 @@ Page({
           wx.showLoading({title: '加载中...',})
           wx.request({
             url: 'http://8.130.118.211:5795/user/help',
-            headers: {
+            header: {
               authentication : wx.getStorageSync('token')
             },
             data:{
@@ -154,7 +178,7 @@ Page({
             },
             method : 'PUT',
             success: (res) => {
-              console.log(res)
+              // console.log(res)
               that.onLoad()
             },
             fail: (err) => {
@@ -170,6 +194,12 @@ Page({
   },
   //取消帮助
   cancelHelp(){
+    if(!wx.getStorageSync('token')){
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+      return 
+    }
     var that = this
     var requestId = this.data.id
     var userId = wx.getStorageSync('id')
@@ -183,7 +213,7 @@ Page({
           wx.showLoading({title: '加载中...',})
           wx.request({
             url: 'http://8.130.118.211:5795/user/help',
-            headers: {
+            header: {
               authentication : wx.getStorageSync('token')
             },
             data:{
@@ -196,12 +226,13 @@ Page({
             method : 'PUT',
             success: (res) => {
               wx.hideLoading()
-              console.log(res)
+              // console.log(res)
               if(res.data.code==1){
                 wx.showToast({
                   title: '已取消',
                   icon: 'none', 
-                  duration: 1500, 
+                  duration: 1500,
+                  mask: true,
                   success: function () {
                     setTimeout(function () {
                       that.onLoad()
@@ -211,7 +242,7 @@ Page({
             },
             fail: (err) => {
               wx.hideLoading()
-              wx.showToast({title: err.data.data.msg})
+              wx.showToast({title: err.data.data.msg,duration:2000,icon:none, mask: true,})
               console.log(err)
             },
           })
@@ -221,12 +252,24 @@ Page({
   },
   // 完成帮助
   completeHelp(){
+    if(!wx.getStorageSync('token')){
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+      return 
+    }
     var id = this.data.id
     wx.navigateTo({url: '/pages/shouye/helper/complete/complete?id='+id,})
   },
 
   //点击更多
   more(){
+    if(!wx.getStorageSync('token')){
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+      return 
+    }
     var that = this
     if(this.data.userId != wx.getStorageSync('id')){
       wx.showActionSheet({
@@ -250,7 +293,7 @@ Page({
               })
             }else{
               if(that.data.comNum!=that.data.helpNum)
-                wx.showToast({title: '有未确认的帮助记录',icon: 'none',duration:1500})
+                wx.showToast({title: '有未确认的帮助记录',icon: 'none',duration:1500, mask: true,})
               else
                 wx.showModal({
                   title: '确认删除',
@@ -269,20 +312,26 @@ Page({
   },
   // 删除求助
   delete(){
+    if(!wx.getStorageSync('token')){
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+      return 
+    }
     wx.showLoading({title: '加载中...',})
     var id = this.data.id
     var that = this
     wx.request({
       url: 'http://8.130.118.211:5795/common/request/' + id,
-      headers: {
+      header: {
         authentication : wx.getStorageSync('token')
       },
       method : 'DELETE',
       success: (res) => {
         wx.hideLoading()
-        console.log(res)
+        // console.log(res)
         wx.showToast({
-          title: '删除成功！',duration:1500,
+          title: '删除成功！',duration:1500,mask: true,
           success: function () {
             setTimeout(function () {
             wx.reLaunch({

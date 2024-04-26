@@ -32,7 +32,7 @@ scroll-view{
   /* margin-top: 30rpx; */
   /* width: 650rpx; */
   padding-top: 20rpx;
-  height: 1250rpx;
+  height: 1300rpx;
   background-color: #E5F1F5;
 }
 /* 隐藏滚动条 */

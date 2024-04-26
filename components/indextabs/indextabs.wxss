@@ -1,11 +1,9 @@
 .tabs_title{
-  /* width: 620rpx; */
+  position: relative;
   height: 80rpx;
   display: flex;
   background-color:white;
   margin: 0 auto;
-  /* margin-top: 100rpx; */
-  /* border-radius: 30rpx; */
 }
 .title_item{
   display: flex;
@@ -16,4 +14,16 @@
 }
 .active{
 border-bottom: 8rpx solid #FF8D1A;
+}
+.dot{
+  position: absolute;
+  font-size: 170rpx;
+  color: red;
+  top: -150rpx;
+}
+.type1{
+  left: 200rpx;
+}
+.type2{
+  right: 110rpx;
 }

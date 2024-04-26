@@ -22,19 +22,19 @@ Page({
         pageSize: 10,
         userId: id,
       },
-      // header:{
-      //   'authentication': token,
-      // },
+      header: {
+        authentication : wx.getStorageSync('token')
+      },
       method: 'GET',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         if(res.data.data.records[0]){
           var helpList = that.data.helplist
           var newrecords = res.data.data.records
           var finrecord = helpList.concat(newrecords)
           that.setData({helplist:finrecord})
         }else{
-          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500})
+          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500, mask: true,})
         }
       },
       fail: (err) => {

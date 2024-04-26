@@ -7,8 +7,8 @@ Page({
     records: [],
   },
 
-  onLoad(options) {
-    this.setData({type:options.type})
+  onShow(options) {
+    this.setData({type:1,records:[]})
     this.getrecords()
   },
 
@@ -26,9 +26,9 @@ Page({
         page: page,
         pageSize: 10,
       },
-      // header:{
-      //   'authentication': token,
-      // },
+      header:{
+        'authentication': wx.getStorageSync('token'),
+      },
       method: 'GET',
       success: (res) => {
         console.log(res)
@@ -38,7 +38,7 @@ Page({
           var finrecord = records.concat(newrecords)
           that.setData({records:finrecord})
         }else{
-          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500})
+          wx.showToast({title: '暂无更多记录',icon: 'none', duration: 1500, mask: true,})
         }
       },
       fail: (err) => {

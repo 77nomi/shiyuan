@@ -75,3 +75,11 @@
   text-align: center;
   line-height: 50rpx;
 }
+.tips{
+  width: 400rpx;
+  text-align: center;
+  font-size: 50rpx;
+  margin: 580rpx auto;
+  letter-spacing: 5rpx;
+  text-indent: 5rpx;
+}
